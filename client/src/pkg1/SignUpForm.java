@@ -6,7 +6,8 @@
 
 package pkg1;
 
-import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -23,7 +24,7 @@ public class SignUpForm extends javax.swing.JFrame {
     public SignUpForm() {
         initComponents();
         try{
-            AcrylLookAndFeel laf=new AcrylLookAndFeel();
+            HiFiLookAndFeel laf=new HiFiLookAndFeel();
             UIManager.setLookAndFeel(laf);
             SwingUtilities.updateComponentTreeUI(this);
         }
