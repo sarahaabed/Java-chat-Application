@@ -6,9 +6,10 @@
 
 package pkg1;
 
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
 
 /**
  *
@@ -21,10 +22,10 @@ public class SignUpForm extends javax.swing.JFrame {
      */
     public SignUpForm() {
         initComponents();
-        WindowsLookAndFeel laf=new WindowsLookAndFeel();
         try{
+            SeaGlassLookAndFeel laf=new SeaGlassLookAndFeel();
             UIManager.setLookAndFeel(laf);
-             SwingUtilities.updateComponentTreeUI(this);
+            SwingUtilities.updateComponentTreeUI(this);
         }
         catch(Exception e){
             System.out.println("Undefined WindowLookAndFeel");
