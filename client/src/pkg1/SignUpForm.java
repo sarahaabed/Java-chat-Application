@@ -6,7 +6,7 @@
 
 package pkg1;
 
-import com.seaglasslookandfeel.SeaGlassLookAndFeel;
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -23,7 +23,7 @@ public class SignUpForm extends javax.swing.JFrame {
     public SignUpForm() {
         initComponents();
         try{
-            SeaGlassLookAndFeel laf=new SeaGlassLookAndFeel();
+            AcrylLookAndFeel laf=new AcrylLookAndFeel();
             UIManager.setLookAndFeel(laf);
             SwingUtilities.updateComponentTreeUI(this);
         }
