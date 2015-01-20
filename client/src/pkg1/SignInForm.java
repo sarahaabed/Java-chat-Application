@@ -6,6 +6,12 @@
 
 package pkg1;
 
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+
 /**
  *
  * @author Gee
@@ -17,9 +23,17 @@ public class SignInForm extends javax.swing.JFrame {
      */
     public SignInForm() {
         initComponents();
-        
+        WindowsLookAndFeel laf=new WindowsLookAndFeel();
+        try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+           // UIManager.setLookAndFeel(new McWinLookAndFeel());
+             SwingUtilities.updateComponentTreeUI(this);
+        }
+        catch(Exception e){
+            System.out.println("Undefined MetalLookAndFeel");
+        }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +60,7 @@ public class SignInForm extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 153, 153));
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setForeground(new java.awt.Color(0, 51, 51));
 
         jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 36)); // NOI18N
@@ -72,14 +87,17 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153, 0, 0));
         jLabel4.setText("Status");
 
+        jComboBox1.setBackground(new java.awt.Color(204, 204, 255));
         jComboBox1.setFont(new java.awt.Font("Viner Hand ITC", 1, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Available", "Busy", "Away" }));
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 255));
         jButton2.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Create New Account");
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setText("Sign In");
@@ -140,16 +158,11 @@ public class SignInForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, Short.MAX_VALUE)
         );
 
         pack();
