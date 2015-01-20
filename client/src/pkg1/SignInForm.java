@@ -87,14 +87,17 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153, 0, 0));
         jLabel4.setText("Status");
 
+        jComboBox1.setBackground(new java.awt.Color(204, 204, 255));
         jComboBox1.setFont(new java.awt.Font("Viner Hand ITC", 1, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Available", "Busy", "Away" }));
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 255));
         jButton2.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Create New Account");
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setText("Sign In");
