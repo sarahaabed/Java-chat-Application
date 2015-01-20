@@ -7,9 +7,20 @@
 package pkg1;
 
 
-import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.jtattoo.plaf.hifi.*;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
+
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.multi.MultiLookAndFeel;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 
 /**
@@ -24,8 +35,8 @@ public class SignUpForm extends javax.swing.JFrame {
     public SignUpForm() {
         initComponents();
         try{
-            HiFiLookAndFeel laf=new HiFiLookAndFeel();
-            UIManager.setLookAndFeel(laf);
+            //HiFiLookAndFeel laf=new HiFiLookAndFeel();
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
             SwingUtilities.updateComponentTreeUI(this);
         }
         catch(Exception e){
@@ -86,14 +97,17 @@ public class SignUpForm extends javax.swing.JFrame {
         jTextField7.setForeground(new java.awt.Color(153, 153, 153));
         jTextField7.setText("Confirm Password");
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 51));
         jButton1.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setText("Sign Up");
 
         jRadioButton1.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(51, 51, 51));
         jRadioButton1.setText("Female");
 
         jRadioButton2.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(51, 51, 51));
         jRadioButton2.setText("Male");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
