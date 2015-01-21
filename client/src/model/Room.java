@@ -13,7 +13,12 @@ import java.util.Vector;
  */
 public class Room {
     private int roomId;
-    private Vector<Contact> contactVector;
-    private Vector<Message> messageVector;
-    
+    public Vector<Contact> contactVector;
+    public Vector<Message> messageVector;
+    public Room(int roomId){
+        this.roomId = roomId;
+    }
+    int getRoomId(){
+        return roomId;
+    }
 }

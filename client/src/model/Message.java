@@ -17,11 +17,13 @@ public class Message implements Serializable{
     private Timestamp timestamp;
     private Contact sender;
     private String txt;
+    private boolean seen;
     
-    public Message(int room,Timestamp timestamp,Contact sender,String txt){
+    public Message(int room,Timestamp timestamp,Contact sender,String txt,boolean seen){
         this.timestamp =timestamp;
         this.sender = sender;
         this.txt = txt;
+        this.seen = seen;
     }
     public int getRoomId(){
         return roomId;
@@ -35,5 +37,7 @@ public class Message implements Serializable{
     public String getTxt(){
         return txt;
     }
-    
+    public boolean getSeen(){
+        return seen;
+    }
 }

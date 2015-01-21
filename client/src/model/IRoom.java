@@ -16,5 +16,5 @@ public interface IRoom extends Serializable{
     
 
     
-    getContactVector()
+    int getRoomId();
 }
