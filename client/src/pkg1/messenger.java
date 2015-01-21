@@ -27,9 +27,9 @@ public class messenger extends javax.swing.JPanel {
     rooms room;
     chatCui window;
     int w;
-    Vector<contact> contacts = new Vector<>();
-    Vector<request> requests = new Vector<>();
-    Vector<message> messages = new Vector<>();
+    Vector<contactPanel> contacts = new Vector<>();
+    Vector<requestPanel> requests = new Vector<>();
+    Vector<messagePanel> messages = new Vector<>();
     ImageIcon state[] = {new ImageIcon(""), new ImageIcon(""), new ImageIcon("")};
     JPanel contactsPanel=new JPanel();
     JPanel messagesPanel=new JPanel();
@@ -48,14 +48,14 @@ public class messenger extends javax.swing.JPanel {
         listContainer.add(messagesPanel,"messages");
         listContainer.add(requestsPanel,"requests");
 
-        contact c1 = new contact();
+        contactPanel c1 = new contactPanel();
         c1.name.setText("radwa");
         c1.status.setText("this is my status");
         c1.state.setIcon(state[0]);
         contacts.add(c1);
         contactsPanel.add(c1);
 
-        request r = new request();
+        requestPanel r = new requestPanel();
         r.name.setText("radwa");
         r.img.setIcon(new ImageIcon(""));
         requests.add(r);
@@ -75,7 +75,7 @@ public class messenger extends javax.swing.JPanel {
         status = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listContainer = new javax.swing.JPanel();
+        listContainer = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -97,7 +97,11 @@ public class messenger extends javax.swing.JPanel {
             }
         });
 
-        listContainer.setLayout(new java.awt.CardLayout());
+        listContainer.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane2.setViewportView(listContainer);
 
         jButton1.setText("jButton1");
@@ -158,13 +162,12 @@ public class messenger extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -260,7 +263,7 @@ public class messenger extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    public static javax.swing.JPanel listContainer;
+    private javax.swing.JList listContainer;
     private javax.swing.JLabel name;
     private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables

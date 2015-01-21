@@ -9,12 +9,12 @@ package pkg1;
  *
  * @author Radwa Manssour
  */
-public class message extends javax.swing.JPanel {
+public class messagePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form message
      */
-    public message() {
+    public messagePanel() {
         initComponents();
     }
 

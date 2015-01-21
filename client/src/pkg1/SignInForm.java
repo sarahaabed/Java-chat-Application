@@ -61,7 +61,7 @@ public class SignInForm extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 153, 153));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 51, 51));
 
         jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 36)); // NOI18N

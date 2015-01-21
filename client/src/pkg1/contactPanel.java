@@ -9,12 +9,12 @@ package pkg1;
  *
  * @author Radwa Manssour
  */
-public class contact extends javax.swing.JPanel {
+public class contactPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form contact
      */
-    public contact() {
+    public contactPanel() {
         initComponents();
     }
 
