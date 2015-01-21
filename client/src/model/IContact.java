@@ -6,13 +6,14 @@
 package model;
 
 
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author bishoy
  */
-public interface IContact {
+public interface IContact extends Serializable{
 
 
     public String getEmail();
