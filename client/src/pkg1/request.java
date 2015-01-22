@@ -9,12 +9,12 @@ package pkg1;
  *
  * @author Radwa Manssour
  */
-public class requestPanel extends javax.swing.JPanel {
+public class request extends javax.swing.JPanel {
 
     /**
      * Creates new form request
      */
-    public requestPanel() {
+    public request() {
         initComponents();
     }
 
