@@ -1,12 +1,5 @@
 package pkg1;
 
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -16,49 +9,13 @@ import java.awt.event.MouseListener;
  *
  * @author Radwa Manssour
  */
-public class contact extends javax.swing.JPanel {
+public class contactPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form contact
      */
-    public contact() {
-        System.out.println("dfghjk");
+    public contactPanel() {
         initComponents();
-        contact c=this;
-        addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-                c.setBackground(new Color(204, 255,204));
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                System.out.println("ddjjjdhh");
-                c.setBackground(new Color(255,255,255));
-            }
-            
-            @Override
-            public void mouseExited (MouseEvent e) {
-                System.out.println("dddhh");
-                c.setBackground(new Color(255,255,255));
-            }
-            
-
-        }); 
-        addFocusListener(new FocusListener() {
-
-            @Override
-            public void focusGained(FocusEvent e) {
-                setBackground(new Color(204, 255,204));
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                setBackground(new Color(255, 255,255));    
-            }
-        });
     }
 
     /**
@@ -84,6 +41,10 @@ public class contact extends javax.swing.JPanel {
 
         status.setText("status");
 
+        img.setText("jLabel1");
+
+        state.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,8 +55,8 @@ public class contact extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(name)
                     .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(state)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

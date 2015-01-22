@@ -9,7 +9,10 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /*
  * To change this template, choose Tools | Templates
@@ -27,16 +30,27 @@ public class messenger extends javax.swing.JPanel {
     rooms room;
     chatCui window;
     int w;
+    //user object sent in constructor
+    
     Vector<contact> contacts = new Vector<>();
     Vector<request> requests = new Vector<>();
     Vector<message> messages = new Vector<>();
-    ImageIcon state[] = {new ImageIcon(""), new ImageIcon(""), new ImageIcon("")};
-    JPanel contactsPanel=new JPanel();
-    JPanel messagesPanel=new JPanel();
-    JPanel requestsPanel=new JPanel();
+    ImageIcon state[] = {new ImageIcon(""), new ImageIcon(""), new ImageIcon("src\\pkg1\\f.png")};
+    JList<JLabel> contactsPanel=new JList<>();
+    JList<JLabel> messagesPanel=new JList<>();
+    JList<JLabel> requestsPanel=new JList<>();
     
     public messenger(rooms room, chatCui window) {
         initComponents();
+        //this part take its values from user object sent in the constructor
+        name.setText("radwa");
+        status.setText("this is my status :)");
+        jButton3.setIcon(new ImageIcon("src\\pkg1\\conn.png"));
+        jButton4.setIcon(new ImageIcon("src\\pkg1\\msg1.png"));
+        jButton5.setIcon(new ImageIcon("src\\pkg1\\req.png"));
+        
+        
+        
         this.room = room;
         this.window = window;
         w = window.getWidth();
@@ -48,18 +62,45 @@ public class messenger extends javax.swing.JPanel {
         listContainer.add(messagesPanel,"messages");
         listContainer.add(requestsPanel,"requests");
 
+        
+        //test
         contact c1 = new contact();
-        c1.name.setText("radwa");
-        c1.status.setText("this is my status");
-        c1.state.setIcon(state[0]);
+        c1.name.setText("sara");
+        c1.status.setText("my status :D");
+        c1.img.setIcon(new ImageIcon("src//pkg1//i1.jpg"));
+        c1.state.setIcon(state[2]);
         contacts.add(c1);
         contactsPanel.add(c1);
+        
+        contact c2 = new contact();
+        c2.name.setText("gihad");
+        c2.status.setText(":D :D");
+        c2.img.setIcon(new ImageIcon("src//pkg1//i1.jpg"));
+        contacts.add(c2);
+        contactsPanel.add(c2);
 
         request r = new request();
-        r.name.setText("radwa");
+        r.name.setText("bishoy");
         r.img.setIcon(new ImageIcon(""));
         requests.add(r);
         requestsPanel.add(r);
+        
+        message m1=new message();
+        m1.name.setText("aliaa");
+        m1.img.setIcon(new ImageIcon("src//pkg1//i1.jpg"));
+        m1.message.setText("aaaaaaaaaaaaaaa");
+        messages.add(m1);
+        messagesPanel.add(m1);
+        /*messagesPanel.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                //room.rooms_tabs.ins
+                room.rooms_tabs.insertTab(m1.name.getText(), null, new conversation(), null,0 );
+            }
+        });*/
+                
+        
     }
 
     /**
@@ -82,9 +123,13 @@ public class messenger extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        img = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
+        setMaximumSize(new java.awt.Dimension(32767, 10));
+        setPreferredSize(new java.awt.Dimension(285, 10));
 
         name.setText("jLabel1");
 
@@ -97,6 +142,7 @@ public class messenger extends javax.swing.JPanel {
             }
         });
 
+        listContainer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         listContainer.setLayout(new java.awt.CardLayout());
         jScrollPane2.setViewportView(listContainer);
 
@@ -109,12 +155,12 @@ public class messenger extends javax.swing.JPanel {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton3.setText("jButton3");
-        jButton3.setMaximumSize(new java.awt.Dimension(95, 60));
-        jButton3.setMinimumSize(new java.awt.Dimension(95, 60));
-        jButton3.setPreferredSize(new java.awt.Dimension(95, 60));
+        jButton3.setMaximumSize(new java.awt.Dimension(95, 82));
+        jButton3.setMinimumSize(new java.awt.Dimension(95, 82));
+        jButton3.setPreferredSize(new java.awt.Dimension(95, 82));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -122,10 +168,9 @@ public class messenger extends javax.swing.JPanel {
         });
         jPanel1.add(jButton3);
 
-        jButton4.setText("jButton4");
-        jButton4.setMaximumSize(new java.awt.Dimension(95, 60));
-        jButton4.setMinimumSize(new java.awt.Dimension(95, 60));
-        jButton4.setPreferredSize(new java.awt.Dimension(95, 60));
+        jButton4.setMaximumSize(new java.awt.Dimension(95, 80));
+        jButton4.setMinimumSize(new java.awt.Dimension(95, 80));
+        jButton4.setPreferredSize(new java.awt.Dimension(95, 80));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -133,10 +178,9 @@ public class messenger extends javax.swing.JPanel {
         });
         jPanel1.add(jButton4);
 
-        jButton5.setText("jButton5");
-        jButton5.setMaximumSize(new java.awt.Dimension(95, 60));
-        jButton5.setMinimumSize(new java.awt.Dimension(95, 60));
-        jButton5.setPreferredSize(new java.awt.Dimension(80, 60));
+        jButton5.setMaximumSize(new java.awt.Dimension(95, 80));
+        jButton5.setMinimumSize(new java.awt.Dimension(95, 80));
+        jButton5.setPreferredSize(new java.awt.Dimension(80, 80));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -144,48 +188,58 @@ public class messenger extends javax.swing.JPanel {
         });
         jPanel1.add(jButton5);
 
+        img.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(name)
+                                .addGap(107, 107, 107)
+                                .addComponent(jButton2))
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(name))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(name)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,7 +254,7 @@ public class messenger extends javax.swing.JPanel {
             while (x < 770) {
                 try {
                     
-                    x += 2;
+                    x += 3;
                     window.setSize(x, window.getHeight());
                     window.p.setSize(x, window.getHeight());
                     room.setSize(x - w, window.getHeight());
@@ -252,6 +306,7 @@ public class messenger extends javax.swing.JPanel {
         card.show(listContainer, "requests");
     }//GEN-LAST:event_jButton5ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel img;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

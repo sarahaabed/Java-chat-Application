@@ -35,7 +35,7 @@ public class chatCui extends javax.swing.JFrame {
         initComponents();
         rooms room=new rooms();
         
-        setSize(300, 600);
+        setSize(290, 600);
         room.setVisible(false);
         
         messenger m=new messenger(room,this);
@@ -66,6 +66,7 @@ public class chatCui extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(300, 522));
         setResizable(false);
 
+        p.setBackground(new java.awt.Color(153, 204, 255));
         p.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -79,7 +80,7 @@ public class chatCui extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
