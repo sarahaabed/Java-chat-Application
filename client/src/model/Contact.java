@@ -17,9 +17,7 @@ public class Contact implements IContact{
     private String status;
     private ImageIcon photo;
     private State state;
-    
-    public Contact(){
-    }
+
     
     public Contact(String email,String name,String status,ImageIcon photo,State state){
         this.email = email;
