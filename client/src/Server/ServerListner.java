@@ -11,13 +11,9 @@ import java.rmi.Remote;
  *
  * @author sarah
  */
-public class ServerListner implements IserverListner{
+public class ServerListner implements IServerListner{
     IserverController obj;
-    int serviceNumber;
-    public ServerListner(IserverController e){
-        this.obj=e;
-    }
-
+    
     @Override
     public void processClientAction(ClientAction clientAction) {
         obj=new ServerController(clientAction);
