@@ -41,6 +41,8 @@ public class conversation extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         text1 = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(153, 204, 255));
+
         img.setText("jLabel1");
 
         name.setText("name");
@@ -103,8 +105,7 @@ public class conversation extends javax.swing.JPanel {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
