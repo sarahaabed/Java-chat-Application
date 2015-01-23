@@ -20,25 +20,8 @@ public class ServerListner implements IserverListner{
 
     @Override
     public void processClientAction(ClientAction clientAction) {
-        obj=new ServerController();
-        serviceNumber=clientAction.getServiceNo();
-        switch(serviceNumber){
-            case 1:
-               obj.addContact(clientAction.getContact());
-                break;
-            case 2:
-                obj.removeContact(clientAction.getContact().getEmail());
-                break;
-            case 3:
-                obj.acceptFriend(clientAction.getContact().getEmail());
-                break;
-            case 4:
-                obj.changeState();
-                break;
-            case 5:
-                obj.writeState(clientAction.getContact().getStatus());
-                break;
-        }
+        obj=new ServerController(clientAction);
+   
     
     }
     

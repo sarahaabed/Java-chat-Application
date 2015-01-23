@@ -6,13 +6,16 @@
 package model;
 
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author it
  */
-public class User implements IUser{
+public class User implements IUser {
+
     private String userEmail;
     private String userPassword;
     private String userName;
@@ -21,8 +24,8 @@ public class User implements IUser{
     private ImageIcon userImage;
     private String userStatus;
     /*About user Profile*/
-    public Vector<Contact> userContacts=new Vector<Contact>();
-    public Vector<Room> userRooms=new Vector<Room>();
+    public Vector<Contact> userContacts = new Vector<Contact>();
+    public Vector<Room> userRooms = new Vector<Room>();
     //want to make vector of friend Requests
 
     public User(String userEmail, String userPassword, String userName, String userGender) {
@@ -32,13 +35,13 @@ public class User implements IUser{
         this.userGender = userGender;
     }
 
-    
     public String getUserEmail() {
         return userEmail;
     }
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+
     }
 
     public String getUserPassword() {
@@ -88,9 +91,31 @@ public class User implements IUser{
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
     }
-    
-    
-    
-    
-            
+
+    public boolean validEmail(String mail) {
+        //"^(.+)@([^@]+[^.])$"
+        if (mail.matches("^(.+)@([^@]+[^.])$")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validUserName(String name) {
+        //"^(.+)@([^@]+[^.])$"
+        if (name.matches("^([a-zA-z_]{5,30})$")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validPassword(String pass) {
+        //"^(.+)@([^@]+[^.])$"
+        if (pass.matches("^([a-zA-z_&%$-.]{6,20})$")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

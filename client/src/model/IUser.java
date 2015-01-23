@@ -5,14 +5,15 @@
  */
 package model;
 
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author it
  */
-public interface IUser {
-    
+public interface IUser extends Serializable{
+
     public String getUserEmail();
 
     public void setUserEmail(String userEmail);
@@ -32,7 +33,7 @@ public interface IUser {
     public State getUserState();
 
     public void setUserState(State userState);
-            
+
     public ImageIcon getUserImage();
 
     public void setUserImage(ImageIcon userImage);
@@ -40,6 +41,10 @@ public interface IUser {
     public String getUserStatus();
 
     public void setUserStatus(String userStatus);
-    
-    
+
+    public boolean validEmail(String mail);
+
+    public boolean validUserName(String name);
+
+    public boolean validPassword(String pass);
 }

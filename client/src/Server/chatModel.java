@@ -5,22 +5,61 @@
  */
 package Server;
 
+import javax.swing.ImageIcon;
 import model.Contact;
+import model.State;
+import model.User;
 
 /**
  *
  * @author sarah
  */
-class chatModel {
-    final static int addContactServiceNo=1;
-    final static int removeContactServiceNo=2;
-    final static int acceptFriendServiceNo=3;
-    final static int changeStateServiceNo=4;
-    final static int writeStateServiceNo=5;
+class chatModel implements IChatModel{
 
-    Contact getContact(){
-        Contact con=new  Contact("sarahaabed@yahoo,com","sarah", null, null, null);
-        return con;
+    @Override
+    public void addUser(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void addContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeContact(String emailId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void acceptFriend(String emailId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void rejectFriend(String emailId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void changeState(State state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void changeStatus(String status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ChangeProfilePic(ImageIcon image) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void leaveConversation(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
+
 }

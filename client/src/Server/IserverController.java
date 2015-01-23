@@ -13,18 +13,6 @@ import model.Contact;
  */
 public interface IserverController {
 
-    void addContact(Contact e);
-
-    void removeContact(String emailId);
-    
-    void acceptFriend(String emailId);
-    
-    void changeState();
-    
-    void writeState(String state);
-
-    public void showAdvertisment();
-
-    public chatModel changeModel(int serviceNo);
+   public void impelmentClientAction();
 
 }

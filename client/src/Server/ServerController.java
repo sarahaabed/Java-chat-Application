@@ -5,6 +5,7 @@
  */
 package Server;
 
+import java.io.File;
 import model.Contact;
 
 /**
@@ -13,40 +14,54 @@ import model.Contact;
  */
 public class ServerController implements IserverController{
 
-    @Override
-    public void addContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    IClientAction clientAction;
+    IChatController chatController;
+    IChatModel chatModel;
+    int serviceNumber ;
 
-    @Override
-    public void removeContact(String emailId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ServerController(IClientAction clientAction) {
+        this.clientAction = clientAction;
     }
     
-
-    @Override
-    public void showAdvertisment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void impelmentClientAction(){
+     chatController=new ChatController();
+     chatModel=new chatModel();
+     serviceNumber=clientAction.getServiceNo();
+        switch(serviceNumber){
+            case 1:
+               chatModel.addUser(clientAction.getUser());
+                break;
+            case 2:
+               chatModel.addContact(clientAction.getContact());
+                break;
+            case 3:
+                chatModel.removeContact(clientAction.getContact().getEmail());
+                break;
+            case 4:
+                chatModel.acceptFriend(clientAction.getContact().getEmail());
+                break;
+            case 5:
+                chatModel.rejectFriend(clientAction.getContact().getEmail());
+                break;
+            case 6:
+                chatModel.changeState(clientAction.getContact().getState());
+                break;
+            case 7:
+                chatModel.changeStatus(clientAction.getUser().getUserStatus());//must has String as parameter
+            case 8:
+                chatModel.ChangeProfilePic(clientAction.getUser().getUserImage());
+            case 9:
+                chatModel.leaveConversation(clientAction.getUser().getUserEmail());
+            case 10:
+            /*Services Related to chathandler*/
+                chatController.addContactToRoom(clientAction.getContact());
+            case 11:
+                chatController.sendMessage("");//must have user message
+            case 12:
+                chatController.sendFile(new File(""));//must have user file to send
+            break;
+        }
     }
-
-    @Override
-    public chatModel changeModel(int serviceNo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void acceptFriend(String emailId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void changeState() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void writeState(String state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }
