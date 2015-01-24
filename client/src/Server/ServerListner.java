@@ -10,32 +10,32 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Vector;
 
+
 /**
  *
  * @author sarah
  */
 public class ServerListner extends UnicastRemoteObject implements IServerListner {
-    IserverController obj;
-     Vector<IClientAction> clientsvector=new Vector<IClientAction>();
-    
+    IServerController obj;
+    Vector<view.IClientAction> clientsvector=new Vector<view.IClientAction>();
     public ServerListner() throws RemoteException{
-        
+       
         
     }
    
     @Override
-    public void processClientAction(IClientAction clientAction) {
+    public void processClientAction(view.IClientAction clientAction) {
         obj=new ServerController(clientAction); 
     }
 
     @Override
-    public void register(IClientAction clientRef) {
+    public void register(view.IClientAction clientRef) {
         clientsvector.add(clientRef);
         System.out.println("Client Added");
     }
 
     @Override
-    public void unRegister(IClientAction clientRef) {
+    public void unRegister(view.IClientAction clientRef) {
         clientsvector.remove(clientRef);
         System.out.println("Client Removed");
     }

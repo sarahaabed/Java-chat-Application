@@ -8,6 +8,7 @@ package Server;
 import java.io.File;
 import model.Contact;
 import model.User;
+import view.*;
 
 /**
  *
@@ -15,47 +16,47 @@ import model.User;
  */
 public class ServerController implements IserverController {
 
-    static IClientAction clientAction;
+    static view.IClientAction clientAction;
     IChatController chatController;
     IChatModel chatModel;
     int serviceNumber;
 
-    public ServerController(IClientAction clientAction) {
+    public ServerController(view.IClientAction clientAction) {
         this.clientAction = clientAction;
     }
 
     public void impelmentClientAction() {
         chatController = new ChatController();
         ChatModel rr= new ChatModel();
-        //serviceNumber=clientAction.getServiceNo();
-        serviceNumber = 1;
-        User u=new User("radwa@yahoo.com","145267","jihad","female");
+        serviceNumber=clientAction.getServiceNum();
+       // serviceNumber = 1;
+        User u=new User("r@yahoo.com","145267","jihad","female");
         switch (serviceNumber) {
             case 1:
                 //chatModel.addUser(clientAction.getUser());
-                chatModel.addUser(u);
+                chatController.addUser(u);
                 break;
             case 2:
-                chatModel.addContact(clientAction.getContact());
+                chatController.addContact(clientAction.getContact());
                 break;
             case 3:
-                chatModel.removeContact(clientAction.getContact().getEmail());
+                chatController.removeContact(clientAction.getContact().getEmail());
                 break;
             case 4:
-                chatModel.acceptFriend(clientAction.getContact().getEmail());
+                chatController.acceptFriend(clientAction.getContact().getEmail());
                 break;
             case 5:
-                chatModel.rejectFriend(clientAction.getContact().getEmail());
+                chatController.rejectFriend(clientAction.getContact().getEmail());
                 break;
             case 6:
-                chatModel.changeState(clientAction.getContact().getState());
+                chatController.changeState(clientAction.getContact().getState());
                 break;
             case 7:
-                chatModel.changeStatus(clientAction.getUser().getUserStatus());//must has String as parameter
+                chatController.changeStatus(clientAction.getUser().getUserStatus());//must has String as parameter
             case 8:
-                chatModel.ChangeProfilePic(clientAction.getUser().getUserImage());
+                chatController.ChangeProfilePic(clientAction.getUser().getUserImage());
             case 9:
-                chatModel.leaveConversation(clientAction.getUser().getUserEmail());
+                chatController.leaveConversation(clientAction.getUser().getUserEmail());
             case 10:
                 /*Services Related to chathandler*/
                 chatController.addContactToRoom(clientAction.getContact());
