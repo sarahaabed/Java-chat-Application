@@ -15,6 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.User;
 import pkg1.chatCui;
 import view.ClientInputHandler;
 import view.ClientView;
@@ -26,7 +27,7 @@ import view.ClientView;
 public class ChatClientStarter {
     public ChatClientStarter(){
         try {
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5020);
+            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5030);
             IServerListner sListner= (IServerListner)reg.lookup("ChatApp");
             IChatModel chModel = new ChatModel();
         } catch (RemoteException ex) {
@@ -37,6 +38,7 @@ public class ChatClientStarter {
         ClientView clv = new ClientView(new chatCui());
         clv.getC().setVisible(true);
         ClientInputHandler cih = new ClientInputHandler();
+        cih.signUp(new User("bishoy@yahoo", "123", "bishoy", "male"));
     }
     public static void main(String [] args){
         new ChatClientStarter();
