@@ -11,7 +11,7 @@ import model.Contact;
  *
  * @author sarah
  */
-public interface IserverController {
+public interface IServerController {
 
    public void impelmentClientAction();
 

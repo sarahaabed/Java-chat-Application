@@ -6,7 +6,7 @@
 package util;
 
 import Server.IChatModel;
-import Server.chatModel;
+import Server.ChatModel;
 
 /**
  *
@@ -15,7 +15,7 @@ import Server.chatModel;
 public class ChatClientStarter {
     public ChatClientStarter(){
         IChatModel chModel;
-        chModel = new chatModel();
+        chModel = new ChatModel();
     }
     public static void main(){
         new ChatClientStarter();

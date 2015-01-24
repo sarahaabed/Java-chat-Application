@@ -13,7 +13,7 @@ import model.User;
  *
  * @author sarah
  */
-public class ServerController implements IserverController {
+public class ServerController implements IServerController {
 
     static IClientAction clientAction;
     IChatController chatController;
@@ -26,7 +26,7 @@ public class ServerController implements IserverController {
 
     public void impelmentClientAction() {
         chatController = new ChatController();
-        chatModel rr= new chatModel();
+        ChatModel rr= new ChatModel();
         //serviceNumber=clientAction.getServiceNo();
         serviceNumber = 1;
         User u=new User("radwa@yahoo.com","145267","jihad","female");

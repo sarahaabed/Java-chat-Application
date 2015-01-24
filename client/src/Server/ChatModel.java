@@ -14,11 +14,11 @@ import model.*;
  *
  * @author sarah
  */
-public class chatModel implements IChatModel{
+public class ChatModel implements IChatModel{
 
     UserData userData;
 
-    public chatModel(){
+    public ChatModel(){
         userData=new UserData();
     }
     @Override

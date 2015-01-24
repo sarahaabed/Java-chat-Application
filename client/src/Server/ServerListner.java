@@ -15,7 +15,7 @@ import java.util.Vector;
  * @author sarah
  */
 public class ServerListner extends UnicastRemoteObject implements IServerListner {
-    IserverController obj;
+    IServerController obj;
      Vector<IClientAction> clientsvector=new Vector<IClientAction>();
     
     public ServerListner() throws RemoteException{
