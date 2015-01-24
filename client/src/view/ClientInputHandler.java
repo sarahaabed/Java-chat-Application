@@ -10,6 +10,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Contact;
 import model.Message;
 import model.User;
@@ -27,7 +29,7 @@ public class ClientInputHandler implements IClientInputHandler {
     
     IServerListner sl;
     ClientAction ca;
-    public ClientInputHandler() throws RemoteException {
+    public ClientInputHandler(){
         
         ca = new ClientAction();
 
@@ -38,7 +40,11 @@ public class ClientInputHandler implements IClientInputHandler {
         
         ca.setUser(user);
         ca.setServiceNum(ActionType.SIGN_UP);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -47,7 +53,11 @@ public class ClientInputHandler implements IClientInputHandler {
         User user=new User(mail, pass, null, null);
         ca.setUser(user);
         ca.setServiceNum(ActionType.SIGN_IN);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -56,7 +66,11 @@ public class ClientInputHandler implements IClientInputHandler {
         Contact con=new Contact(mail, null, null, null, null);
         ca.setCon(con);
         ca.setServiceNum(ActionType.ADD_CONTACT);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -65,28 +79,44 @@ public class ClientInputHandler implements IClientInputHandler {
         Contact con=new Contact(mail, null, null, null, null);
         ca.setCon(con);
         ca.setServiceNum(ActionType.ADD_CONTACT);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void changePhoto(User user) {
         ca.setUser(user);
         ca.setServiceNum(ActionType.CHANGE_PHOTO);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void changeStatus(User user) {
         ca.setUser(user);
         ca.setServiceNum(ActionType.CHANGE_PHOTO);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void changeState(User user) {
         ca.setUser(user);
         ca.setServiceNum(ActionType.CHANGE_STATE);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }
 
@@ -94,7 +124,11 @@ public class ClientInputHandler implements IClientInputHandler {
     public void sendMessage(Message message) {
         ca.setMessage(message);
         ca.setServiceNum(ActionType.SEND_MESSAGE);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -104,7 +138,11 @@ public class ClientInputHandler implements IClientInputHandler {
         ca.setCon(con);
         ca.setMessage(message);
         ca.setServiceNum(ActionType.SEND_MESSAGE);
-        sl.processClientAction(ca);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

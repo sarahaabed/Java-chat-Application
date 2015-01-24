@@ -6,8 +6,6 @@
 
 package view;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import model.Contact;
 import model.Message;
 import model.User;
@@ -22,7 +20,7 @@ public class ClientAction implements IClientAction {
     private Contact con;
     private Message message;
     
-    public ClientAction()throws RemoteException{
+    public ClientAction(){
         
     }
     @Override
