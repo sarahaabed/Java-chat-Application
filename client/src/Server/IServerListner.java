@@ -6,6 +6,7 @@
 package Server;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -13,5 +14,9 @@ import java.rmi.Remote;
  */
 public interface IServerListner extends Remote{
     
-    public void processClientAction(ClientAction clientAction);
+    public void processClientAction(IClientAction clientAction) throws RemoteException;
+    
+    void register(IClientAction clientRef) throws RemoteException;
+    
+    void unRegister(IClientAction clientRef) throws RemoteException;
 }
