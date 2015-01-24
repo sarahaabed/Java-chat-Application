@@ -27,7 +27,7 @@ import view.ClientView;
 public class ChatClientStarter {
     public ChatClientStarter(){
         try {
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5020);
+            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5030);
             IServerListner sListner= (IServerListner)reg.lookup("ChatApp");
             IChatModel chModel = new ChatModel();
         } catch (RemoteException ex) {
