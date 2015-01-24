@@ -26,15 +26,7 @@ import view.ClientView;
  */
 public class ChatClientStarter {
     public ChatClientStarter(){
-        try {
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5030);
-            IServerListner sListner= (IServerListner)reg.lookup("ChatApp");
-            IChatModel chModel = new ChatModel();
-        } catch (RemoteException ex) {
-            Logger.getLogger(ChatClientStarter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ChatClientStarter.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         ClientView clv = new ClientView(new chatCui());
         clv.getC().setVisible(true);
         ClientInputHandler cih = new ClientInputHandler();
