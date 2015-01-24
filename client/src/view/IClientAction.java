@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import model.Contact;
 import model.Message;
@@ -14,7 +15,7 @@ import model.User;
  *
  * @author Radwa Manssour
  */
-public interface IClientAction extends Remote {
+public interface IClientAction extends Serializable {
 
     public User getUser();
 
@@ -24,6 +25,6 @@ public interface IClientAction extends Remote {
 
     public Contact getContact();
 
-    public void disposeAll();
+
 
 }

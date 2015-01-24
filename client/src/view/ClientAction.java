@@ -16,7 +16,7 @@ import model.User;
  *
  * @author Radwa Manssour
  */
-public class ClientAction extends UnicastRemoteObject implements IClientAction {
+public class ClientAction implements IClientAction {
     private User user;
     private int serviceNum;
     private Contact con;
@@ -60,7 +60,6 @@ public class ClientAction extends UnicastRemoteObject implements IClientAction {
     public void setMessage(Message message) {
         this.message = message;
     }
-    
    
     
     

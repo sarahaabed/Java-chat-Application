@@ -15,5 +15,6 @@ import java.rmi.Remote;
  */
 public interface IClientView{
     public void changeModel(IChatModel chatModel);
+        public void disposeAll();
     
 }
