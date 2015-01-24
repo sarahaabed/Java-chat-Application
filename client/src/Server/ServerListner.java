@@ -19,7 +19,7 @@ public class ServerListner extends UnicastRemoteObject implements IServerListner
     IServerController obj;
     Vector<view.IClientAction> clientsvector=new Vector<view.IClientAction>();
     public ServerListner() throws RemoteException{
-       
+        
         
     }
    
