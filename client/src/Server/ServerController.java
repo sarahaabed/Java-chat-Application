@@ -32,37 +32,37 @@ public class ServerController implements IserverController {
         //serviceNumber = 1;
         User u=new User("ruhsn@yahoo.com","145267","jihad","female");
         switch (serviceNumber) {
-            case 1:
+            case ActionType.SIGN_UP:
                 //chatModel.addUser(clientAction.getUser());
                 chatController.addUser(u);
                 break;
-            case 2:
+            case ActionType.ADD_CONTACT:
                 chatController.addContact(clientAction.getContact());
                 break;
-            case 3:
+            case ActionType.REMOVE_CONTACT:
                 chatController.removeContact(clientAction.getContact().getEmail());
                 break;
-            case 4:
+            case ActionType.ACCEPT_FRIEND:
                 chatController.acceptFriend(clientAction.getContact().getEmail());
                 break;
-            case 5:
+            case ActionType.REJECT_FRIEND:
                 chatController.rejectFriend(clientAction.getContact().getEmail());
                 break;
-            case 6:
+            case ActionType.CHANGE_STATE:
                 chatController.changeState(clientAction.getContact().getState());
                 break;
-            case 7:
+            case ActionType.WRITE_STATUS:
                 chatController.changeStatus(clientAction.getUser().getUserStatus());//must has String as parameter
-            case 8:
+            case ActionType.CHANGE_PHOTO:
                 chatController.ChangeProfilePic(clientAction.getUser().getUserImage());
-            case 9:
+            case ActionType.LEAVE_CONV:
                 chatController.leaveConversation(clientAction.getUser().getUserEmail());
-            case 10:
+            case ActionType.ADD_MEMBER:
                 /*Services Related to chathandler*/
                 chatController.addContactToRoom(clientAction.getContact());
-            case 11:
+            case ActionType.SEND_MESSAGE:
                 chatController.sendMessage("");//must have user message
-            case 12:
+            case ActionType.SIGN_IN:
                 chatController.sendFile(new File(""));//must have user file to send
                 break;
         }
