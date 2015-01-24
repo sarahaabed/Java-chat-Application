@@ -5,10 +5,13 @@
  */
 package Server;
 
+import java.rmi.Remote;
+
 /**
  *
  * @author it
  */
-public interface IServerListner {
+public interface IServerListner extends Remote{
+    
     public void processClientAction(ClientAction clientAction);
 }

@@ -31,23 +31,29 @@ class ClientAction implements IClientAction{
         return rooom;
     }
 
+  
+    @Override
     public User getUser() {
+        user=new User("aliaa@yahoo.com","145267","jihad","female");
         return user;
     }
 
+    @Override
     public Message getMessage() {
-        return message;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public State getState() {
-        return state;
-    }
-    
-    public int getServiceNo() {
-        return 1;
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public int getServiceNo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public Contact getContact() {
         contact= new Contact("sarahAabed@yahoo", "Sarah", null, null, null);
         return contact;
