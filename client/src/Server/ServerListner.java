@@ -26,6 +26,8 @@ public class ServerListner extends UnicastRemoteObject implements IServerListner
     @Override
     public void processClientAction(view.IClientAction clientAction) {
         obj=new ServerController(clientAction); 
+        obj.impelmentClientAction();
+        System.out.println("servercontroller");
     }
 
     @Override
