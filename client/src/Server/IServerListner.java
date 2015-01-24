@@ -12,11 +12,11 @@ import java.rmi.RemoteException;
  *
  * @author it
  */
-public interface IServerListner extends Remote{
-    
-    public void processClientAction(IClientAction clientAction) throws RemoteException;
-    
-    void register(IClientAction clientRef) throws RemoteException;
-    
-    void unRegister(IClientAction clientRef) throws RemoteException;
+public interface IServerListner extends Remote {
+
+    public void processClientAction(view.IClientAction clientAction) throws RemoteException;
+
+    void register(view.IClientAction clientRef) throws RemoteException;
+
+    void unRegister(view.IClientAction clientRef) throws RemoteException;
 }
