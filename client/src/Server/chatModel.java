@@ -14,7 +14,7 @@ import model.*;
  *
  * @author sarah
  */
-class chatModel implements IChatModel{
+public class chatModel implements IChatModel{
 
     UserData userData;
 

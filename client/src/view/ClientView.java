@@ -14,14 +14,15 @@ import java.rmi.server.UnicastRemoteObject;
  *
  * @author Radwa Manssour
  */
-public class ClientView extends UnicastRemoteObject implements IClientView{
+public class ClientView implements IClientView{
 
-    public ClientView()throws RemoteException{
+    public ClientView(){
         
     }
     @Override
     public void changeModel(IChatModel chatModel) {
     
     }
+    
     
 }

@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import model.Contact;
 import model.Message;
 import model.User;
+import view.ActionType.*;
 
 /**
  *
@@ -20,18 +21,7 @@ import model.User;
  */
 public class ClientInputHandler extends UnicastRemoteObject implements IClientInputHandler {
 
-    final static int ADD_CONTACT = 1;
-    final static int REMOVE_CONTACT = 2;
-    final static int ACCEPT_FRIEND = 3;
-    final static int CHANGE_STATE = 4;
-    final static int WRITE_STATUS = 5;
-    final static int SIGN_UP=6;
-    final static int SIGN_IN=7;
-    final static int REJECT_FRIEND=8;
-    final static int ADD_MEMBER=9;
-    final static int LEAVE_CONV=10;
-    final static int CHANGE_PHOTO=11;
-    final static int SEND_MESSAGE=12;
+
 
     
     IServerListner sl;
@@ -46,7 +36,7 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
     public void signUp(User user) {
         
         ca.setUser(user);
-        ca.setServiceNum(SIGN_UP);
+        ca.setServiceNum(ActionType.SIGN_UP);
         sl.processClientAction(ca);
         
     }
@@ -55,7 +45,7 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
     public void signIn(String mail, String pass) {
         User user=new User(mail, pass, null, null);
         ca.setUser(user);
-        ca.setServiceNum(SIGN_IN);
+        ca.setServiceNum(ActionType.SIGN_IN);
         sl.processClientAction(ca);
 
     }
@@ -64,7 +54,7 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
     public void addContact(String mail) {
         Contact con=new Contact(mail, null, null, null, null);
         ca.setCon(con);
-        ca.setServiceNum(ADD_CONTACT);
+        ca.setServiceNum(ActionType.ADD_CONTACT);
         sl.processClientAction(ca);
         
     }
@@ -73,28 +63,28 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
     public void removeContact(String mail) {
         Contact con=new Contact(mail, null, null, null, null);
         ca.setCon(con);
-        ca.setServiceNum(ADD_CONTACT);
+        ca.setServiceNum(ActionType.ADD_CONTACT);
         sl.processClientAction(ca);
     }
 
     @Override
     public void changePhoto(User user) {
         ca.setUser(user);
-        ca.setServiceNum(CHANGE_PHOTO);
+        ca.setServiceNum(ActionType.CHANGE_PHOTO);
         sl.processClientAction(ca);
     }
 
     @Override
     public void changeStatus(User user) {
         ca.setUser(user);
-        ca.setServiceNum(CHANGE_PHOTO);
+        ca.setServiceNum(ActionType.CHANGE_PHOTO);
         sl.processClientAction(ca);
     }
 
     @Override
     public void changeState(User user) {
         ca.setUser(user);
-        ca.setServiceNum(CHANGE_STATE);
+        ca.setServiceNum(ActionType.CHANGE_STATE);
         sl.processClientAction(ca);
        
     }
@@ -102,7 +92,7 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
     @Override
     public void sendMessage(Message message) {
         ca.setMessage(message);
-        ca.setServiceNum(SEND_MESSAGE);
+        ca.setServiceNum(ActionType.SEND_MESSAGE);
         sl.processClientAction(ca);
     }
 
@@ -112,7 +102,7 @@ public class ClientInputHandler extends UnicastRemoteObject implements IClientIn
         Message message=new Message(RoomId, null, null, null,false);
         ca.setCon(con);
         ca.setMessage(message);
-        ca.setServiceNum(SEND_MESSAGE);
+        ca.setServiceNum(ActionType.SEND_MESSAGE);
         sl.processClientAction(ca);
         
     }
