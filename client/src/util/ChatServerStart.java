@@ -24,7 +24,7 @@ public class ChatServerStart {
      public ChatServerStart(){
         try {
             IServerListner obj=new ServerListner();
-            Registry reg=LocateRegistry.createRegistry(5020);
+            Registry reg=LocateRegistry.createRegistry(5030);
             reg.rebind("ChatApp", obj);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatServerStart.class.getName()).log(Level.SEVERE, null, ex);

@@ -27,14 +27,14 @@ public class ServerController implements IserverController {
 
     public void impelmentClientAction() {
         chatController = new ChatController();
-        ChatModel rr= new ChatModel();
+       // ChatModel rr= new ChatModel();
         serviceNumber=clientAction.getServiceNum();
         //serviceNumber = 1;
-        User u=new User("ruhsn@yahoo.com","145267","jihad","female");
+        //User u=new User("ruhsn@yahoo.com","145267","jihad","female");
         switch (serviceNumber) {
             case ActionType.SIGN_UP:
-                //chatModel.addUser(clientAction.getUser());
-                chatController.addUser(u);
+                chatController.addUser(clientAction.getUser());
+                //chatController.addUser();
                 break;
             case ActionType.ADD_CONTACT:
                 chatController.addContact(clientAction.getContact());
