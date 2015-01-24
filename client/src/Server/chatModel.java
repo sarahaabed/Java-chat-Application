@@ -5,10 +5,10 @@
  */
 package Server;
 
+import DatabaseHandler.UserData;
 import javax.swing.ImageIcon;
-import model.Contact;
-import model.State;
-import model.User;
+import model.*;
+
 
 /**
  *
@@ -16,9 +16,14 @@ import model.User;
  */
 class chatModel implements IChatModel{
 
+    UserData userData;
+
+    public chatModel(){
+        userData=new UserData();
+    }
     @Override
     public void addUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        userData.InsertUser(user);
     }
 
     @Override
@@ -60,6 +65,6 @@ class chatModel implements IChatModel{
     public void leaveConversation(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
+  
 
 }

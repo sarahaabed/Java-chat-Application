@@ -6,14 +6,19 @@
 package Server;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author sarah
  */
-public class ServerListner implements IServerListner{
+public class ServerListner extends UnicastRemoteObject implements IServerListner {
     IserverController obj;
     
+    public ServerListner()throws RemoteException{
+        
+    }
     @Override
     public void processClientAction(ClientAction clientAction) {
         obj=new ServerController(clientAction);
