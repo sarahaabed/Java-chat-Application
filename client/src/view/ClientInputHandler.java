@@ -13,13 +13,14 @@ import java.rmi.server.UnicastRemoteObject;
 import model.Contact;
 import model.Message;
 import model.User;
-import view.ActionType.*;
+import view.ActionType;
+import view.ClientAction;
 
 /**
  *
  * @author Radwa Manssour
  */
-public class ClientInputHandler extends UnicastRemoteObject implements IClientInputHandler {
+public class ClientInputHandler implements IClientInputHandler {
 
 
 

@@ -13,7 +13,7 @@ import model.User;
  *
  * @author sarah
  */
-public class ServerController implements IServerController {
+public class ServerController implements IserverController {
 
     static IClientAction clientAction;
     IChatController chatController;

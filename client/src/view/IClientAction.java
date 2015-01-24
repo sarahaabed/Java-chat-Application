@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import java.rmi.Remote;
@@ -15,11 +14,16 @@ import model.User;
  *
  * @author Radwa Manssour
  */
-public interface IClientAction extends Remote{
+public interface IClientAction extends Remote {
+
     public User getUser();
+
     public int getServiceNum();
+
     public Message getMessage();
+
     public Contact getContact();
-    
-    
+
+    public void disposeAll();
+
 }
