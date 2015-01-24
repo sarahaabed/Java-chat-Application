@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rmi.server;
 
-import controller.ClientAction;
+package view;
+
+import Server.IChatModel;
 import java.rmi.Remote;
 
 /**
  *
- * @author sarah
+ * @author Radwa Manssour
  */
-public interface IserverListner extends Remote{
- 
-        public void processClientAction(ClientAction clientAction);
-        
+public interface IClientView{
+    public void changeModel(IChatModel chatModel);
+    
 }
