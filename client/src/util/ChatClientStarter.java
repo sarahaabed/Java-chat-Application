@@ -15,6 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.User;
 import pkg1.chatCui;
 import view.ClientInputHandler;
 import view.ClientView;
@@ -37,6 +38,7 @@ public class ChatClientStarter {
         ClientView clv = new ClientView(new chatCui());
         clv.getC().setVisible(true);
         ClientInputHandler cih = new ClientInputHandler();
+        cih.signUp(new User("bishoy@yahoo", "123", "bishoy", "male"));
     }
     public static void main(String [] args){
         new ChatClientStarter();
