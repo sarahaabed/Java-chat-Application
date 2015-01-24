@@ -29,8 +29,8 @@ public class ServerController implements IserverController {
         chatController = new ChatController();
         ChatModel rr= new ChatModel();
         serviceNumber=clientAction.getServiceNum();
-       // serviceNumber = 1;
-        User u=new User("r@yahoo.com","145267","jihad","female");
+        //serviceNumber = 1;
+        User u=new User("ruhsn@yahoo.com","145267","jihad","female");
         switch (serviceNumber) {
             case 1:
                 //chatModel.addUser(clientAction.getUser());
@@ -67,10 +67,10 @@ public class ServerController implements IserverController {
                 break;
         }
     }
-
+/*
     public static void main(String[] args) {
         ServerController c = new ServerController(clientAction);
         c.impelmentClientAction();
     }
-
+*/
 }
