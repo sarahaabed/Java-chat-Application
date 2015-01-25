@@ -23,11 +23,13 @@ public class User implements IUser {
     private State userState;
     private ImageIcon userImage;
     private String userStatus;
-    /*About user Profile*/
     public Vector<Contact> userContacts = new Vector<Contact>();
     public Vector<Room> userRooms = new Vector<Room>();
     //want to make vector of friend Requests
 
+    public User() {
+    }
+    
     public User(String userEmail, String userPassword, String userName, String userGender) {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -90,6 +92,23 @@ public class User implements IUser {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public Vector<Contact> getUserContacts() {
+        return userContacts;
+    }
+
+    public void setUserContacts(Vector<Contact> userContacts) {
+        this.userContacts = userContacts;
+    }
+
+    public Vector<Room> getUserRooms() {
+        return userRooms;
+    }
+
+    /*About user Profile*/
+    public void setUserRooms(Vector<Room> userRooms) {
+        this.userRooms = userRooms;
     }
 
     public boolean validEmail(String mail) {

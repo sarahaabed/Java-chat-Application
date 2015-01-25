@@ -20,18 +20,18 @@ import view.IClientView;
  */
 public class ChatModel implements IChatModel {
     
-    IClientListener clientListener;
+    //IClientListener clientListener;
     User user;
     String joptionPaneMassage;
     int serviceNumber;
     
     public ChatModel() {
-        try {
+       /* try {
             clientListener = new ClientListener();
             clientListener.changeModel(this);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
     }
     

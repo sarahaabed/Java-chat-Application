@@ -11,14 +11,23 @@ import java.util.Vector;
  *
  * @author bishoy
  */
-public class Room {
+public class Room implements IRoom{
     private int roomId;
     public Vector<Contact> contactVector;
     public Vector<Message> messageVector;
     public Room(int roomId){
         this.roomId = roomId;
     }
-    int getRoomId(){
+
+    public Room() {
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+    
+    public int getRoomId(){
         return roomId;
     }
+    
 }

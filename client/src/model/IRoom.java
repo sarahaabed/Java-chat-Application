@@ -15,6 +15,6 @@ import java.util.Vector;
 public interface IRoom extends Serializable{
     
 
-    
-    int getRoomId();
+    public void setRoomId(int roomId);
+    public int getRoomId();
 }

@@ -6,13 +6,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author it
  */
-public interface IUser extends Serializable{
+public interface IUser extends Serializable {
 
     public String getUserEmail();
 
@@ -47,4 +48,12 @@ public interface IUser extends Serializable{
     public boolean validUserName(String name);
 
     public boolean validPassword(String pass);
+
+    public Vector<Contact> getUserContacts();
+
+    public void setUserContacts(Vector<Contact> userContacts);
+
+    public Vector<Room> getUserRooms();
+
+    public void setUserRooms(Vector<Room> userRooms);
 }

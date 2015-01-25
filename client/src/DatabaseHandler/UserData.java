@@ -8,8 +8,10 @@ package DatabaseHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.*;
@@ -21,6 +23,17 @@ import model.*;
 public class UserData {
 
     Connection con;
+    public Vector<Contact> userContacts = new Vector<Contact>();
+    public Vector<Room> userRooms = new Vector<Room>();
+    /* IUser user;
+     IRoom room;
+     IContact contact;*/
+
+    public UserData() {
+        /*  user = new User();
+         room = new Room();
+         contact = new Contact(null, null, null, null, null);*/
+    }
 
     public void connect() {
         try {
@@ -32,8 +45,7 @@ public class UserData {
     }
 
     public boolean InsertUser(User user) {
-        boolean flag=false;
-        System.out.println("use database");
+        boolean flag = false;
         try {
             connect();
             //Statement stmt = con.createStatement();
@@ -54,8 +66,8 @@ public class UserData {
             pst.setString(2, user.getUserName());
             pst.setString(3, user.getUserPassword());
             pst.setString(4, user.getUserGender());
-            if (pst.execute()) {
-                //System.out.println("insert success");
+            if (pst.execute()== false ) {
+                System.out.println("insert success");
                 flag = true;
             } else {
                 flag = false;
@@ -71,11 +83,34 @@ public class UserData {
              System.out.println(rs.getString(2));
              }*/
         } catch (SQLException ex) {
-           // ex.printStackTrace();
-            flag=false;
+            // ex.printStackTrace();
+            flag = false;
         }
         return flag;
     }
-    
 
+    public User selectUser(String mail) {
+        boolean flag = true;
+        User user = new User();
+        try {
+            PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
+            pst.setString(1, mail);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                user.setUserEmail(rs.getString(1));
+                user.setUserName(rs.getString(2));
+                user.setUserPassword(rs.getString(3));
+                user.setUserGender(rs.getString(4));
+                user.setUserStatus(rs.getString(5));
+            }
+        } catch (SQLException ex) {
+            flag = false;
+        }
+        if (flag == true) {
+            return user;
+        } else {
+            System.out.println("not found ");
+            return null;
+        }
+    }
 }

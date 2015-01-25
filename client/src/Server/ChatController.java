@@ -26,7 +26,7 @@ public class ChatController implements IChatController {
 
     public ChatController() {
         userData = new UserData();
-        // chatModel = new ChatModel();
+        chatModel = new ChatModel();
     }
 
     @Override
@@ -48,12 +48,18 @@ public class ChatController implements IChatController {
     public void addUser(User user) {
 
         boolean inserted = userData.InsertUser(user);
+        String str=user.getUserEmail();
         if (inserted == false) {
             chatModel.setJoptionPaneMassage("E-mail is Already used");
             System.out.println("E-mail is Already used");
         } else {
+            System.out.println("User E-mail: "+str);
             chatModel.setJoptionPaneMassage("Inserted successfully");
             chatModel.setServiceNumber(ModelType.USER_FOUND);
+            chatModel.setUser(userData.selectUser(user.getUserEmail()));
+            User u=new User();
+            u=chatModel.getUser();
+            System.out.println("User E-mail: "+u.getUserEmail());
         }
     }
 
