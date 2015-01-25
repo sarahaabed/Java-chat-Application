@@ -22,6 +22,10 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
         this.clientView=clientView;
     }
 
+    public ClientListener() throws RemoteException {
+    }
+    
+    
     @Override
     public void changeModel(IChatModel chatModel) {
         

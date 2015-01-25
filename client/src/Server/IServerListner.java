@@ -17,7 +17,5 @@ public interface IServerListner extends Remote {
 
     public void processClientAction(view.IClientAction clientAction) throws RemoteException;
 
-    void register(view.IClientAction clientRef) throws RemoteException;
-
-    void unRegister(view.IClientAction clientRef) throws RemoteException;
+   
 }

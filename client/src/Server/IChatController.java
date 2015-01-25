@@ -6,6 +6,7 @@
 package Server;
 
 import java.io.File;
+import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import model.*;
 
@@ -39,4 +40,7 @@ public interface IChatController {
 
     public void addContactToRoom(Contact contact);
     //register and unregister
+     void register(view.IClientAction clientRef);
+
+    void unRegister(view.IClientAction clientRef);
 }

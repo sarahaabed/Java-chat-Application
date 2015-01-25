@@ -17,7 +17,7 @@ import java.util.Vector;
  */
 public class ServerListner extends UnicastRemoteObject implements IServerListner {
     IserverController obj;
-    Vector<view.IClientAction> clientsvector=new Vector<view.IClientAction>();
+   
     public ServerListner() throws RemoteException{
         
         
@@ -30,17 +30,6 @@ public class ServerListner extends UnicastRemoteObject implements IServerListner
         System.out.println("servercontroller");
     }
 
-    @Override
-    public void register(view.IClientAction clientRef) {
-        clientsvector.add(clientRef);
-        System.out.println("Client Added");
-    }
-
-    @Override
-    public void unRegister(view.IClientAction clientRef) {
-        clientsvector.remove(clientRef);
-        System.out.println("Client Removed");
-    }
     
     
 

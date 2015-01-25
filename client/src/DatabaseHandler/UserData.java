@@ -21,6 +21,7 @@ import model.*;
 public class UserData {
 
     Connection con;
+
     public void connect() {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3307/mydb", "root", "root");
@@ -30,7 +31,9 @@ public class UserData {
         }
     }
 
-    public void InsertUser(User user) {
+    public boolean InsertUser(User user) {
+        boolean flag=false;
+        System.out.println("use database");
         try {
             connect();
             //Statement stmt = con.createStatement();
@@ -41,7 +44,7 @@ public class UserData {
              }*/
             /*String insertString = new String("UPDATE tab SET id=35 WHERE id =3");
              stmt.executeUpdate(insertString);*/
-            
+
             /* String deleteString = new String("DELETE FROM tab WHERE id ='2' ");
              stmt.executeUpdate(deleteString);*/
             String insertString = new String("INSERT INTO User_Table (user_Email,user_Name,password,gender) VALUES(?,?,?,?) ");
@@ -52,11 +55,14 @@ public class UserData {
             pst.setString(3, user.getUserPassword());
             pst.setString(4, user.getUserGender());
             if (pst.execute()) {
-                System.out.println("ensert success");
+                //System.out.println("insert success");
+                flag = true;
+            } else {
+                flag = false;
             }
             /*else{
-                System.out.println("Not Inserted");
-            }*/
+             System.out.println("Not Inserted");
+             }*/
             /* PreparedStatement pst = con.prepareStatement("select * from tab where id=?");
              //String queryString = new String("select * from tab");
              pst.setInt(1, 2);
@@ -65,8 +71,11 @@ public class UserData {
              System.out.println(rs.getString(2));
              }*/
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           // ex.printStackTrace();
+            flag=false;
         }
+        return flag;
     }
     
+
 }

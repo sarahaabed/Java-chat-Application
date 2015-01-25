@@ -30,7 +30,7 @@ public class ChatClientStarter {
         ClientView clv = new ClientView(new chatCui());
         clv.getC().setVisible(true);
         ClientInputHandler cih = new ClientInputHandler();
-        cih.signUp(new User("bbb@yahoo", "123", "bishoy", "male"));
+        cih.signUp(new User("mohemd@yahoo", "123", "bishoy", "male"));
     }
     public static void main(String [] args){
         new ChatClientStarter();

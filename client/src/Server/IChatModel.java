@@ -14,6 +14,16 @@ import model.*;
  */
 public interface IChatModel {
 
-   
+    public int getServiceNumber();
+
+    public User getUser();
+
+    public String getJoptionPaneMassage();
+
+    public void setUser(User user);
+
+    public void setJoptionPaneMassage(String joptionPaneMassage);
+
+    public void setServiceNumber(int serviceNumber);
 
 }
