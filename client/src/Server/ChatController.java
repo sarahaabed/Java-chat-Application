@@ -60,6 +60,7 @@ public class ChatController implements IChatController {
             User u=new User();
             u=chatModel.getUser();
             System.out.println("User E-mail: "+u.getUserEmail());
+           
         }
     }
 

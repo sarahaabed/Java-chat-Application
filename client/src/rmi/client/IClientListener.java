@@ -8,13 +8,14 @@ package rmi.client;
 
 import Server.IChatModel;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author Radwa Manssour
  */
 public interface IClientListener extends Remote{
-    public void changeModel(IChatModel chatModel);
-    public void isConnected();
+    public void changeModel(IChatModel chatModel) throws RemoteException;
+    public void isConnected() throws RemoteException;
     
 }
