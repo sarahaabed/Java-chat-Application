@@ -28,8 +28,8 @@ public class ChatClientStarter {
         
         chatCui clv = new chatCui();
         clv.setVisible(true);
-        ClientInputHandler cih = new ClientInputHandler();
-        //cih.signUp(new User("mo@yahoo", "123", "bishoy", "male"));
+        //ClientInputHandler cih = new ClientInputHandler();
+       //cih.signUp(new User("moh@yahoo", "123", "bishoy", "male"));
         
     }
     public static void main(String [] args){

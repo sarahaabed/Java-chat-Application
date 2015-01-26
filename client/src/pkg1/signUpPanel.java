@@ -176,6 +176,7 @@ public class signUpPanel extends javax.swing.JPanel {
         String p2 = new String(jTextField7.getText());
         String em1 = new String(jTextField3.getText());
         String em2 = new String(jTextField6.getText());
+        
         boolean pf=false;
         boolean emf =false;
         boolean unf=false;
@@ -199,7 +200,14 @@ public class signUpPanel extends javax.swing.JPanel {
         }
         if(u.setUserName(uName))
             unf = true;
+        else JOptionPane.showMessageDialog(null, "bad User Name format");
         if(pf && emf && unf){
+            System.out.println(uName);
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(em1);
+        System.out.println(em2);
+        System.out.println(uName);
         cih.signUp(u);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
