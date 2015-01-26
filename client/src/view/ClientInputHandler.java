@@ -60,8 +60,7 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void signIn(String mail, String pass) {
-        User user=new User(mail, pass, null, null);
+    public void signIn(User user) {        
         ca.setUser(user);
         ca.setServiceNum(ActionType.SIGN_IN);
         try {

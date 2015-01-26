@@ -43,4 +43,6 @@ public interface IChatController {
      void register(view.IClientAction clientRef);
 
     void unRegister(view.IClientAction clientRef);
+    
+    public void signIn(User user);
 }

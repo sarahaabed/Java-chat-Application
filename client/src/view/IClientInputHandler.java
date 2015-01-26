@@ -17,7 +17,7 @@ import model.User;
 public interface IClientInputHandler {
     
     public void signUp(User user);
-    public void signIn(String mail, String pass);
+    public void signIn(User user);
     public void addContact(String mail);
     public void removeContact(String mail);    
     public void changePhoto(User user);

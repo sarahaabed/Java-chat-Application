@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.Contact;
+import model.Room;
 import model.State;
 import model.User;
 import rmi.client.ClientListener;
@@ -27,6 +28,7 @@ public class ChatController implements IChatController {
     UserData userData;
     IChatModel chatModel;
     Vector<view.IClientAction> clientsvector = new Vector<view.IClientAction>();
+    
 
     public ChatController() {
         userData = new UserData();
@@ -134,5 +136,10 @@ public class ChatController implements IChatController {
         chatModel.setJoptionPaneMassage(null);
         chatModel.setServiceNumber(0);
         chatModel.setUser(null);
+    }
+
+    @Override
+    public void signIn(User user) {
+        
     }
 }

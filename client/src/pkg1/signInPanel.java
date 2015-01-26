@@ -206,9 +206,8 @@ public class signInPanel extends javax.swing.JPanel {
         boolean valid=true;
         User user=new User(mail.getText(), pass.getText(), null, null);
         user.setUserState(state.getSelectedIndex());
-        //handler.signIn(user);
-        //check valid or not
-        //get error message
+        handler.signIn(user);
+                
         if(valid){
             Room me=new Room(0);
             Contact cc=new Contact(null,"rad",null,null,0);
