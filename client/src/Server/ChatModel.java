@@ -20,19 +20,23 @@ import view.IClientView;
  */
 public class ChatModel implements IChatModel {
     
-    IClientListener clientListener;
+    
     User user;
+    Message msg;
     String joptionPaneMassage;
     int serviceNumber;
     
     public ChatModel() {
-        try {
-            clientListener = new ClientListener();
-            clientListener.changeModel(this);
-        } catch (RemoteException ex) {
-            Logger.getLogger(ChatModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+        
+    }
+
+    public Message getMsg() {
+        return msg;
+    }
+
+    public void setMsg(Message msg) {
+        this.msg = msg;
     }
     
     @Override

@@ -7,11 +7,15 @@ package Server;
 
 import DatabaseHandler.UserData;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.Contact;
 import model.State;
 import model.User;
+import rmi.client.ClientListener;
 import view.ModelType;
 
 /**
@@ -46,7 +50,7 @@ public class ChatController implements IChatController {
 
     @Override
     public void addUser(User user) {
-
+        nullChatModel();
         boolean inserted = userData.InsertUser(user);
         String str=user.getUserEmail();
         if (inserted == false) {
@@ -62,6 +66,8 @@ public class ChatController implements IChatController {
             System.out.println("User E-mail: "+u.getUserEmail());
            
         }
+        
+        sendChatModel();
     }
 
     @Override
@@ -115,5 +121,18 @@ public class ChatController implements IChatController {
         clientsvector.remove(clientRef);
         System.out.println("Client Removed");
     }
-
+    void sendChatModel(){
+    try {
+            ClientListener clientListener = new ClientListener();
+            clientListener.changeModel(chatModel);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    void nullChatModel(){
+        chatModel.setJoptionPaneMassage(null);
+        chatModel.setServiceNumber(0);
+        chatModel.setUser(null);
+    }
 }

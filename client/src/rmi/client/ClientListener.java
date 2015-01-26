@@ -29,6 +29,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
     @Override
     public void changeModel(IChatModel chatModel) {
         
+        
     }
 
     @Override
