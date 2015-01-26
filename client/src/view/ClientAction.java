@@ -9,6 +9,7 @@ package view;
 import model.Contact;
 import model.Message;
 import model.User;
+import rmi.client.ClientListener;
 
 /**
  *
@@ -19,6 +20,15 @@ public class ClientAction implements IClientAction {
     private int serviceNum;
     private Contact con;
     private Message message;
+    private ClientListener clientModel;
+
+    public ClientListener getClientModel() {
+        return clientModel;
+    }
+
+    public void setClientModel(ClientListener clientModel) {
+        this.clientModel = clientModel;
+    }
     
     public ClientAction(){
         

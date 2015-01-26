@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 import model.User;
 import pkg1.chatCui;
 import view.ClientInputHandler;
-import view.ClientView;
 
 /**
  *
@@ -27,10 +26,10 @@ import view.ClientView;
 public class ChatClientStarter {
     public ChatClientStarter(){
         
-        ClientView clv = new ClientView(new chatCui());
-        clv.getC().setVisible(true);
+        chatCui clv = new chatCui();
+        clv.setVisible(true);
         ClientInputHandler cih = new ClientInputHandler();
-        cih.signUp(new User("mo@yahoo", "123", "bishoy", "male"));
+        //cih.signUp(new User("mo@yahoo", "123", "bishoy", "male"));
         
     }
     public static void main(String [] args){

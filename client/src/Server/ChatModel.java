@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.*;
 import rmi.client.*;
-import view.IClientView;
+
 
 /**
  *

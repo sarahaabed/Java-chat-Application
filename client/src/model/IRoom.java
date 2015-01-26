@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.Vector;
  */
 public interface IRoom extends Serializable{
     
-
-    public void setRoomId(int roomId);
-    public int getRoomId();
+    public String getName();
+    public ImageIcon getImg();
+    int getRoomId();
 }

@@ -6,28 +6,34 @@
 package model;
 
 import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author bishoy
  */
 public class Room implements IRoom{
+    private ImageIcon img;
     private int roomId;
-    public Vector<Contact> contactVector;
-    public Vector<Message> messageVector;
+    public Vector<Contact> contactVector=new Vector<Contact>();
+    public Vector<Message> messageVector=new Vector<Message>();
+    private String name;
     public Room(int roomId){
         this.roomId = roomId;
     }
-
-    public Room() {
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-    
+    @Override
     public int getRoomId(){
         return roomId;
+    }
+
+    @Override
+    public ImageIcon getImg() {
+        return img;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
     
 }

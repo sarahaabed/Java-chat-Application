@@ -2,6 +2,7 @@ package pkg1;
 
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.util.Vector;
 import javax.swing.BoxLayout;
@@ -16,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
+import model.User;
 
 /*
  * To change this template, choose Tools | Templates
@@ -31,15 +33,31 @@ public class chatCui extends javax.swing.JFrame {
     /**
      * Creates new form chatCui
      */
+    String userMail;
+    public void setUserMail(String mail){
+        userMail=mail;
+    }
+    public static JPanel parentPanel;
+    public static messenger mess;
+    public static rooms room;
     public chatCui() {
         initComponents();
-        rooms room=new rooms();
+        room=new rooms();
         
-        setSize(290, 600);
+        setSize(400, 700);
         room.setVisible(false);
         
-        messenger m=new messenger(room,this);
-        p.add(m,BorderLayout.WEST);
+        //mess=new messenger(room,this);
+        signInPanel signIn=new signInPanel(this);
+        signUpPanel signUp=new signUpPanel(this);
+        parentPanel=new JPanel();
+        parentPanel.setLayout(new CardLayout());
+        
+        parentPanel.add("signin", signIn);
+        //parentPanel.add("messenger", mess);
+        parentPanel.add("signup", signUp);
+        
+        p.add(parentPanel,BorderLayout.WEST);
         p.add(room,BorderLayout.CENTER);
        
         //test

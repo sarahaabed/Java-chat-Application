@@ -26,7 +26,7 @@ public interface IChatController {
 
     public void rejectFriend(String emailId);
 
-    public void changeState(State state);
+    public void changeState(int state);
 
     public void changeStatus(String status);
 

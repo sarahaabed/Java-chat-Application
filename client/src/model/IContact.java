@@ -20,5 +20,5 @@ public interface IContact extends Serializable{
     public String getName();
     public String getStatus();
     public ImageIcon getPhoto();
-    public State getState();
+    public int getState();
 }

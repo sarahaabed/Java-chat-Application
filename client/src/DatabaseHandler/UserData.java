@@ -70,6 +70,7 @@ public class UserData {
                 System.out.println("insert success");
                 flag = true;
             } else {
+                System.out.println("insert failled");
                 flag = false;
             }
             /*else{
@@ -114,3 +115,23 @@ public class UserData {
         }
     }
 }
+
+//Radwa
+
+//Radwa
+
+//bishoy
+
+//bishoy
+
+//Aliaa
+
+//Aliaa
+
+//Sarah
+
+//Sarah
+
+//Jihad
+
+//Jihad

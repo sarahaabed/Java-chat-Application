@@ -16,10 +16,10 @@ public class Contact implements IContact{
     private String name;
     private String status;
     private ImageIcon photo;
-    private State state;
+    private int state;
 
     
-    public Contact(String email,String name,String status,ImageIcon photo,State state){
+    public Contact(String email,String name,String status,ImageIcon photo,int state){
         this.email = email;
         this.name = name;
         this.status = status;
@@ -50,7 +50,7 @@ public class Contact implements IContact{
     }
 
     @Override
-    public State getState() {
+    public int getState() {
         return state;
     }
     

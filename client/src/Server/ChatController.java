@@ -61,9 +61,9 @@ public class ChatController implements IChatController {
             chatModel.setJoptionPaneMassage("Inserted successfully");
             chatModel.setServiceNumber(ModelType.USER_FOUND);
             chatModel.setUser(userData.selectUser(user.getUserEmail()));
-            User u=new User();
+          /*  User u=new User();
             u=chatModel.getUser();
-            System.out.println("User E-mail: "+u.getUserEmail());
+            System.out.println("User E-mail: "+u.getUserEmail());*/
            
         }
         
@@ -91,7 +91,7 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void changeState(State state) {
+    public void changeState(int state) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

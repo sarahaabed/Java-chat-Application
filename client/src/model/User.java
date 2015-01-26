@@ -20,16 +20,15 @@ public class User implements IUser {
     private String userPassword;
     private String userName;
     private String userGender;
-    private State userState;
+    private int userState;
     private ImageIcon userImage;
     private String userStatus;
+    /*About user Profile*/
     public Vector<Contact> userContacts = new Vector<Contact>();
     public Vector<Room> userRooms = new Vector<Room>();
+    public Vector<Contact> userRequests = new Vector<>();
     //want to make vector of friend Requests
 
-    public User() {
-    }
-    
     public User(String userEmail, String userPassword, String userName, String userGender) {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -37,29 +36,49 @@ public class User implements IUser {
         this.userGender = userGender;
     }
 
+    public User() {
+    }
+
     public String getUserEmail() {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-
+    public boolean setUserEmail(String userEmail) {
+        if(validEmail(userEmail)){
+            this.userEmail = userEmail;
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public String getUserPassword() {
         return userPassword;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public boolean setUserPassword(String userPassword) {
+        if(validPassword(userPassword)){
+            this.userPassword = userPassword;
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public boolean setUserName(String userName) {
+        if(validUserName(userName)){
+            this.userName = userName;
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public String getUserGender() {
@@ -70,11 +89,11 @@ public class User implements IUser {
         this.userGender = userGender;
     }
 
-    public State getUserState() {
+    public int getUserState() {
         return userState;
     }
 
-    public void setUserState(State userState) {
+    public void setUserState(int userState) {
         this.userState = userState;
     }
 
@@ -94,24 +113,7 @@ public class User implements IUser {
         this.userStatus = userStatus;
     }
 
-    public Vector<Contact> getUserContacts() {
-        return userContacts;
-    }
-
-    public void setUserContacts(Vector<Contact> userContacts) {
-        this.userContacts = userContacts;
-    }
-
-    public Vector<Room> getUserRooms() {
-        return userRooms;
-    }
-
-    /*About user Profile*/
-    public void setUserRooms(Vector<Room> userRooms) {
-        this.userRooms = userRooms;
-    }
-
-    public boolean validEmail(String mail) {
+    public static boolean validEmail(String mail) {
         //"^(.+)@([^@]+[^.])$"
         if (mail.matches("^(.+)@([^@]+[^.])$")) {
             return true;
@@ -120,7 +122,7 @@ public class User implements IUser {
         }
     }
 
-    public boolean validUserName(String name) {
+    public static boolean validUserName(String name) {
         //"^(.+)@([^@]+[^.])$"
         if (name.matches("^([a-zA-z_]{5,30})$")) {
             return true;
@@ -129,7 +131,7 @@ public class User implements IUser {
         }
     }
 
-    public boolean validPassword(String pass) {
+    public static boolean validPassword(String pass) {
         //"^(.+)@([^@]+[^.])$"
         if (pass.matches("^([a-zA-z_&%$-.]{6,20})$")) {
             return true;

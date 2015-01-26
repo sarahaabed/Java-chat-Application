@@ -1,5 +1,10 @@
 package pkg1;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JList;
+import model.Room;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,8 +19,29 @@ public class message extends javax.swing.JPanel {
     /**
      * Creates new form message
      */
-    public message() {
+    public message(messenger gui ) {
         initComponents();
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                if(e.getClickCount()==2){
+                    System.out.println("bbb");
+                    System.out.println("jjjjjjjjjjj"+gui.messagesPanel.getSelectedIndex());
+                    conversation conv = new conversation();
+                                Room room1 = gui.user.userRooms.get(gui.messagesPanel.getSelectedIndex());
+                                for (int i = 0; i < room1.messageVector.size(); i++) {
+                                    conv.text2.append(room1.messageVector.get(i).getTxt());
+
+                                }
+
+                                gui.room.rooms_tabs.insertTab(room1.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
+                            
+                    }
+            }
+            
+});
     }
 
     /**
@@ -41,6 +67,7 @@ public class message extends javax.swing.JPanel {
 
         name.setBackground(new java.awt.Color(255, 255, 255));
         name.setForeground(new java.awt.Color(0, 102, 255));
+        name.setText("name");
 
         message.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -55,7 +82,7 @@ public class message extends javax.swing.JPanel {
                     .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 88, Short.MAX_VALUE)))
+                        .addGap(0, 155, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

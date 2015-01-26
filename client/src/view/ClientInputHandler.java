@@ -74,7 +74,7 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void addContact(String mail) {
-        Contact con=new Contact(mail, null, null, null, null);
+        Contact con=new Contact(mail, null, null, null, 0);
         ca.setCon(con);
         ca.setServiceNum(ActionType.ADD_CONTACT);
         try {
@@ -87,7 +87,7 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void removeContact(String mail) {
-        Contact con=new Contact(mail, null, null, null, null);
+        Contact con=new Contact(mail, null, null, null, 0);
         ca.setCon(con);
         ca.setServiceNum(ActionType.ADD_CONTACT);
         try {
@@ -144,7 +144,7 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void addMember(int RoomId, String mail) {
-        Contact con=new Contact(mail, null, null, null, null);
+        Contact con=new Contact(mail, null, null, null, 0);
         Message message=new Message(RoomId, null, null, null,false);
         ca.setCon(con);
         ca.setMessage(message);

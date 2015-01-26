@@ -10,17 +10,19 @@ import Server.IChatModel;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import view.IClientView;
+import model.User;
+import view.ModelType;
+
 
 /**
  *
  * @author Radwa Manssour
  */
 public class ClientListener extends UnicastRemoteObject implements IClientListener{
-    IClientView clientView;
+   /* IClientView clientView;
     public ClientListener(IClientView clientView)throws RemoteException{
         this.clientView=clientView;
-    }
+    }*/
 
     public ClientListener() throws RemoteException {
     }
@@ -28,7 +30,11 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
     
     @Override
     public void changeModel(IChatModel chatModel) {
+        switch(chatModel.getServiceNumber()){
+            case ModelType.USER_FOUND:
+                User u = chatModel.getUser();
         
+        }
         
     }
 

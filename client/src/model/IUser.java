@@ -6,34 +6,33 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author it
  */
-public interface IUser extends Serializable {
+public interface IUser extends Serializable{
 
     public String getUserEmail();
 
-    public void setUserEmail(String userEmail);
+    public boolean setUserEmail(String userEmail);
 
     public String getUserPassword();
 
-    public void setUserPassword(String userPassword);
+    public boolean setUserPassword(String userPassword);
 
     public String getUserName();
 
-    public void setUserName(String userName);
+    public boolean setUserName(String userName);
 
     public String getUserGender();
 
     public void setUserGender(String userGender);
 
-    public State getUserState();
+    public int getUserState();
 
-    public void setUserState(State userState);
+    public void setUserState(int userState);
 
     public ImageIcon getUserImage();
 
@@ -42,18 +41,4 @@ public interface IUser extends Serializable {
     public String getUserStatus();
 
     public void setUserStatus(String userStatus);
-
-    public boolean validEmail(String mail);
-
-    public boolean validUserName(String name);
-
-    public boolean validPassword(String pass);
-
-    public Vector<Contact> getUserContacts();
-
-    public void setUserContacts(Vector<Contact> userContacts);
-
-    public Vector<Room> getUserRooms();
-
-    public void setUserRooms(Vector<Room> userRooms);
 }
