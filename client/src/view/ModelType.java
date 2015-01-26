@@ -11,5 +11,9 @@ package view;
  */
 public class ModelType {
     public final static int USER_FOUND = 1;
-   
+    public final static int USER_NOTFOUND = 2;
+    public final static int ACCEPT_FRIEND = 3;
+    public final static int NOT_ACCEPT_FRIEND = 4;
+    public final static int REJECTED = 5;
+    public final static int NOT_REJECTED = 6;
 }

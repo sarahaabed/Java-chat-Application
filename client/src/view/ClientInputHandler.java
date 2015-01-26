@@ -162,13 +162,35 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void acceptContact(String mail) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void acceptContact(User user,Contact contact) {
+        /*for test*/
+        Contact c=new Contact("g.h@yahho.com", null, null, null, 5);
+        User u=new User("aliaa@yahoo", null, null, null);
+        ca.setCon(contact);
+        ca.setUser(user);
+        ca.setServiceNum(ActionType.ACCEPT_FRIEND);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     @Override
-    public void rejectContact(String mail) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void rejectContact(User user, Contact contact) {
+        /*for test*/
+        Contact c=new Contact("g.h@yahho.com", null, null, null, 5);
+        User u=new User("aliaa@yahoo", null, null, null);
+        ca.setCon(contact);
+        ca.setUser(user);
+        ca.setServiceNum(ActionType.ACCEPT_FRIEND);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

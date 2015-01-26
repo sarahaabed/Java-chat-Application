@@ -25,5 +25,10 @@ public interface IChatModel {
     public void setJoptionPaneMassage(String joptionPaneMassage);
 
     public void setServiceNumber(int serviceNumber);
+    
+    public Contact getContact();
+
+    public void setContact(Contact contact);
+    
 
 }

@@ -114,6 +114,71 @@ public class UserData {
             return null;
         }
     }
+    
+    //Jihad
+    
+  
+    public boolean acceptContact(String userEmail,String friendEmail) {
+        boolean flag = true;
+        try {
+            connect();
+            
+          
+            PreparedStatement stmt1 = con.prepareStatement("insert into user_list_table values(?,?)");
+
+            stmt1.setString(1,friendEmail );
+            stmt1.setString(2, userEmail);
+            stmt1.executeUpdate();
+            PreparedStatement pst = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
+
+            pst.setString(1, userEmail);
+            pst.setString(2, friendEmail);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+             flag = false;
+        }
+           
+       return flag;
+}
+     public boolean rejectContact(String userEmail,String friendEmail) {
+        boolean flag = true;
+        try {
+            PreparedStatement pst = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
+
+            pst.setString(1, userEmail);
+            pst.setString(2, friendEmail);
+            pst.executeUpdate();
+           
+        } catch (SQLException ex) {
+            flag = false;
+        }
+       return flag;
+}
+    public Contact selectContact(String mail) {
+        boolean flag = true;
+        Contact contact=null;
+        try {
+            PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
+            pst.setString(1, mail);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                contact=new Contact(rs.getString(1),rs.getString(2),rs.getString(5),null,1);
+            }
+        } catch (SQLException ex) {
+            flag = false;
+        }
+        if (flag == true) {
+            return contact;
+        } else {
+            System.out.println("not found ");
+            return null;
+        }
+    }
+//Jihad
+    
+    
+    
+    
 }
 
 //Radwa
@@ -133,5 +198,40 @@ public class UserData {
 //Sarah
 
 //Jihad
+    
+  
+//    public boolean acceptContact(String userEmail,String friendEmail) {
+//        boolean flag = true;
+//        try {
+//            connect();
+//            PreparedStatement pst = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
+//
+//            stmt1.setString(1, userEmail);
+//            stmt1.setString(2, friendEmail);
+//           stmt1.executeUpdate();
+//            
+//        } catch (SQLException ex) {
+//            flag = false;
+//        }
+//       return flag;
+//}
+//     public boolean rejectContact(String userEmail,String friendEmail) {
+//        boolean flag = true;
+//        try {
+//            PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
+//            pst.setString(1, mail);
+//            ResultSet rs = pst.executeQuery();
+//            while (rs.next()) {
+//                user.setUserEmail(rs.getString(1));
+//                user.setUserName(rs.getString(2));
+//                user.setUserPassword(rs.getString(3));
+//                user.setUserGender(rs.getString(4));
+//                user.setUserStatus(rs.getString(5));
+//            }
+//        } catch (SQLException ex) {
+//            flag = false;
+//        }
+//       return flag;
+//}
 
 //Jihad

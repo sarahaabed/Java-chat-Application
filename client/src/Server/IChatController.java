@@ -22,9 +22,9 @@ public interface IChatController {
 
     public void removeContact(String emailId);
 
-    public void acceptFriend(String emailId);
+    public void acceptFriend(User user,Contact contact);
 
-    public void rejectFriend(String emailId);
+    public void rejectFriend(User user,Contact contact);
 
     public void changeState(int state);
 

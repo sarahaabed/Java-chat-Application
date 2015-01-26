@@ -95,7 +95,7 @@ public class messenger extends javax.swing.JPanel {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   handler.acceptContact(c.getEmail());
+                   handler.acceptContact(user,c);
                    user.userRequests.remove(c);
                    requestsPanel.remove(r);
                    ContactPanel c1=new ContactPanel(gui);

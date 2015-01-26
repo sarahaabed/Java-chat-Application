@@ -19,12 +19,13 @@ import rmi.client.*;
  * @author sarah
  */
 public class ChatModel implements IChatModel {
-    
-    
+
+  
     User user;
     Message msg;
     String joptionPaneMassage;
     int serviceNumber;
+    Contact contact;
     
     public ChatModel() {
         
@@ -65,5 +66,13 @@ public class ChatModel implements IChatModel {
     public void setJoptionPaneMassage(String joptionPaneMassage) {
         this.joptionPaneMassage = joptionPaneMassage;
     }
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+    
     
 }

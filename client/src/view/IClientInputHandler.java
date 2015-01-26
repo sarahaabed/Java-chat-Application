@@ -26,8 +26,8 @@ public interface IClientInputHandler {
     public void sendMessage(Message message);
     public void addMember(int RoomId,String mail);
     public void leaveConversation(int RoomId);
-    public void acceptContact(String mail);
-    public void rejectContact(String mail);
+    public void acceptContact(User user,Contact contact);
+    public void rejectContact(User user, Contact contact);
     public void displayMessage(Message message);
     
         

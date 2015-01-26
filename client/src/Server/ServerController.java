@@ -47,11 +47,11 @@ public class ServerController implements IserverController {
                 break;
                 
             case ActionType.ACCEPT_FRIEND:
-                chatController.acceptFriend(clientAction.getContact().getEmail());
+                chatController.acceptFriend(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.REJECT_FRIEND:
-                chatController.rejectFriend(clientAction.getContact().getEmail());
+                chatController.rejectFriend(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.CHANGE_STATE:
