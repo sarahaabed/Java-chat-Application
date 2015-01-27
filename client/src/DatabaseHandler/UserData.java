@@ -127,6 +127,21 @@ public class UserData {
 //Aliaa
 
 //Sarah
+    
+    public void changeStatus(User user){
+        //implementation
+        try {
+            connect();
+            String query = "UPDATE User_Table SET status = ? where user_Email = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(5,user.getUserStatus()); 
+            preparedStmt.setString(1, user.getUserEmail());
+            preparedStmt.executeUpdate();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 //Sarah
 
