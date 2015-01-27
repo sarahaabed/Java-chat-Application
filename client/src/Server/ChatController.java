@@ -52,18 +52,18 @@ public class ChatController implements IChatController {
 
     @Override
     public void addUser(User user) {
-       /* nullChatModel();
-        boolean inserted = userData.InsertUser(user);*/
+        nullChatModel();
+        boolean inserted = userData.InsertUser(user);
         String str=user.getUserEmail();
-         rejectFriend(new User(str,null,null,null), new Contact(str, null, null, null, 8));
-         System.out.println("rejected frined succsssefully");
+        /* rejectFriend(new User(str,null,null,null), new Contact(str, null, null, null, 8));
+         System.out.println("rejected frined succsssefully");*/
         
-      /*  if (inserted == false) {
+       if (inserted == false) {
             chatModel.setJoptionPaneMassage("E-mail is Already used");
             System.out.println("E-mail is Already used");
             chatModel.setServiceNumber(ModelType.USER_FOUND);
-            rejectFriend(user, new Contact(str, null, null, null, 8));
-            System.out.println("rejected frined succsssefully");
+          /*  rejectFriend(user, new Contact(str, null, null, null, 8));
+            System.out.println("rejected frined succsssefully");*/
         } else {
             System.out.println("User E-mail: "+str);
             chatModel.setJoptionPaneMassage("Inserted successfully");
@@ -75,7 +75,7 @@ public class ChatController implements IChatController {
            /* acceptFriend(user, new Contact(str, null, null, null, 8));
             System.out.println("accept frined succsssefully");*/
           // rania.huissen@gmail.com
-       // }
+        }
         
       //  sendChatModel();
     }
