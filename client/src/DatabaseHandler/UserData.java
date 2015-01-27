@@ -37,7 +37,7 @@ public class UserData {
 
     public void connect() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/mydb", "root", "root");
         } catch (SQLException ex) {
             //System.out.println("error");
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,8 +127,7 @@ public class UserData {
 //Aliaa
 
 //Sarah
-    
-    public void changeStatus(User user){
+   public void changeStatus(User user){
         //implementation
         try {
             connect();
@@ -142,7 +141,6 @@ public class UserData {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 //Sarah
 
 
@@ -266,3 +264,4 @@ public class UserData {
 //}
 
 //Jihad
+
