@@ -58,6 +58,7 @@ public class ChatController implements IChatController {
         /* rejectFriend(new User(str,null,null,null), new Contact(str, null, null, null, 8));
          System.out.println("rejected frined succsssefully");*/
         
+        
        if (inserted == false) {
             chatModel.setJoptionPaneMassage("E-mail is Already used");
             System.out.println("E-mail is Already used");
@@ -72,7 +73,11 @@ public class ChatController implements IChatController {
           /*  User u=new User();
             u=chatModel.getUser();
             System.out.println("User E-mail: "+u.getUserEmail());*/
-           /* acceptFriend(user, new Contact(str, null, null, null, 8));
+          /*  System.out.println("connect to database");
+            Contact c=new Contact("sara@yahoo", "ahmed", "ay7aga", null, 8);
+            User u=new User();
+            u.setUserEmail("rania.huissen@gmail.com");
+            acceptFriend(u,c );
             System.out.println("accept frined succsssefully");*/
           // rania.huissen@gmail.com
         }
