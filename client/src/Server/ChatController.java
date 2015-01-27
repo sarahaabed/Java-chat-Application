@@ -129,6 +129,7 @@ public class ChatController implements IChatController {
 
     @Override
     public void changeState(int state) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
