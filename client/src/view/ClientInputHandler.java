@@ -35,7 +35,7 @@ public class ClientInputHandler implements IClientInputHandler {
         
         try {
             ca = new ClientAction();
-            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5030);
+            Registry reg = LocateRegistry.getRegistry("127.0.0.1",5031);
             sl= (IServerListner)reg.lookup("ChatApp");
 
         } catch (RemoteException ex) {
