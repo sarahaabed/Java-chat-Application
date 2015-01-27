@@ -57,8 +57,9 @@ public class ChatController implements IChatController {
         String str = user.getUserEmail();
         /* rejectFriend(new User(str,null,null,null), new Contact(str, null, null, null, 8));
          System.out.println("rejected frined succsssefully");*/
-
-        if (inserted == false) {
+        
+        
+       if (inserted == false) {
             chatModel.setJoptionPaneMassage("E-mail is Already used");
             System.out.println("E-mail is Already used");
             chatModel.setServiceNumber(ModelType.USER_FOUND);
