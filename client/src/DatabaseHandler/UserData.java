@@ -130,8 +130,8 @@ public class UserData {
 
 //Sarah
 
+
 //Jihad
-    //Jihad
     
   
     public boolean acceptContact(String userEmail,String friendEmail) {
