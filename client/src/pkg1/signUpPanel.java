@@ -27,7 +27,7 @@ public class signUpPanel extends javax.swing.JPanel {
     chatCui gui;
     private ClientInputHandler cih;
     private User u;
-    public signUpPanel(chatCui gui) {
+    public signUpPanel(chatCui gui,ClientInputHandler cih) {
         initComponents();
         this.gui=gui;
          ImageIcon i =new ImageIcon("src\\pkg1\\v.png");
@@ -40,7 +40,7 @@ public class signUpPanel extends javax.swing.JPanel {
         catch(Exception e){
             System.out.println("Undefined WindowLookAndFeel");
         }
-        cih = new ClientInputHandler();
+        this.cih = cih;
         
         u =new User();
     }

@@ -4,7 +4,10 @@ package pkg1;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
+import java.rmi.RemoteException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import model.User;
+import rmi.client.ClientListener;
+import view.ClientInputHandler;
 
 /*
  * To change this template, choose Tools | Templates
@@ -34,33 +39,36 @@ public class chatCui extends javax.swing.JFrame {
      * Creates new form chatCui
      */
     String userMail;
+    public User user;
+    //public ClientListener clientListener;
+    ClientInputHandler cih;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+/*    public ClientListener getClientListener() {
+        return clientListener;
+    }*/
+    
     public void setUserMail(String mail){
         userMail=mail;
     }
     public static JPanel parentPanel;
     public static messenger mess;
     public static rooms room;
-    public chatCui() {
+    public chatCui(ClientInputHandler cih) {
         initComponents();
         room=new rooms();
-        
         setSize(400, 700);
         room.setVisible(false);
-        
-        //mess=new messenger(room,this);
-        signInPanel signIn=new signInPanel(this);
-        signUpPanel signUp=new signUpPanel(this);
+        signInPanel signIn=new signInPanel(this,cih);
+        signUpPanel signUp=new signUpPanel(this,cih);
         parentPanel=new JPanel();
         parentPanel.setLayout(new CardLayout());
-        
         parentPanel.add("signin", signIn);
-        //parentPanel.add("messenger", mess);
         parentPanel.add("signup", signUp);
-        
         p.add(parentPanel,BorderLayout.WEST);
         p.add(room,BorderLayout.CENTER);
-       
-        //test
         conversation conv=new conversation();
         room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
        
@@ -81,7 +89,6 @@ public class chatCui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 0));
-        setPreferredSize(new java.awt.Dimension(300, 522));
         setResizable(false);
 
         p.setBackground(new java.awt.Color(153, 204, 255));
@@ -131,11 +138,12 @@ public class chatCui extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(chatCui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new chatCui().setVisible(true);
+                //new chatCui(new ClientInputHandler(this,clientListener)).setVisible(true);
             }
         });
     }

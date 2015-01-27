@@ -17,6 +17,7 @@ import model.Room;
 import model.State;
 import model.User;
 import rmi.client.ClientListener;
+import rmi.client.IClientListener;
 import view.ModelType;
 
 /**
@@ -25,9 +26,9 @@ import view.ModelType;
  */
 public class ChatController implements IChatController {
 
-    UserData userData;
+     UserData userData;
     IChatModel chatModel;
-    Vector<view.IClientAction> clientsvector = new Vector<view.IClientAction>();
+    public static Vector<IClientListener> clientsvector = new Vector<>();
     
 
     public ChatController() {
@@ -37,17 +38,17 @@ public class ChatController implements IChatController {
 
     @Override
     public void sendMessage(String msg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void sendFile(File file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void addContactToRoom(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -148,23 +149,23 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void register(view.IClientAction clientRef) {
+    public void register(IClientListener clientRef) {
         clientsvector.add(clientRef);
         System.out.println("Client Added");
     }
 
     @Override
-    public void unRegister(view.IClientAction clientRef) {
+    public void unRegister(IClientListener clientRef) {
         clientsvector.remove(clientRef);
         System.out.println("Client Removed");
     }
     void sendChatModel(){
-    try {
+    /*try {
             ClientListener clientListener = new ClientListener();
             clientListener.changeModel(chatModel);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     
     }
     void nullChatModel(){
@@ -174,7 +175,27 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void signIn(User user) {
+    public void signIn(User user,IClientListener clientListener) {
+        nullChatModel();
+        boolean validMail=false;
+        if(userData.validateMail(user.getUserEmail())){
+            System.out.println(user.getUserEmail());
+            if(userData.validatePass(user.getUserEmail(), user.getUserPassword())){
+                try {
+                    chatModel.setServiceNumber(ModelType.USER_FOUND);
+                    user=userData.retrievetUserInfo(user);
+                    chatModel.setUser(user);
+                    clientListener.changeModel(chatModel);
+                    register(clientListener);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                chatModel.setJoptionPaneMassage("wrong password");
+            }
+        }else{
+            chatModel.setJoptionPaneMassage("invalid password");
+        }
         
     }
     

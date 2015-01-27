@@ -7,10 +7,14 @@
 package rmi.client;
 
 import Server.IChatModel;
+import java.awt.CardLayout;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import javax.swing.JOptionPane;
 import model.User;
+import pkg1.chatCui;
+import pkg1.messenger;
 import view.ModelType;
 
 
@@ -24,16 +28,29 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
         this.clientView=clientView;
     }*/
 
-    public ClientListener() throws RemoteException {
+     chatCui gui;
+    public ClientListener(chatCui gui) throws RemoteException {
+        this.gui=gui;
     }
+    
     
     
     @Override
     public void changeModel(IChatModel chatModel) {
         switch(chatModel.getServiceNumber()){
             case ModelType.USER_FOUND:
-                User u = chatModel.getUser();
-        
+                User user = chatModel.getUser();
+                gui.setUser(user);
+                CardLayout card=(CardLayout)gui.parentPanel.getLayout();            
+            gui.mess=new messenger(gui.room, gui,user);                     
+            gui.parentPanel.add("messenger",gui.mess);
+            card.show(gui.parentPanel, "messenger");
+                break;
+            case ModelType.SERROR_MESSAGE :
+                String errorMessage=chatModel.getJoptionPaneMassage();
+                JOptionPane.showMessageDialog(null,errorMessage,"error",JOptionPane.DEFAULT_OPTION);                
+                break;
+            
         }
         
     }

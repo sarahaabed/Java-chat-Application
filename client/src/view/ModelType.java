@@ -16,4 +16,5 @@ public class ModelType {
     public final static int NOT_ACCEPT_FRIEND = 4;
     public final static int REJECTED = 5;
     public final static int NOT_REJECTED = 6;
+    public final static int SERROR_MESSAGE=7;
 }
