@@ -8,7 +8,9 @@ package view;
 
 import model.Contact;
 import model.Message;
+import model.Room;
 import model.User;
+import rmi.client.IClientListener;
 
 /**
  *
@@ -23,17 +25,14 @@ public interface IClientInputHandler {
     public void changePhoto(User user);
     public void changeStatus(User user);
     public void changeState(User user);
-    public void sendMessage(Message message);
+    public void sendMessage(Room room,Message message);
     public void addMember(int RoomId,String mail);
     public void leaveConversation(int RoomId);
     public void acceptContact(User user,Contact contact);
     public void rejectContact(User user, Contact contact);
     public void displayMessage(Message message);
-    
-        
-    
-    
-    
+    public void register(User user , IClientListener cl);
+    public void startConversation(Room room ,User user);
     
     
     

@@ -17,4 +17,6 @@ public class ModelType {
     public final static int REJECTED = 5;
     public final static int NOT_REJECTED = 6;
     public final static int CHANGE_STATUS=7;
+    public final static int RECIEVE_MESSAGE=8;
+    public final static int RECIEVE_ROOM_ID=9;
 }

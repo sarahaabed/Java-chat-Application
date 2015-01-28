@@ -8,11 +8,13 @@ package Server;
 import DatabaseHandler.UserData;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.Contact;
+import model.Message;
 import model.Room;
 import model.State;
 import model.User;
@@ -28,7 +30,10 @@ public class ChatController implements IChatController {
 
     UserData userData;
     IChatModel chatModel;
-    Vector<view.IClientAction> clientsvector = new Vector<view.IClientAction>();
+    //Vector<view.IClientAction> clientsvector = new Vector<view.IClientAction>();
+    Hashtable<String, IClientListener> onlineUsers =new Hashtable<>();
+    Vector<Room> rooms= new Vector<>();
+    static int roomId=0;
 
     public ChatController() {
         userData = new UserData();
@@ -36,8 +41,20 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void sendMessage(String msg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void sendMessage(Room room,Message msg) {
+        Vector<Contact> conts=room.contactVector;
+        for (int i = 0; i < conts.size(); i++) {
+            try {
+                IChatModel model=new ChatModel();
+                model.setServiceNumber(ModelType.RECIEVE_MESSAGE);
+                model.setMsg(msg);
+                model.setRoom(room);
+                onlineUsers.get(conts.get(i).getEmail()).changeModel(model);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }
 
     @Override
@@ -136,7 +153,7 @@ public class ChatController implements IChatController {
     public void changeStatus(User user) {
         userData.changeStatus(user);
         try {
-            IClientListener clientListner = new ClientListener();
+            IClientListener clientListner = new ClientListener(null);
             chatModel.setServiceNumber(ModelType.CHANGE_STATUS);
             clientListner.changeModel(chatModel);
 
@@ -157,20 +174,20 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void register(view.IClientAction clientRef) {
-        clientsvector.add(clientRef);
+    public void register(String mail, IClientListener clientRef) {
+        onlineUsers.put(mail, clientRef);        
         System.out.println("Client Added");
     }
 
     @Override
-    public void unRegister(view.IClientAction clientRef) {
-        clientsvector.remove(clientRef);
+    public void unRegister(String mail) {
+        onlineUsers.remove(mail);
         System.out.println("Client Removed");
     }
 
     void sendChatModel() {
         try {
-            ClientListener clientListener = new ClientListener();
+            ClientListener clientListener = new ClientListener(null);
             clientListener.changeModel(chatModel);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,6 +204,20 @@ public class ChatController implements IChatController {
     @Override
     public void signIn(User user) {
 
+    }
+    
+    public void startConversation(Room room, User user){
+        try {
+            room.setRoomId(roomId++);
+            nullChatModel();
+            chatModel.setServiceNumber(ModelType.RECIEVE_ROOM_ID);
+            chatModel.setRoom(room);
+            onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
 }

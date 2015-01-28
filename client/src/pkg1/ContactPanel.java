@@ -6,7 +6,10 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import model.Contact;
 import model.Room;
+import view.ClientInputHandler;
+import view.IClientInputHandler;
 
 /*
  * To change this template, choose Tools | Templates
@@ -22,9 +25,11 @@ public class ContactPanel extends javax.swing.JPanel {
     /**
      * Creates new form contact
      */
-    public ContactPanel(messenger gui) {
+    Contact cont;
+    public ContactPanel(messenger gui,Contact cont) {
         
         initComponents();
+        this.cont=cont;
         ContactPanel c=this;
         addMouseListener(new MouseAdapter() {
 
@@ -39,9 +44,16 @@ public class ContactPanel extends javax.swing.JPanel {
                 if(e.getClickCount()==2){
                     System.out.println("bbb");
                     System.out.println("jjjjjjjjjjj"+gui.contactsPanel.getSelectedIndex());
-                    conversation conv = new conversation();
+                    IClientInputHandler cih=new ClientInputHandler();
+                    Room room=new Room();
+                    room.contactVector.add(new Contact(gui.user.getUserEmail(), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
+                    room.contactVector.add(cont);
+                    cih.startConversation(room,gui.user );
+                    
+
+//conversation conv = new conversation();
                     //bytl3 exception??
-                    gui.room.rooms_tabs.insertTab(name.getText(), null, conv, null, gui.room.rooms_tabs.getTabCount());
+                   // gui.room.rooms_tabs.insertTab(name.getText(), null, conv, null, gui.room.rooms_tabs.getTabCount());
                             
                     }
             }

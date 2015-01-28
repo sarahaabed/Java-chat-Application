@@ -8,8 +8,10 @@ package view;
 
 import model.Contact;
 import model.Message;
+import model.Room;
 import model.User;
 import rmi.client.ClientListener;
+import rmi.client.IClientListener;
 
 /**
  *
@@ -20,13 +22,25 @@ public class ClientAction implements IClientAction {
     private int serviceNum;
     private Contact con;
     private Message message;
-    private ClientListener clientModel;
+    private IClientListener clientModel;
+    private Room room;
 
-    public ClientListener getClientModel() {
+    @Override
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    
+    
+
+    public IClientListener getClientModel() {
         return clientModel;
     }
 
-    public void setClientModel(ClientListener clientModel) {
+    public void setClientModel(IClientListener clientModel) {
         this.clientModel = clientModel;
     }
     

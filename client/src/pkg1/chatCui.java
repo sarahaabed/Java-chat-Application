@@ -4,7 +4,10 @@ package pkg1;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
+import java.rmi.RemoteException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import model.User;
+import rmi.client.ClientListener;
+import rmi.client.IClientListener;
 
 /*
  * To change this template, choose Tools | Templates
@@ -40,29 +45,35 @@ public class chatCui extends javax.swing.JFrame {
     public static JPanel parentPanel;
     public static messenger mess;
     public static rooms room;
+    public static IClientListener clientListener;
     public chatCui() {
-        initComponents();
-        room=new rooms();
-        
-        setSize(400, 700);
-        room.setVisible(false);
-        
-        //mess=new messenger(room,this);
-        signInPanel signIn=new signInPanel(this);
-        signUpPanel signUp=new signUpPanel(this);
-        parentPanel=new JPanel();
-        parentPanel.setLayout(new CardLayout());
-        
-        parentPanel.add("signin", signIn);
-        //parentPanel.add("messenger", mess);
-        parentPanel.add("signup", signUp);
-        
-        p.add(parentPanel,BorderLayout.WEST);
-        p.add(room,BorderLayout.CENTER);
-       
-        //test
-        conversation conv=new conversation();
-        room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
+        try {
+            initComponents();
+            room=new rooms();
+            clientListener=new ClientListener(this);
+            
+            setSize(400, 700);
+            room.setVisible(false);
+            
+            //mess=new messenger(room,this);
+            signInPanel signIn=new signInPanel(this);
+            signUpPanel signUp=new signUpPanel(this);
+            parentPanel=new JPanel();
+            parentPanel.setLayout(new CardLayout());
+            
+            parentPanel.add("signin", signIn);
+            //parentPanel.add("messenger", mess);
+            parentPanel.add("signup", signUp);
+            
+            p.add(parentPanel,BorderLayout.WEST);
+            p.add(room,BorderLayout.CENTER);
+            
+            //test
+            conversation conv=new conversation();
+            room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
+        } catch (RemoteException ex) {
+            Logger.getLogger(chatCui.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }
 

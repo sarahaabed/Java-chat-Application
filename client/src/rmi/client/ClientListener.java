@@ -11,6 +11,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import model.User;
+import pkg1.chatCui;
+import pkg1.conversation;
 import view.ModelType;
 
 
@@ -23,8 +25,9 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
     public ClientListener(IClientView clientView)throws RemoteException{
         this.clientView=clientView;
     }*/
-
-    public ClientListener() throws RemoteException {
+    private chatCui gui;
+    public ClientListener(chatCui gui) throws RemoteException {
+        this.gui=gui;
     }
     
     
@@ -33,6 +36,22 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
         switch(chatModel.getServiceNumber()){
             case ModelType.USER_FOUND:
                 User u = chatModel.getUser();
+                break;
+            case ModelType.RECIEVE_MESSAGE:
+                for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
+                    if(((conversation)gui.room.rooms_tabs.getTabComponentAt(i)).getRoomId()==chatModel.getRoom().getRoomId()){
+                        ((conversation)gui.room.rooms_tabs.getTabComponentAt(i)).text2.append("\n"+chatModel.getMsg().getSender()+" : "+chatModel.getMsg().getTxt());
+                        break;
+                    }
+                    
+                }
+                break;
+            case ModelType.RECIEVE_ROOM_ID:
+                conversation conv=new conversation();
+                conv.setRoomId(chatModel.getRoom().getRoomId());
+                conv.setRoom(chatModel.getRoom());
+                gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
+                break;
         
         }
         

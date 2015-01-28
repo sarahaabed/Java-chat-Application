@@ -65,7 +65,7 @@ public class messenger extends javax.swing.JPanel {
         status.setText(user.getUserStatus());
         img.setIcon(user.getUserImage());
         for (int i = 0; i < user.userContacts.size(); i++) {
-            ContactPanel cont = new ContactPanel(this);
+            ContactPanel cont = new ContactPanel(this,user.userContacts.get(i));
             cont.name.setText(user.userContacts.get(i).getName());
             cont.status.setText(user.userContacts.get(i).getStatus());
             cont.img.setIcon(user.userContacts.get(i).getPhoto());
@@ -99,7 +99,7 @@ public class messenger extends javax.swing.JPanel {
                    handler.acceptContact(user,c);
                    user.userRequests.remove(c);
                    requestsPanel.remove(r);
-                   ContactPanel c1=new ContactPanel(gui);
+                   ContactPanel c1=new ContactPanel(gui,c);
                    c1.img.setIcon(c.getPhoto());
                    c1.name.setText(c.getName());
                    c1.status.setText(c.getStatus());

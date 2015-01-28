@@ -1,5 +1,10 @@
 package pkg1;
 
+import model.Message;
+import model.Room;
+import view.ClientInputHandler;
+import view.IClientInputHandler;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,6 +19,27 @@ public class conversation extends javax.swing.JPanel {
     /**
      * Creates new form conversation
      */
+    private int roomId;
+    private  Room room;
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    
+    
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+    
     public conversation() {
         initComponents();
     }
@@ -54,6 +80,11 @@ public class conversation extends javax.swing.JPanel {
         jScrollPane1.setViewportView(text2);
 
         send.setText("send");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
 
         jPanel1.setMaximumSize(new java.awt.Dimension(20, 20));
         jPanel1.setMinimumSize(new java.awt.Dimension(20, 20));
@@ -130,6 +161,14 @@ public class conversation extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        String s=text1.getText();
+        Message m=new Message(roomId, null, null, s, true);
+        IClientInputHandler cih=new ClientInputHandler();
+        cih.sendMessage(room, m);
+    }//GEN-LAST:event_sendActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attach;
     private javax.swing.JButton attach2;

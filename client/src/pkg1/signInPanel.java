@@ -18,6 +18,7 @@ import model.Message;
 import model.Room;
 import model.User;
 import view.ClientInputHandler;
+import view.IClientInputHandler;
 
 /**
  *
@@ -203,7 +204,14 @@ public class signInPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean valid=true;
+        User user=new User("aa", "pp", "g", TOOL_TIP_TEXT_KEY);
+        user.userContacts.add(new Contact("lll", TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
+        user.userContacts.add(new Contact("aal", TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
+        IClientInputHandler cih=new ClientInputHandler();
+        cih.register(user, gui.clientListener);
+        
+        
+        /*boolean valid=true;
         User user=new User(mail.getText(), pass.getText(), null, null);
         user.setUserState(state.getSelectedIndex());
         handler.signIn(user);
@@ -225,7 +233,7 @@ public class signInPanel extends javax.swing.JPanel {
         }else{            
             JOptionPane.showMessageDialog(null,"invalid mail/password","error",JOptionPane.DEFAULT_OPTION);
             
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

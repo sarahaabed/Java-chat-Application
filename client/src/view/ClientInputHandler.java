@@ -16,7 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Contact;
 import model.Message;
+import model.Room;
 import model.User;
+import rmi.client.IClientListener;
 import view.ActionType;
 import view.ClientAction;
 
@@ -131,8 +133,9 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void sendMessage(Message message) {
+    public void sendMessage(Room room,Message message) {
         ca.setMessage(message);
+        ca.setRoom(room);
         ca.setServiceNum(ActionType.SEND_MESSAGE);
         try {
             sl.processClientAction(ca);
@@ -196,6 +199,28 @@ public class ClientInputHandler implements IClientInputHandler {
     @Override
     public void displayMessage(Message message) {
         
+    }
+    
+    public void register(User user , IClientListener cl){
+        try {
+            ca.setClientModel(cl);
+            ca.setUser(user);
+            ca.setServiceNum(ActionType.REGISTER);
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public void startConversation(Room room ,User user){
+        try {
+            ca.setRoom(room);
+            ca.setUser(user);
+            ca.setServiceNum(ActionType.START_CONVERSATION);
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -72,11 +72,17 @@ public class ServerController implements IserverController {
                 chatController.addContactToRoom(clientAction.getContact());
             
             case ActionType.SEND_MESSAGE:
-                chatController.sendMessage("");//must have user message
+                chatController.sendMessage(clientAction.getRoom(),clientAction.getMessage());//must have user message
             
             case ActionType.SIGN_IN:
                 chatController.sendFile(new File(""));//must have user file to send
                 break;
+            case ActionType.START_CONVERSATION:
+                chatController.startConversation(clientAction.getRoom(), clientAction.getUser());
+                break;
+            case ActionType.REGISTER:
+                chatController.register(clientAction.getUser().getUserEmail(), clientAction.getClientModel());
+                 break;
         }
     }
 /*
