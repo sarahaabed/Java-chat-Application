@@ -40,6 +40,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
         switch(chatModel.getServiceNumber()){
             case ModelType.USER_FOUND:
                 User user = chatModel.getUser();
+                System.out.println(user.getUserEmail()+"clientlistener");
                 gui.setUser(user);
                 CardLayout card=(CardLayout)gui.parentPanel.getLayout();            
             gui.mess=new messenger(gui.room, gui,user);                     
@@ -48,7 +49,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 break;
             case ModelType.SERROR_MESSAGE :
                 String errorMessage=chatModel.getJoptionPaneMassage();
-                JOptionPane.showMessageDialog(null,errorMessage,"error",JOptionPane.DEFAULT_OPTION);                
+                JOptionPane.showMessageDialog(null,new String(errorMessage));
                 break;
             
         }
