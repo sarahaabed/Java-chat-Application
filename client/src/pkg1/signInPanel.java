@@ -203,11 +203,32 @@ public class signInPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        User user=new User();
-        user.setUserEmail(mail.getText());
-        user.setUserPassword(pass.getText());
-        user.setUserState(state.getSelectedIndex());
-        handler.signIn(user);
+        User u=new User();
+        String p1 = new String(pass.getText());
+        String em1 = new String(mail.getText());
+        u.setUserState(state.getSelectedIndex());
+        
+        boolean pf=true;
+        boolean emf =true;
+        
+        
+        if(emf) {
+            if(!u.setUserEmail(em1)) {
+                emf = false;
+                JOptionPane.showMessageDialog(null, "bad Email format");
+            }
+        }
+        if(pf){
+            if(!u.setUserPassword(p1)){
+                JOptionPane.showMessageDialog(null, "bad Password format");
+            }
+        }
+
+        if(pf && emf ){
+        System.out.println(p1);
+        System.out.println(em1);
+        handler.signIn(u);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
