@@ -49,7 +49,12 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 break;
             case ModelType.SERROR_MESSAGE :
                 String errorMessage=chatModel.getJoptionPaneMassage();
+                java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 JOptionPane.showMessageDialog(null,new String(errorMessage));
+            }
+        });
+                
                 break;
             
         }
