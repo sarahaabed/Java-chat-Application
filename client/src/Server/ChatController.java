@@ -156,8 +156,7 @@ public class ChatController implements IChatController {
     @Override
     public void changeStatus(User user) {
         userData.changeStatus(user);
-        try {
-            IClientListener clientListner = new ClientListener(null);
+        
         /*try {
             //IClientListener clientListner = new ClientListener();
             chatModel.setServiceNumber(ModelType.CHANGE_STATUS);
@@ -224,7 +223,7 @@ public class ChatController implements IChatController {
                     chatModel.setServiceNumber(ModelType.USER_FOUND);
                     user=userData.selectUser(user.getUserEmail());
                     chatModel.setUser(user);
-                    register(clientListener);
+                    register(user.getUserEmail(),clientListener);
                     clientListener.changeModel(chatModel);
                 } catch (RemoteException ex) {
                     Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);

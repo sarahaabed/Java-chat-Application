@@ -41,8 +41,9 @@ public interface IChatController {
 
     public void addContactToRoom(Contact contact);
     //register and unregister
-
      public void register(String mail, IClientListener clientRef);
+
+     
    public void unRegister(String mail);
 
     
