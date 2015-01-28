@@ -88,7 +88,10 @@ public class ChatController implements IChatController {
 
     @Override
     public void addContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean flag = userData.validateMail(contact.getEmail());
+        if(flag){
+            
+        }
     }
 
     @Override
