@@ -26,7 +26,7 @@ import view.ModelType;
  */
 public class ChatController implements IChatController {
 
-     UserData userData;
+    UserData userData;
     IChatModel chatModel;
     public static Vector<IClientListener> clientsvector = new Vector<>();
     
