@@ -5,6 +5,10 @@
  */
 package DatabaseHandler;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -246,6 +250,85 @@ public class UserData {
 //bishoy
 
 //Aliaa
+    
+    
+    
+    
+    public void update_user_image(String user_Email){
+    FileInputStream fis = null;
+        try {
+            connect();
+            File file = new File("D:\\new black\\blackapp\\client\\src\\data\\myPhoto.jpg");
+            fis = new FileInputStream(file);
+            int len_file = (int) fis.available();
+              java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?)");
+
+            stmt1.setBlob(1, fis, len_file);
+
+            stmt1.executeUpdate();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+public void update_user_status(String user_Email,String status){
+
+        try {
+            connect();
+            java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set status=? Where user_Email=?)");
+            
+            stmt1.setString(1, status);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
+
+    public void delete_user_request_table(String user_Email, String receiver_Email) {
+
+       
+        try {
+            connect();
+            java.sql.PreparedStatement stmt1 = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
+
+            stmt1.setString(1, user_Email);
+            stmt1.setString(2, receiver_Email);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+         
+       
+
+    }
+    
+    
+    public void insert_user_request_table(String user_Email, String receiver_Email) {
+
+        try {
+            connect();
+            java.sql.PreparedStatement stmt1 = con.prepareStatement("insert into user_request_table values(?,?)");
+
+            stmt1.setString(1, user_Email);
+            stmt1.setString(2, receiver_Email);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+
+    }
+    
+   
 
 //Aliaa
 
