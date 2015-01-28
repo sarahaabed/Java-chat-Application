@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
 import pkg1.chatCui;
+import rmi.client.ClientListener;
 import view.ClientInputHandler;
 
 /**
@@ -24,12 +25,13 @@ import view.ClientInputHandler;
  * @author bishoy
  */
 public class ChatClientStarter {
+    
     public ChatClientStarter(){
         
-        chatCui clv = new chatCui();
+        ClientInputHandler cih = new ClientInputHandler();
+        chatCui clv = new chatCui(cih);
+        cih.setCc(clv);
         clv.setVisible(true);
-        //ClientInputHandler cih = new ClientInputHandler();
-       //cih.signUp(new User("moh@yahoo", "123", "bishoy", "male"));
         
     }
     public static void main(String [] args){

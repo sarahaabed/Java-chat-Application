@@ -9,6 +9,7 @@ import java.io.File;
 import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import model.*;
+import rmi.client.IClientListener;
 
 /**
  *
@@ -40,9 +41,9 @@ public interface IChatController {
 
     public void addContactToRoom(Contact contact);
     //register and unregister
-     void register(view.IClientAction clientRef);
+    public void register(IClientListener clientRef);
 
-    void unRegister(view.IClientAction clientRef);
+    public void unRegister(IClientListener clientRef);
     
-    public void signIn(User user);
+    public void signIn(User user,IClientListener clientListener);
 }

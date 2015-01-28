@@ -31,10 +31,10 @@ public class signInPanel extends javax.swing.JPanel {
      * Creates new form signInPanel
      */
     
-    public signInPanel(chatCui gui) {
+    public signInPanel(chatCui gui,ClientInputHandler cih) {
         initComponents();
         this.gui=gui;
-        //handler=new ClientInputHandler();
+        this.handler=cih;
        ImageIcon i =new ImageIcon("src\\pkg1\\sd.png");
        jLabel1.setIcon(i);
       
@@ -203,29 +203,11 @@ public class signInPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean valid=true;
-        User user=new User(mail.getText(), pass.getText(), null, null);
+        User user=new User();
+        user.setUserEmail(mail.getText());
+        user.setUserPassword(pass.getText());
         user.setUserState(state.getSelectedIndex());
         handler.signIn(user);
-                
-        if(valid){
-            Room me=new Room(0);
-            Contact cc=new Contact(null,"rad",null,null,0);
-            Message mm=new Message(1, null, cc,"aa", valid);
-            me.messageVector.add(mm );
-            user.setUserName("radwa");
-            user.userRooms.add(me);
-            user.userContacts.add(cc);
-            
-            CardLayout card=(CardLayout)gui.parentPanel.getLayout();            
-            gui.mess=new messenger(gui.room, gui,user);                     
-            gui.parentPanel.add("messenger",gui.mess);
-            card.show(gui.parentPanel, "messenger");
-            
-        }else{            
-            JOptionPane.showMessageDialog(null,"invalid mail/password","error",JOptionPane.DEFAULT_OPTION);
-            
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
