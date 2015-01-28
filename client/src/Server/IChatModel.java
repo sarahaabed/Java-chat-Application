@@ -5,6 +5,7 @@
  */
 package Server;
 
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 import model.*;
 
@@ -12,7 +13,7 @@ import model.*;
  *
  * @author it
  */
-public interface IChatModel {
+public interface IChatModel extends Serializable{
 
     public int getServiceNumber();
 

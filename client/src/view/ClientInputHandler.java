@@ -42,7 +42,7 @@ public class ClientInputHandler implements IClientInputHandler {
             ca = new ClientAction();
             Registry reg = LocateRegistry.getRegistry("127.0.0.1",5031);
             sl= (IServerListner)reg.lookup("ChatApp");
-            this.cl = new ClientListener(cc);
+            
         } catch (RemoteException ex) {
             Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
@@ -52,7 +52,12 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     public void setCc(chatCui cc) {
-        this.cc = cc;
+        try {
+            this.cc = cc;
+            this.cl = new ClientListener(cc);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

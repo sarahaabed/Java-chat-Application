@@ -137,14 +137,14 @@ public class ChatController implements IChatController {
     @Override
     public void changeStatus(User user) {
         userData.changeStatus(user);
-        try {
-            IClientListener clientListner = new ClientListener();
+        /*try {
+            //IClientListener clientListner = new ClientListener();
             chatModel.setServiceNumber(ModelType.CHANGE_STATUS);
             clientListner.changeModel(chatModel);
 
         } catch (RemoteException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }
 
@@ -194,18 +194,30 @@ public class ChatController implements IChatController {
             if(userData.validatePass(user.getUserEmail(), user.getUserPassword())){
                 try {
                     chatModel.setServiceNumber(ModelType.USER_FOUND);
-                    user=userData.retrievetUserInfo(user);
+                    user=userData.selectUser(user.getUserEmail());
                     chatModel.setUser(user);
-                    clientListener.changeModel(chatModel);
                     register(clientListener);
+                    clientListener.changeModel(chatModel);
                 } catch (RemoteException ex) {
                     Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
-                chatModel.setJoptionPaneMassage("wrong password");
+                try {
+                    chatModel.setJoptionPaneMassage("wrong password");
+                    chatModel.setServiceNumber(ModelType.SERROR_MESSAGE);
+                    clientListener.changeModel(chatModel);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else{
-            chatModel.setJoptionPaneMassage("invalid password");
+            try {
+                chatModel.setJoptionPaneMassage("invalid Email");
+                chatModel.setServiceNumber(ModelType.SERROR_MESSAGE);
+                clientListener.changeModel(chatModel);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
