@@ -22,7 +22,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import model.User;
 import rmi.client.ClientListener;
-import rmi.client.IClientListener;
+import view.ClientInputHandler;
 
 /*
  * To change this template, choose Tools | Templates
@@ -39,41 +39,38 @@ public class chatCui extends javax.swing.JFrame {
      * Creates new form chatCui
      */
     String userMail;
+    public User user;
+    //public ClientListener clientListener;
+    ClientInputHandler cih;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+/*    public ClientListener getClientListener() {
+        return clientListener;
+    }*/
+    
     public void setUserMail(String mail){
         userMail=mail;
     }
     public static JPanel parentPanel;
     public static messenger mess;
     public static rooms room;
-    public static IClientListener clientListener;
-    public chatCui() {
-        try {
-            initComponents();
-            room=new rooms();
-            clientListener=new ClientListener(this);
-            
-            setSize(400, 700);
-            room.setVisible(false);
-            
-            //mess=new messenger(room,this);
-            signInPanel signIn=new signInPanel(this);
-            signUpPanel signUp=new signUpPanel(this);
-            parentPanel=new JPanel();
-            parentPanel.setLayout(new CardLayout());
-            
-            parentPanel.add("signin", signIn);
-            //parentPanel.add("messenger", mess);
-            parentPanel.add("signup", signUp);
-            
-            p.add(parentPanel,BorderLayout.WEST);
-            p.add(room,BorderLayout.CENTER);
-            
-            //test
-            conversation conv=new conversation();
-            room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
-        } catch (RemoteException ex) {
-            Logger.getLogger(chatCui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public chatCui(ClientInputHandler cih) {
+        initComponents();
+        room=new rooms();
+        setSize(400, 700);
+        room.setVisible(false);
+        signInPanel signIn=new signInPanel(this,cih);
+        signUpPanel signUp=new signUpPanel(this,cih);
+        parentPanel=new JPanel();
+        parentPanel.setLayout(new CardLayout());
+        parentPanel.add("signin", signIn);
+        parentPanel.add("signup", signUp);
+        p.add(parentPanel,BorderLayout.WEST);
+        p.add(room,BorderLayout.CENTER);
+        conversation conv=new conversation();
+        room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
        
     }
 
@@ -92,7 +89,6 @@ public class chatCui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 0));
-        setPreferredSize(new java.awt.Dimension(300, 522));
         setResizable(false);
 
         p.setBackground(new java.awt.Color(153, 204, 255));
@@ -116,6 +112,7 @@ public class chatCui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     /**
      * @param args the command line arguments
      */
@@ -125,28 +122,14 @@ public class chatCui extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(chatCui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(chatCui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(chatCui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(chatCui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new chatCui().setVisible(true);
+                //new chatCui(new ClientInputHandler(this,clientListener)).setVisible(true);
             }
         });
     }

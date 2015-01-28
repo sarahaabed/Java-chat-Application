@@ -7,6 +7,7 @@
 package rmi.client;
 
 import Server.IChatModel;
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

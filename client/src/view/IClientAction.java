@@ -11,6 +11,8 @@ import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+
+
 import rmi.client.IClientListener;
 
 /**
@@ -27,7 +29,12 @@ public interface IClientAction extends Serializable {
 
     public Contact getContact();
 
+
     public Room getRoom();
 
+    
     public IClientListener getClientModel();
+    public void setClientModel(IClientListener clientModel);
+
+
 }

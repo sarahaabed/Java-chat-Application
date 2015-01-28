@@ -1,10 +1,10 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package DatabaseHandler;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -93,18 +93,59 @@ public class UserData {
     public User selectUser(String mail) {
         boolean flag = true;
         User user = new User();
+        String e;
         try {
             PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
             pst.setString(1, mail);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 user.setUserEmail(rs.getString(1));
+                e=rs.getString(1);
                 user.setUserName(rs.getString(2));
                 user.setUserPassword(rs.getString(3));
                 user.setUserGender(rs.getString(4));
                 user.setUserStatus(rs.getString(5));
             }
+            PreparedStatement pst2 = con.prepareStatement("select * from User_Request_Table where user_Email=?");
+            pst2.setString(1, mail);
+            ResultSet rs2=pst2.executeQuery();
+            while(rs2.next()){
+                String m=rs2.getString(1);
+                PreparedStatement pst3 = con.prepareStatement("select * from User_Table where user_Email=?");
+                pst3.setString(1, m);
+                ResultSet rs1=pst3.executeQuery();
+                Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(3), null, 0);   
+                user.userRequests.add(cont);
+            }
+            pst2 = con.prepareStatement("select * from User_list_Table where user_Email=?");
+            pst2.setString(1, mail);
+            rs2=pst2.executeQuery();
+            while(rs2.next()){
+                String m=rs2.getString(1);
+                PreparedStatement pst3 = con.prepareStatement("select * from User_Table where user_Email=?");
+                pst3.setString(1, m);
+                ResultSet rs1=pst3.executeQuery();
+                Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(3), null, 0);   
+                user.userContacts.add(cont);
+            }
+            /*
+             pst = con.prepareStatement("select reciever_email from User_list_table where user_Email='"+mail+"'");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ResultSet rs1=con.createStatement().executeQuery("select * from user_table where user_Email='"+rs.getString("reciever_email")+"'");
+                Contact cont=new Contact(rs1.getString("user_email"),rs1.getString("user_name") , rs1.getString("user_status"), null, 0);
+                user.userContacts.add(cont);
+            }
+            PreparedStatement pst = con.prepareStatement("select reciever_email from User_list_table where user_Email='"+mail+"'");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ResultSet rs1=con.createStatement().executeQuery("select * from user_table where user_Email='"+rs.getString("reciever_email")+"'");
+                Contact cont=new Contact(rs1.getString("user_email"),rs1.getString("user_name") , rs1.getString("user_status"), null, 0);
+                user.userContacts.add(cont);
+            }*/
+            
         } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
             flag = false;
         }
         if (flag == true) {
@@ -113,8 +154,80 @@ public class UserData {
             System.out.println("not found ");
             return null;
         }
+
     }
 //Radwa
+    public boolean validateMail(String mail){
+        try {
+            connect();
+            PreparedStatement pst=con.prepareStatement("select * from User_Table where user_Email=?");
+            pst.setString(1, mail);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return false;
+        
+    }
+    public boolean validatePass(String mail , String pass){
+        try {
+            PreparedStatement pst=con.prepareStatement("select password from User_Table where user_Email=?");
+            pst.setString(1, mail);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                System.out.println(rs.getString("password"));
+                if(rs.getString("password").equals(pass)){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return false;
+        
+    }
+    public User retrievetUserInfo(User user) {
+        String mail=user.getUserEmail();
+        try {       
+            
+            PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
+            pst.setString(1, mail);
+            ResultSet rs = pst.executeQuery();
+            
+            user.setUserEmail(rs.getString("user_email"));
+            user.setUserName(rs.getString("user_name"));
+            user.setUserPassword(rs.getString("password"));
+            user.setUserGender(rs.getString("gender"));
+            user.setUserStatus(rs.getString("status"));
+            //image
+            pst = con.prepareStatement("select reciever_email from User_request_table where user_Email='"+mail+"'");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ResultSet rs1=con.createStatement().executeQuery("select * from user_table where user_Email='"+rs.getString("reciever_email")+"'");
+                Contact cont=new Contact(rs1.getString("user_email"),rs1.getString("user_name") , rs1.getString("user_status"), null, 0);
+                user.userRequests.add(cont);
+            }
+            pst = con.prepareStatement("select reciever_email from User_list_table where user_Email='"+mail+"'");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ResultSet rs1=con.createStatement().executeQuery("select * from user_table where user_Email='"+rs.getString("reciever_email")+"'");
+                Contact cont=new Contact(rs1.getString("user_email"),rs1.getString("user_name") , rs1.getString("user_status"), null, 0);
+                user.userContacts.add(cont);
+            }
+            //add also offline messages
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
 
 //Radwa
 

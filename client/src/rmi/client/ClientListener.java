@@ -7,12 +7,18 @@
 package rmi.client;
 
 import Server.IChatModel;
+import java.awt.CardLayout;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import javax.swing.JOptionPane;
 import model.User;
 import pkg1.chatCui;
+
 import pkg1.conversation;
+
+import pkg1.messenger;
+
 import view.ModelType;
 
 
@@ -25,18 +31,34 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
     public ClientListener(IClientView clientView)throws RemoteException{
         this.clientView=clientView;
     }*/
-    private chatCui gui;
+
+    
+     chatCui gui;
+
     public ClientListener(chatCui gui) throws RemoteException {
         this.gui=gui;
     }
+    
     
     
     @Override
     public void changeModel(IChatModel chatModel) {
         switch(chatModel.getServiceNumber()){
             case ModelType.USER_FOUND:
-                User u = chatModel.getUser();
+                User user = chatModel.getUser();
+                System.out.println(user.getUserEmail()+"clientlistener");
+                gui.setUser(user);
+                CardLayout card=(CardLayout)gui.parentPanel.getLayout();            
+            gui.mess=new messenger(gui.room, gui,user);                     
+            gui.parentPanel.add("messenger",gui.mess);
+            card.show(gui.parentPanel, "messenger");
                 break;
+            case ModelType.SERROR_MESSAGE :
+                String errorMessage=chatModel.getJoptionPaneMassage();
+                JOptionPane.showMessageDialog(null,new String(errorMessage));
+                break;
+
+               
             case ModelType.RECIEVE_MESSAGE:
                 for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
                     if(((conversation)gui.room.rooms_tabs.getTabComponentAt(i)).getRoomId()==chatModel.getRoom().getRoomId()){
@@ -53,6 +75,8 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
                 break;
         
+
+                
         }
         
     }

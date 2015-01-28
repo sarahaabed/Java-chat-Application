@@ -75,7 +75,7 @@ public class ServerController implements IserverController {
                 chatController.sendMessage(clientAction.getRoom(),clientAction.getMessage());//must have user message
             
             case ActionType.SIGN_IN:
-                chatController.sendFile(new File(""));//must have user file to send
+                chatController.signIn(clientAction.getUser(), clientAction.getClientModel());//must have user file to send
                 break;
             case ActionType.START_CONVERSATION:
                 chatController.startConversation(clientAction.getRoom(), clientAction.getUser());

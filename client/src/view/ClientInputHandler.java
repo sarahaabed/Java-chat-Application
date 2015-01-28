@@ -18,6 +18,8 @@ import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+import pkg1.chatCui;
+import rmi.client.ClientListener;
 import rmi.client.IClientListener;
 import view.ActionType;
 import view.ClientAction;
@@ -33,13 +35,15 @@ public class ClientInputHandler implements IClientInputHandler {
     
     IServerListner sl;
     ClientAction ca;
+    chatCui cc;
+    IClientListener cl;
     public ClientInputHandler(){
         
         try {
             ca = new ClientAction();
             Registry reg = LocateRegistry.getRegistry("127.0.0.1",5031);
             sl= (IServerListner)reg.lookup("ChatApp");
-
+            
         } catch (RemoteException ex) {
             Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
@@ -47,6 +51,17 @@ public class ClientInputHandler implements IClientInputHandler {
         }
         
     }
+
+    public void setCc(chatCui cc) {
+        try {
+            this.cc = cc;
+            this.cl = new ClientListener(cc);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
 
     @Override
     public void signUp(User user) {
@@ -66,8 +81,12 @@ public class ClientInputHandler implements IClientInputHandler {
         ca.setUser(user);
         ca.setServiceNum(ActionType.SIGN_IN);
         try {
+            
+            ca.setClientModel((IClientListener)cl);
+            System.out.println(user.getUserEmail());
             sl.processClientAction(ca);
         } catch (RemoteException ex) {
+            System.out.println("if this ones");
             Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 

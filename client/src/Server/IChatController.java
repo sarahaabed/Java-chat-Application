@@ -41,10 +41,13 @@ public interface IChatController {
 
     public void addContactToRoom(Contact contact);
     //register and unregister
-     public void register(String mail, IClientListener clientRef);
 
-    public void unRegister(String mail);
+     public void register(String mail, IClientListener clientRef);
+   public void unRegister(String mail);
+
     
-    public void signIn(User user);
     public void startConversation(Room room, User user);
+
+    public void signIn(User user,IClientListener clientListener);
+
 }
