@@ -26,7 +26,7 @@ import view.ModelType;
  */
 public class ChatController implements IChatController {
 
-     UserData userData;
+    UserData userData;
     IChatModel chatModel;
     public static Vector<IClientListener> clientsvector = new Vector<>();
     
@@ -133,6 +133,7 @@ public class ChatController implements IChatController {
 
     @Override
     public void changeState(int state) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

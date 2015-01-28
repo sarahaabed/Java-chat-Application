@@ -98,7 +98,9 @@ public class UserData {
             PreparedStatement pst = con.prepareStatement("select * from User_Table where user_Email=?");
             pst.setString(1, mail);
             ResultSet rs = pst.executeQuery();
+            
             while (rs.next()) {
+                System.out.println("userlisttable");
                 user.setUserEmail(rs.getString(1));
                 e=rs.getString(1);
                 user.setUserName(rs.getString(2));
@@ -106,27 +108,35 @@ public class UserData {
                 user.setUserGender(rs.getString(4));
                 user.setUserStatus(rs.getString(5));
             }
-            PreparedStatement pst2 = con.prepareStatement("select * from User_Request_Table where user_Email=?");
+            PreparedStatement pst2 = con.prepareStatement("select * from User_Request_Table where receiver_Email=?");
             pst2.setString(1, mail);
             ResultSet rs2=pst2.executeQuery();
+            System.out.println("ay7aga");
             while(rs2.next()){
-                String m=rs2.getString(1);
+                System.out.println("userlisttable");
+                String m=rs2.getString(2);
                 PreparedStatement pst3 = con.prepareStatement("select * from User_Table where user_Email=?");
                 pst3.setString(1, m);
                 ResultSet rs1=pst3.executeQuery();
-                Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(3), null, 0);   
-                user.userRequests.add(cont);
+                while(rs1.next()){
+                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , "Chat model", null, 0);   
+                     user.userRequests.add(cont);
+                     
+                }
             }
-            pst2 = con.prepareStatement("select * from User_list_Table where user_Email=?");
-            pst2.setString(1, mail);
-            rs2=pst2.executeQuery();
-            while(rs2.next()){
-                String m=rs2.getString(1);
+            PreparedStatement pst4 = con.prepareStatement("select * from User_list_Table where user_Email=?");
+            pst4.setString(1, mail);
+            ResultSet rs5=pst4.executeQuery();
+            while(rs5.next()){
+                System.out.println("userlisttable");
+                String m=rs5.getString(1);
                 PreparedStatement pst3 = con.prepareStatement("select * from User_Table where user_Email=?");
                 pst3.setString(1, m);
                 ResultSet rs1=pst3.executeQuery();
-                Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(3), null, 0);   
-                user.userContacts.add(cont);
+                while(rs1.next()){
+                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , "Chat model", null, 0);   
+                     user.userContacts.add(cont);
+                }
             }
             /*
              pst = con.prepareStatement("select reciever_email from User_list_table where user_Email='"+mail+"'");
