@@ -24,4 +24,8 @@ public class ActionType {
     public final static int SEND_MESSAGE=12;
     public final static int START_CONVERSATION=13;
     public final static int REGISTER=14;
+    public final static int SEND_FILE=15;
+    public final static int RECEIVE_FILE=16;
+    
+    
 }

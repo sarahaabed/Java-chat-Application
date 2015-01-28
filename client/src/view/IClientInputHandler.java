@@ -18,6 +18,8 @@ import rmi.client.IClientListener;
  */
 public interface IClientInputHandler {
     
+    public void sendFile(byte[] bs);
+    public void reciveFile(byte[] bs);
     public void signUp(User user);
     public void signIn(User user);
     public void addContact(String mail);

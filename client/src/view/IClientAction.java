@@ -36,5 +36,8 @@ public interface IClientAction extends Serializable {
     public IClientListener getClientModel();
     public void setClientModel(IClientListener clientModel);
 
+    public byte[] getB();
+
+    public void setB(byte[] b);
 
 }

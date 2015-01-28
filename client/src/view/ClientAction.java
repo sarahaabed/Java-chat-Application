@@ -24,7 +24,16 @@ public class ClientAction implements IClientAction {
     private Message message;
     private IClientListener clientModel;
     private Room room;
+    private byte[] bs;
 
+    public byte[] getB() {
+        return bs;
+    }
+
+    public void setB(byte[] b) {
+        this.bs = b;
+    }
+ 
     @Override
     public Room getRoom() {
         return room;
