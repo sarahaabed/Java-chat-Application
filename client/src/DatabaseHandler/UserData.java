@@ -242,11 +242,11 @@ public class UserData {
 //Radwa
 
 //bishoy
-    public void sendFriendRequest(String mail){
+    /*public void sendFriendRequest(String mail){
         PreparedStatement pst2 = con.prepareStatement("update table User_Request_Table set user_Email=?");
             pst2.setString(1, mail);
             ResultSet rs2=pst2.executeQuery();
-    }
+    }*/
 //bishoy
 
 //Aliaa
