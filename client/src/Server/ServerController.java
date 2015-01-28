@@ -59,7 +59,7 @@ public class ServerController implements IserverController {
                 break;
                 
             case ActionType.WRITE_STATUS:
-                chatController.changeStatus(clientAction.getUser().getUserStatus());//must has String as parameter
+                chatController.changeStatus(clientAction.getUser());//must has String as parameter
             
             case ActionType.CHANGE_PHOTO:
                 chatController.ChangeProfilePic(clientAction.getUser().getUserImage());

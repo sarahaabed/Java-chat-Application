@@ -55,7 +55,7 @@ public class ChatController implements IChatController {
     public void addUser(User user) {
         nullChatModel();
         boolean inserted = userData.InsertUser(user);
-        String str=user.getUserEmail();
+        String str = user.getUserEmail();
         /* rejectFriend(new User(str,null,null,null), new Contact(str, null, null, null, 8));
          System.out.println("rejected frined succsssefully");*/
         
@@ -64,26 +64,26 @@ public class ChatController implements IChatController {
             chatModel.setJoptionPaneMassage("E-mail is Already used");
             System.out.println("E-mail is Already used");
             chatModel.setServiceNumber(ModelType.USER_FOUND);
-          /*  rejectFriend(user, new Contact(str, null, null, null, 8));
-            System.out.println("rejected frined succsssefully");*/
+            /*  rejectFriend(user, new Contact(str, null, null, null, 8));
+             System.out.println("rejected frined succsssefully");*/
         } else {
-            System.out.println("User E-mail: "+str);
+            System.out.println("User E-mail: " + str);
             chatModel.setJoptionPaneMassage("Inserted successfully");
             chatModel.setServiceNumber(ModelType.USER_NOTFOUND);
             chatModel.setUser(userData.selectUser(user.getUserEmail()));
-          /*  User u=new User();
-            u=chatModel.getUser();
-            System.out.println("User E-mail: "+u.getUserEmail());*/
-          /*  System.out.println("connect to database");
-            Contact c=new Contact("sara@yahoo", "ahmed", "ay7aga", null, 8);
-            User u=new User();
-            u.setUserEmail("rania.huissen@gmail.com");
-            acceptFriend(u,c );
-            System.out.println("accept frined succsssefully");*/
-          // rania.huissen@gmail.com
+            /*  User u=new User();
+             u=chatModel.getUser();
+             System.out.println("User E-mail: "+u.getUserEmail());*/
+            /*  System.out.println("connect to database");
+             Contact c=new Contact("sara@yahoo", "ahmed", "ay7aga", null, 8);
+             User u=new User();
+             u.setUserEmail("rania.huissen@gmail.com");
+             acceptFriend(u,c );
+             System.out.println("accept frined succsssefully");*/
+            // rania.huissen@gmail.com
         }
-        
-      //  sendChatModel();
+
+        //  sendChatModel();
     }
 
     @Override
@@ -97,31 +97,31 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void acceptFriend(User user,Contact contact) {
+    public void acceptFriend(User user, Contact contact) {
         System.out.println("accepted");
-        boolean accepted=userData.acceptContact(user.getUserEmail(),contact.getEmail());
-        if(accepted){
+        boolean accepted = userData.acceptContact(user.getUserEmail(), contact.getEmail());
+        if (accepted) {
             System.out.println("Accept Friend: ");
             chatModel.setJoptionPaneMassage("Accepted successfully");
             chatModel.setServiceNumber(ModelType.ACCEPT_FRIEND);
             chatModel.setContact(userData.selectContact(contact.getEmail()));
-        }else{
+        } else {
             System.out.println("NOT Accept Friend: ");
             chatModel.setJoptionPaneMassage("NOt Accepted");
             chatModel.setServiceNumber(ModelType.NOT_ACCEPT_FRIEND);
         }
-        
+
     }
 
     @Override
-    public void rejectFriend(User user,Contact contact) {
-        boolean rejected= userData.rejectContact(user.getUserEmail(),contact.getEmail());
-         if(rejected){
+    public void rejectFriend(User user, Contact contact) {
+        boolean rejected = userData.rejectContact(user.getUserEmail(), contact.getEmail());
+        if (rejected) {
             System.out.println("reject Friend: ");
             chatModel.setJoptionPaneMassage("rejected successfully");
             chatModel.setServiceNumber(ModelType.REJECTED);
-            
-        }else{
+
+        } else {
             System.out.println("NOT reject Friend: ");
             chatModel.setJoptionPaneMassage("NOt rejected");
             chatModel.setServiceNumber(ModelType.NOT_REJECTED);
@@ -134,8 +134,17 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void changeStatus(String status) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void changeStatus(User user) {
+        userData.changeStatus(user);
+        try {
+            IClientListener clientListner = new ClientListener();
+            chatModel.setServiceNumber(ModelType.CHANGE_STATUS);
+            clientListner.changeModel(chatModel);
+
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -168,7 +177,8 @@ public class ChatController implements IChatController {
         }*/
     
     }
-    void nullChatModel(){
+
+    void nullChatModel() {
         chatModel.setJoptionPaneMassage(null);
         chatModel.setServiceNumber(0);
         chatModel.setUser(null);
@@ -198,7 +208,5 @@ public class ChatController implements IChatController {
         }
         
     }
-    
-    
-    
+
 }

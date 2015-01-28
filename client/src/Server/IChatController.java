@@ -29,7 +29,7 @@ public interface IChatController {
 
     public void changeState(int state);
 
-    public void changeStatus(String status);
+    public void changeStatus(User user);
 
     public void ChangeProfilePic(ImageIcon image);
 
