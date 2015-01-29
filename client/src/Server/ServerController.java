@@ -83,6 +83,9 @@ public class ServerController implements IserverController {
             case ActionType.REGISTER:
                 chatController.register(clientAction.getUser().getUserEmail(), clientAction.getClientModel());
                  break;
+            case ActionType.SEND_FILE:
+                chatController.sendFile(clientAction.getB());
+                break;
         }
     }
 /*

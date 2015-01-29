@@ -8,9 +8,15 @@ package rmi.client;
 
 import Server.IChatModel;
 import java.awt.CardLayout;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.User;
 import pkg1.chatCui;
@@ -79,7 +85,26 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 conv.setRoom(chatModel.getRoom());
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
                 break;
-        
+            
+            case ModelType.RECICVE_FILE:
+                String msg=chatModel.getJoptionPaneMassage();
+                byte[] bs=chatModel.getBs();
+                System.out.println("recive file ");
+                JOptionPane.showMessageDialog(null,new String(msg));
+                JFileChooser f = new JFileChooser();
+                if (f.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    String path = f.getSelectedFile().getPath();
+                try {
+                    FileOutputStream fos=new FileOutputStream(path);
+                    fos.write(bs);
+                    fos.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
 
                 
         }

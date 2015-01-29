@@ -35,4 +35,9 @@ public interface IChatModel extends Serializable{
     public Room getRoom();
 
     public void setRoom(Room room);
+    
+    public byte[] getBs();
+
+    public void setBs(byte[] bs);
+    
 }

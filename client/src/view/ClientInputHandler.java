@@ -242,4 +242,25 @@ public class ClientInputHandler implements IClientInputHandler {
         }
     }
 
+   // public void sendFile(byte[] bs){}
+
+    @Override
+    public void sendFile(byte[] bs) {
+        System.out.println("send file b2a ");
+        ca.setB(bs);
+        ca.setServiceNum(ActionType.SEND_FILE);
+        try {
+            sl.processClientAction(ca);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void reciveFile(byte[] bs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
 }

@@ -1,5 +1,11 @@
 package pkg1;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import model.Message;
 import model.Room;
 import view.ClientInputHandler;
@@ -93,6 +99,11 @@ public class conversation extends javax.swing.JPanel {
         attach.setMaximumSize(new java.awt.Dimension(35, 35));
         attach.setMinimumSize(new java.awt.Dimension(0, 35));
         attach.setPreferredSize(new java.awt.Dimension(35, 35));
+        attach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attachActionPerformed(evt);
+            }
+        });
         jPanel1.add(attach);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -168,6 +179,30 @@ public class conversation extends javax.swing.JPanel {
         IClientInputHandler cih=new ClientInputHandler();
         cih.sendMessage(room, m);
     }//GEN-LAST:event_sendActionPerformed
+
+    private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
+         JFileChooser f = new JFileChooser();
+        if (f.showOpenDialog(conversation.this) == JFileChooser.APPROVE_OPTION) {
+            String path = f.getSelectedFile().getPath();
+            try {
+                FileInputStream fis=new FileInputStream(path);
+                int size=fis.available();
+                byte[] b=new byte[size];
+                fis.read(b);
+               // Message m=new Message(roomId, null, null, null, true);
+                IClientInputHandler cih=new ClientInputHandler();
+                cih.sendFile(b);
+               // jTextArea1.setText(new String(b));
+                fis.close();
+                
+            } catch (FileNotFoundException e) {
+                System.out.println("FileNotFound");
+            } catch (IOException ex) {
+                 Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            
+        }
+    }//GEN-LAST:event_attachActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attach;
