@@ -61,7 +61,6 @@ public class ChatController implements IChatController {
     }
 
 
-
     @Override
     public void sendFile(byte[] bs) {
     
