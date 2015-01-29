@@ -19,14 +19,14 @@ public class ServerListner extends UnicastRemoteObject implements IServerListner
     IserverController obj;
    
     public ServerListner() throws RemoteException{
-        
+        obj=new ServerController();
         
     }
    
     @Override
     public void processClientAction(view.IClientAction clientAction) {
-        obj=new ServerController(clientAction); 
-        obj.impelmentClientAction();
+         
+        obj.impelmentClientAction(clientAction);
         System.out.println("servercontroller");
     }
 

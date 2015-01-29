@@ -43,7 +43,7 @@ public class messenger extends javax.swing.JPanel {
     int w;
     public User user;
     public int openedRoomsNum = 0;
-    messenger gui=this;
+    //messenger gui=this;
     IClientInputHandler inputHandler;
     //user object sent in constructor
     IClientInputHandler handler;
@@ -65,7 +65,7 @@ public class messenger extends javax.swing.JPanel {
         status.setText(user.getUserStatus());
         img.setIcon(user.getUserImage());
         for (int i = 0; i < user.userContacts.size(); i++) {
-            ContactPanel cont = new ContactPanel(this,user.userContacts.get(i));
+            ContactPanel cont = new ContactPanel(window,user.userContacts.get(i));
             cont.name.setText(user.userContacts.get(i).getName());
             cont.status.setText(user.userContacts.get(i).getStatus());
             cont.img.setIcon(user.userContacts.get(i).getPhoto());
@@ -99,7 +99,7 @@ public class messenger extends javax.swing.JPanel {
                    handler.acceptContact(user,c);
                    user.userRequests.remove(c);
                    requestsPanel.remove(r);
-                   ContactPanel c1=new ContactPanel(gui,c);
+                   ContactPanel c1=new ContactPanel(window,c);
                    c1.img.setIcon(c.getPhoto());
                    c1.name.setText(c.getName());
                    c1.status.setText(c.getStatus());
@@ -248,7 +248,7 @@ public class messenger extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +268,9 @@ public class messenger extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(name)
                                     .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +298,7 @@ public class messenger extends javax.swing.JPanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

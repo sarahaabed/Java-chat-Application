@@ -45,7 +45,7 @@ public class ChatController implements IChatController {
     @Override
 
     public void sendMessage(Room room,Message msg) {
-        Vector<Contact> conts=room.contactVector;
+        Vector<Contact> conts = room.contactVector;
         for (int i = 0; i < conts.size(); i++) {
             try {
                 IChatModel model=new ChatModel();
@@ -198,7 +198,7 @@ public class ChatController implements IChatController {
 
     public void register(String mail, IClientListener clientRef) {
         onlineUsers.put(mail, clientRef);        
-
+        System.out.println("no. of online "+onlineUsers.size());
         System.out.println("Client Added");
     }
 
@@ -233,7 +233,7 @@ public class ChatController implements IChatController {
         nullChatModel();
         boolean validMail=false;
         if(userData.validateMail(user.getUserEmail())){
-            System.out.println(user.getUserEmail());
+            System.out.println(user.getUserEmail()+" sign in");
             if(userData.validatePass(user.getUserEmail(), user.getUserPassword())){
                 try {
                     chatModel.setServiceNumber(ModelType.USER_FOUND);
@@ -271,9 +271,15 @@ public class ChatController implements IChatController {
             nullChatModel();
             chatModel.setServiceNumber(ModelType.RECIEVE_ROOM_ID);
             chatModel.setRoom(room);
+            System.out.println("jjjjjjhhhhhhhhhhhjjjjjj");
+            System.out.println("gggg");
+            //onlineUsers.get("radwa@radwa").changeModel(chatModel);
+            System.out.println("no. of online22  "+onlineUsers.size());
             onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("gggg");
+
         }
         
         

@@ -229,6 +229,8 @@ public class signInPanel extends javax.swing.JPanel {
         if(pf && emf ){
         System.out.println(p1);
         System.out.println(em1);
+        gui.setUser(u);
+            System.out.println("ggggggg"+gui.user.getUserEmail());
         handler.signIn(u);
         }
 

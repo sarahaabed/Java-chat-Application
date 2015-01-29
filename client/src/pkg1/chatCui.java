@@ -53,13 +53,14 @@ public class chatCui extends javax.swing.JFrame {
     public void setUserMail(String mail){
         userMail=mail;
     }
-    public static JPanel parentPanel;
-    public static messenger mess;
-    public static rooms room;
+    public  JPanel parentPanel;
+    public  messenger mess;
+    public  rooms room;
     public chatCui(ClientInputHandler cih) {
         initComponents();
+        this.cih=cih;
         room=new rooms();
-        setSize(400, 700);
+        setSize(300, 700);
         room.setVisible(false);
         signInPanel signIn=new signInPanel(this,cih);
         signUpPanel signUp=new signUpPanel(this,cih);

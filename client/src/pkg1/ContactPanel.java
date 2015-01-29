@@ -26,7 +26,7 @@ public class ContactPanel extends javax.swing.JPanel {
      * Creates new form contact
      */
     Contact cont;
-    public ContactPanel(messenger gui,Contact cont) {
+    public ContactPanel(chatCui gui,Contact cont) {
         
         initComponents();
         this.cont=cont;
@@ -42,13 +42,15 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2){
-                    System.out.println("bbb");
-                    System.out.println("jjjjjjjjjjj"+gui.contactsPanel.getSelectedIndex());
-                    IClientInputHandler cih=new ClientInputHandler();
+                    
+                    //System.out.println("jjjjjjjjjjj"+gui.contactsPanel.getSelectedIndex());
+                    
                     Room room=new Room();
                     room.contactVector.add(new Contact(gui.user.getUserEmail(), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
                     room.contactVector.add(cont);
-                    cih.startConversation(room,gui.user );
+                    System.out.println(gui.user.getUserEmail());
+                    
+                    gui.cih.startConversation(room,gui.user );
                     
 
 //conversation conv = new conversation();
