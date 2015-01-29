@@ -154,7 +154,7 @@ public class UserData {
                 user.userContacts.add(cont);
             }*/
             
-        } catch (SQLException ex) {
+        } catch (SQLException ex) {            
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
             flag = false;
         }
@@ -164,12 +164,11 @@ public class UserData {
             System.out.println("not found ");
             return null;
         }
-
     }
 //Radwa
     public boolean validateMail(String mail){
         try {
-            connect();
+            connect();            
             PreparedStatement pst=con.prepareStatement("select * from User_Table where user_Email=?");
             pst.setString(1, mail);
             ResultSet rs=pst.executeQuery();
