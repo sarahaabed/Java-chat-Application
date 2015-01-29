@@ -117,7 +117,7 @@ public class messenger extends javax.swing.JPanel {
                    handler.acceptContact(user,c);
                    user.userRequests.remove(c);
                    requestsPanel.remove(r);
-            
+
                    ContactPanel c1=new ContactPanel(window,c);
                    ImageIcon i =new ImageIcon(c.getPhoto());
                    c1.img.setIcon(i);
