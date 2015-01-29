@@ -34,9 +34,9 @@ public interface IUser extends Serializable{
 
     public void setUserState(int userState);
 
-    public ImageIcon getUserImage();
+    public byte[] getUserImage();
 
-    public void setUserImage(ImageIcon userImage);
+    public void setUserImage(byte[] userImage);
 
     public String getUserStatus();
 

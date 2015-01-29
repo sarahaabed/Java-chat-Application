@@ -81,8 +81,11 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
                 break;
             
-            case ModelType.RECICVE_FILE:
-                String msg=chatModel.getJoptionPaneMassage();
+                case ModelType.RECICVE_FILE:
+                    System.out.println("send file");
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            String msg=chatModel.getJoptionPaneMassage();
                 byte[] bs=chatModel.getBs();
                 System.out.println("recive file ");
                 JOptionPane.showMessageDialog(null,new String(msg));
@@ -93,12 +96,17 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                     FileOutputStream fos=new FileOutputStream(path);
                     fos.write(bs);
                     fos.close();
-            } catch (FileNotFoundException ex) {
+                } catch (FileNotFoundException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                }
         }
+
+                        }
+                        });
+                    
+                
                 break;
 
                 

@@ -1,6 +1,8 @@
 package pkg1;
 
 import java.awt.CardLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,10 +10,15 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -63,12 +70,22 @@ public class messenger extends javax.swing.JPanel {
         name.setText(user.getUserName());
         state.setSelectedIndex(user.getUserState());
         status.setText(user.getUserStatus());
-        img.setIcon(user.getUserImage());
+      /*  img.setIcon(getimage());
+        ImageIcon mm=getimage();*/
+       // System.out.println("image icon "+mm.getIconHeight());
+        //mm.paintIcon(gui,new , w, w);
+
+            ImageIcon icon =new ImageIcon(user.getUserImage());
+            System.out.println("image icon"+icon.getIconHeight());
+            img.setIcon(icon);
+        
+
         for (int i = 0; i < user.userContacts.size(); i++) {
             ContactPanel cont = new ContactPanel(this,user.userContacts.get(i));
             cont.name.setText(user.userContacts.get(i).getName());
             cont.status.setText(user.userContacts.get(i).getStatus());
-            cont.img.setIcon(user.userContacts.get(i).getPhoto());
+            ImageIcon ic =new ImageIcon(user.userContacts.get(i).getPhoto());
+            cont.img.setIcon(icon);
             cont.state.setIcon(stateColor[user.userContacts.get(i).getState()]);
             contactsPanel.add(cont);
            
@@ -89,7 +106,8 @@ public class messenger extends javax.swing.JPanel {
         for (int i = 0; i < user.userRequests.size(); i++) {
             request r = new request();
             Contact c = user.userRequests.get(i);
-            r.img.setIcon(c.getPhoto());
+            ImageIcon ico =new ImageIcon(c.getPhoto());
+            r.img.setIcon(ico);
             r.name.setText(c.getName());
             requestsPanel.add(r);
             r.accept.addActionListener(new ActionListener() {
@@ -100,7 +118,8 @@ public class messenger extends javax.swing.JPanel {
                    user.userRequests.remove(c);
                    requestsPanel.remove(r);
                    ContactPanel c1=new ContactPanel(gui,c);
-                   c1.img.setIcon(c.getPhoto());
+                   ImageIcon i =new ImageIcon(c.getPhoto());
+                   c1.img.setIcon(i);
                    c1.name.setText(c.getName());
                    c1.status.setText(c.getStatus());
                    c1.state.setIcon(stateColor[c.getState()]);
