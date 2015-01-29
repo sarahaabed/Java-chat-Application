@@ -16,17 +16,18 @@ import view.*;
  */
 public class ServerController implements IserverController {
 
-    static view.IClientAction clientAction;
+
     IChatController chatController;
     //IChatModel chatModel;
     int serviceNumber;
 
-    public ServerController(view.IClientAction clientAction) {
-        this.clientAction = clientAction;
+    public ServerController() {
+        System.out.println("new server controller");
+        chatController = new ChatController();
     }
 
-    public void impelmentClientAction() {
-        chatController = new ChatController();
+    public void impelmentClientAction(view.IClientAction clientAction) {
+        
        // ChatModel rr= new ChatModel();
         serviceNumber=clientAction.getServiceNum();
         //serviceNumber = 1;

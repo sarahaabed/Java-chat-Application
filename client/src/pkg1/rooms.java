@@ -16,6 +16,7 @@ public class rooms extends javax.swing.JPanel {
      */
     public rooms() {
         initComponents();
+        setSize(700, 700);
     }
 
     /**
@@ -40,7 +41,7 @@ public class rooms extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(rooms_tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rooms_tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -49,6 +50,6 @@ public class rooms extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTabbedPane rooms_tabs;
+    public javax.swing.JTabbedPane rooms_tabs;
     // End of variables declaration//GEN-END:variables
 }

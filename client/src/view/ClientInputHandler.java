@@ -40,6 +40,7 @@ public class ClientInputHandler implements IClientInputHandler {
     public ClientInputHandler(){
         
         try {
+            System.out.println("client ");
             ca = new ClientAction();
             Registry reg = LocateRegistry.getRegistry("127.0.0.1",5031);
             sl= (IServerListner)reg.lookup("ChatApp");
@@ -236,8 +237,10 @@ public class ClientInputHandler implements IClientInputHandler {
             ca.setRoom(room);
             ca.setUser(user);
             ca.setServiceNum(ActionType.START_CONVERSATION);
+            System.out.println("jjjjjjjjjjj"+ca.getRoom().contactVector.get(0));
             sl.processClientAction(ca);
         } catch (RemoteException ex) {
+            System.out.println("hhhhhhhhhh");
             Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

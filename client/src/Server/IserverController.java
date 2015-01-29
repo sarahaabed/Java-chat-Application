@@ -13,6 +13,6 @@ import model.Contact;
  */
 public interface IserverController {
 
-   public void impelmentClientAction();
+   public void impelmentClientAction(view.IClientAction clientAction);
 
 }

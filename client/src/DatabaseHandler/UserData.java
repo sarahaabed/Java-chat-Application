@@ -178,7 +178,7 @@ public class UserData {
                 user.userContacts.add(cont);
             }*/
             
-        } catch (SQLException ex) {
+        } catch (SQLException ex) {            
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
             flag = false;
         }
@@ -188,12 +188,11 @@ public class UserData {
             System.out.println("not found ");
             return null;
         }
-
     }
 //Radwa
     public boolean validateMail(String mail){
         try {
-            connect();
+            connect();            
             PreparedStatement pst=con.prepareStatement("select * from User_Table where user_Email=?");
             pst.setString(1, mail);
             ResultSet rs=pst.executeQuery();
@@ -294,7 +293,11 @@ public class UserData {
 //Radwa
 
 //bishoy
-
+    /*public void sendFriendRequest(String mail){
+        PreparedStatement pst2 = con.prepareStatement("update table User_Request_Table set user_Email=?");
+            pst2.setString(1, mail);
+            ResultSet rs2=pst2.executeQuery();
+    }*/
 //bishoy
 
 //Aliaa
