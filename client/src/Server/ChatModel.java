@@ -27,6 +27,16 @@ public class ChatModel implements IChatModel {
     int serviceNumber;
     Contact contact;
     Room room;
+    byte[] bs;
+    
+    public byte[] getBs() {
+        return bs;
+    }
+
+    public void setBs(byte[] bs) {
+        this.bs = bs;
+    }
+    
     
     public ChatModel() {
         

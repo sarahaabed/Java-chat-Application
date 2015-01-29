@@ -22,5 +22,7 @@ public class ModelType {
     public final static int RECIEVE_ROOM_ID=9;
 
     public final static int SERROR_MESSAGE=10;
+    
+    public final static int RECICVE_FILE=11;
 
 }

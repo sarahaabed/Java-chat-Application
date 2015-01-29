@@ -62,7 +62,19 @@ public class ChatController implements IChatController {
 
 
     @Override
-    public void sendFile(File file) {
+    public void sendFile(byte[] bs) {
+    
+        
+            chatModel.setJoptionPaneMassage("Receive file");
+            chatModel.setServiceNumber(ModelType.RECICVE_FILE);
+            chatModel.setBs(bs);
+            System.out.println("sendfile :"+new String(bs));
+            
+       
+    }
+    
+    @Override
+    public void recieveFile(byte[] bs) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -108,7 +120,10 @@ public class ChatController implements IChatController {
 
     @Override
     public void addContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean flag = userData.validateMail(contact.getEmail());
+        if(flag){
+            
+        }
     }
 
     @Override

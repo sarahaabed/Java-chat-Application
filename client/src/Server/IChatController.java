@@ -37,7 +37,9 @@ public interface IChatController {
 
     public void sendMessage(Room room,Message msg);
 
-    public void sendFile(File file);
+    public void sendFile(byte[] file);
+    
+    public void recieveFile(byte[] file);
 
     public void addContactToRoom(Contact contact);
     //register and unregister

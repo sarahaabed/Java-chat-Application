@@ -129,7 +129,7 @@ public class chatCui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new chatCui(new ClientInputHandler(this,clientListener)).setVisible(true);
+                //new chatCui(new ClientInputHandler()).setVisible(true);
             }
         });
     }
