@@ -35,15 +35,20 @@ public interface IChatController {
 
     public void leaveConversation(String email);
 
-    public void sendMessage(String msg);
+    public void sendMessage(Room room,Message msg);
 
     public void sendFile(File file);
 
     public void addContactToRoom(Contact contact);
     //register and unregister
-    public void register(IClientListener clientRef);
+     public void register(String mail, IClientListener clientRef);
 
-    public void unRegister(IClientListener clientRef);
+     
+   public void unRegister(String mail);
+
     
+    public void startConversation(Room room, User user);
+
     public void signIn(User user,IClientListener clientListener);
+
 }

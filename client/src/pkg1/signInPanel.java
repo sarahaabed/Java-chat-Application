@@ -18,6 +18,7 @@ import model.Message;
 import model.Room;
 import model.User;
 import view.ClientInputHandler;
+import view.IClientInputHandler;
 
 /**
  *
@@ -203,6 +204,7 @@ public class signInPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         User u=new User();
         String p1 = new String(pass.getText());
         String em1 = new String(mail.getText());
@@ -229,6 +231,7 @@ public class signInPanel extends javax.swing.JPanel {
         System.out.println(em1);
         handler.signIn(u);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

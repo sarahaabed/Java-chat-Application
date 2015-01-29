@@ -30,6 +30,9 @@ public interface IChatModel extends Serializable{
     public Contact getContact();
 
     public void setContact(Contact contact);
-    
+    public void setMsg(Message msg);
+    public Message getMsg();
+    public Room getRoom();
 
+    public void setRoom(Room room);
 }

@@ -18,12 +18,21 @@ public class Room implements IRoom{
     public Vector<Contact> contactVector=new Vector<Contact>();
     public Vector<Message> messageVector=new Vector<Message>();
     private String name;
+
+    public Room() {
+    }
+    
+    
     public Room(int roomId){
         this.roomId = roomId;
     }
     @Override
     public int getRoomId(){
         return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     @Override

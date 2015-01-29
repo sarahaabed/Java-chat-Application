@@ -26,16 +26,28 @@ public class ChatModel implements IChatModel {
     String joptionPaneMassage;
     int serviceNumber;
     Contact contact;
+    Room room;
     
     public ChatModel() {
         
         
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    
+    @Override
     public Message getMsg() {
         return msg;
     }
 
+    @Override
     public void setMsg(Message msg) {
         this.msg = msg;
     }
@@ -50,10 +62,12 @@ public class ChatModel implements IChatModel {
         return user;
     }
 
+    @Override
     public void setServiceNumber(int serviceNumber) {
         this.serviceNumber = serviceNumber;
     }
     
+    @Override
     public void setUser(User user) {
         this.user = user;
     }
@@ -63,13 +77,16 @@ public class ChatModel implements IChatModel {
         return joptionPaneMassage;
     }
     
+    @Override
     public void setJoptionPaneMassage(String joptionPaneMassage) {
         this.joptionPaneMassage = joptionPaneMassage;
     }
+    @Override
     public Contact getContact() {
         return contact;
     }
 
+    @Override
     public void setContact(Contact contact) {
         this.contact = contact;
     }

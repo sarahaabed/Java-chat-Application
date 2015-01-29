@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import model.Contact;
 import model.Message;
+import model.Room;
 import model.User;
-import rmi.client.ClientListener;
+
+
 import rmi.client.IClientListener;
 
 /**
@@ -26,7 +28,13 @@ public interface IClientAction extends Serializable {
     public Message getMessage();
 
     public Contact getContact();
+
+
+    public Room getRoom();
+
+    
     public IClientListener getClientModel();
     public void setClientModel(IClientListener clientModel);
+
 
 }

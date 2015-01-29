@@ -22,4 +22,6 @@ public class ActionType {
     public final static int LEAVE_CONV=10;
     public final static int CHANGE_PHOTO=11;
     public final static int SEND_MESSAGE=12;
+    public final static int START_CONVERSATION=13;
+    public final static int REGISTER=14;
 }
