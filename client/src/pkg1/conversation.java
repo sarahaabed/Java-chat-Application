@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import model.Message;
 import model.Room;
+import model.User;
 import view.ClientInputHandler;
 import view.IClientInputHandler;
 
@@ -27,6 +28,7 @@ public class conversation extends javax.swing.JPanel {
      */
     private int roomId;
     private  Room room;
+    private User user;
 
     public void setRoom(Room room) {
         this.room = room;
@@ -48,6 +50,7 @@ public class conversation extends javax.swing.JPanel {
     
     public conversation() {
         initComponents();
+        this.user=user;
         setSize(700, 700);
     }
 
