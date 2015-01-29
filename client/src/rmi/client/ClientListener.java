@@ -86,23 +86,6 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
                 break;
 
-               
-            case ModelType.RECIEVE_MESSAGE:
-                for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
-                    if(((conversation)gui.room.rooms_tabs.getTabComponentAt(i)).getRoomId()==chatModel.getRoom().getRoomId()){
-                        ((conversation)gui.room.rooms_tabs.getTabComponentAt(i)).text2.append("\n"+chatModel.getMsg().getSender()+" : "+chatModel.getMsg().getTxt());
-                        break;
-                    }
-                    
-                }
-                break;
-            case ModelType.RECIEVE_ROOM_ID:
-                conversation conv=new conversation();
-                conv.setRoomId(chatModel.getRoom().getRoomId());
-                conv.setRoom(chatModel.getRoom());
-                gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(),null , conv, null,gui.room.rooms_tabs.getTabCount() );
-                break;
-            
             case ModelType.RECICVE_FILE:
                 String msg=chatModel.getJoptionPaneMassage();
                 byte[] bs=chatModel.getBs();
