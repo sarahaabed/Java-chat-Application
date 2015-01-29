@@ -69,9 +69,7 @@ public class chatCui extends javax.swing.JFrame {
         parentPanel.add("signin", signIn);
         parentPanel.add("signup", signUp);
         p.add(parentPanel,BorderLayout.WEST);
-        p.add(room,BorderLayout.CENTER);
-        conversation conv=new conversation();
-        room.rooms_tabs.insertTab("", new ImageIcon(""), conv,"",0);
+        p.add(room,BorderLayout.CENTER);        
        
     }
 

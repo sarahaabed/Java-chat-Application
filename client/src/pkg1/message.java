@@ -21,7 +21,7 @@ public class message extends javax.swing.JPanel {
      */
     public message(messenger gui ) {
         initComponents();
-        addMouseListener(new MouseAdapter() {
+        /*addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -41,7 +41,7 @@ public class message extends javax.swing.JPanel {
                     }
             }
             
-});
+});*/
     }
 
     /**

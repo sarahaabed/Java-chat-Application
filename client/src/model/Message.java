@@ -15,11 +15,11 @@ import java.sql.Timestamp;
 public class Message implements Serializable{
     private int roomId;
     private Timestamp timestamp;
-    private Contact sender;
+    private String sender;
     private String txt;
     private boolean seen;
     
-    public Message(int room,Timestamp timestamp,Contact sender,String txt,boolean seen){
+    public Message(int room,Timestamp timestamp,String sender,String txt,boolean seen){
         this.timestamp =timestamp;
         this.sender = sender;
         this.txt = txt;
@@ -31,7 +31,7 @@ public class Message implements Serializable{
     public Timestamp getTimestamp(){
         return timestamp;
     }
-    public Contact getSender(){
+    public String getSender(){
         return sender;
     }
     public String getTxt(){

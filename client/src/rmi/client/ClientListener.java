@@ -80,7 +80,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
 
                 }
                 if (!foundId) {
-                    conversation conv = new conversation();
+                    conversation conv = new conversation(gui);
                     conv.setRoomId(chatModel.getRoom().getRoomId());
                     conv.setRoom(chatModel.getRoom());
                     gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
@@ -89,7 +89,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 }
                 break;
             case ModelType.RECIEVE_ROOM_ID:
-                conversation conv = new conversation();
+                conversation conv = new conversation(gui);
                 conv.setRoomId(chatModel.getRoom().getRoomId());
                 conv.setRoom(chatModel.getRoom());
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
