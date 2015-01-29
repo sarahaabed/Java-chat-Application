@@ -18,7 +18,7 @@ public class ServerController implements IserverController {
 
 
     IChatController chatController;
-    //IChatModel chatModel;
+    IChatModel chatModel;
     int serviceNumber;
 
     public ServerController() {
@@ -86,7 +86,7 @@ public class ServerController implements IserverController {
                  break;
             case ActionType.SEND_FILE:
                // System.out.println("need to send file");
-                chatController.sendFile(clientAction.getUser().getUserEmail(),clientAction.getB());
+                chatController.sendFile(clientAction.getRoom(),clientAction.getB());
                 break;
         }
     }

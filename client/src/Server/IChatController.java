@@ -37,7 +37,7 @@ public interface IChatController {
 
     public void sendMessage(Room room,Message msg);
 
-    public void sendFile(String str,byte[] file);
+    public void sendFile(Room room,byte[] file);
     
     public void recieveFile(byte[] file);
 

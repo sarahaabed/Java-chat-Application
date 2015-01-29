@@ -62,20 +62,22 @@ public class ChatController implements IChatController {
 
 
     @Override
-    public void sendFile(String email,byte[] bs) {
+    public void sendFile(Room room,byte[] bs) {
     
-        
-           // chatModel.setJoptionPaneMassage("Receive file");
-            chatModel.setServiceNumber(ModelType.RECICVE_FILE);
-            chatModel.setBs(bs);
+            Vector<Contact> conts = room.contactVector;
+       
+            for (int i = 0; i < conts.size(); i++) {
             try {
-                // clientListener.changeModel(chatModel);
-                onlineUsers.get(email).changeModel(chatModel);
-                System.out.println("sendfile :"+new String(bs));
+                IChatModel model=new ChatModel();
+                model.setServiceNumber(ModelType.RECICVE_FILE);
+                model.setBs(bs);
+                model.setRoom(room);
+                onlineUsers.get(conts.get(i).getEmail()).changeModel(model);
             } catch (RemoteException ex) {
                 Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
+            }
             
        
     }
