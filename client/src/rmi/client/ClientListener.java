@@ -66,12 +66,14 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
             case ModelType.RECIEVE_MESSAGE:
                 boolean foundId = false;
                 for (int i = 1; i < gui.room.rooms_tabs.getTabCount(); i++) {
-                    conversation conv=(conversation)gui.room.rooms_tabs.getTabComponentAt(i);
+                    conversation conv=(conversation)gui.room.rooms_tabs.getComponentAt(i);
+                     //System.out.println(gui.room.rooms_tabs.getc);
                     int roomId=conv.getRoomId();
                     Room room=chatModel.getRoom();
                     int roomIdModel=room.getRoomId();
+                    System.out.println(roomId);
                     if (roomId == roomIdModel) {
-                        ((conversation) gui.room.rooms_tabs.getTabComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                        ((conversation) gui.room.rooms_tabs.getComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
                         foundId = true;
                         break;
                     }
@@ -82,7 +84,8 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                     conv.setRoomId(chatModel.getRoom().getRoomId());
                     conv.setRoom(chatModel.getRoom());
                     gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-
+                    conv.text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                        
                 }
                 break;
             case ModelType.RECIEVE_ROOM_ID:
