@@ -16,7 +16,6 @@ import view.IClientInputHandler;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Radwa Manssour
@@ -27,56 +26,57 @@ public class ContactPanel extends javax.swing.JPanel {
      * Creates new form contact
      */
     Contact cont;
-    public ContactPanel(chatCui gui,Contact cont) {
-        
+
+    public ContactPanel(chatCui gui, Contact cont) {
+
         initComponents();
-        this.cont=cont;
-        ContactPanel c=this;
+        this.cont = cont;
+        ContactPanel c = this;
         addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                
-                c.setBackground(new Color(204, 255,204));
+
+                c.setBackground(new Color(204, 255, 204));
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(e.getClickCount()==2){
-                    Room room=new Room();
+                if (e.getClickCount() == 2) {
+                    Room room = new Room();
                     room.contactVector.add(new Contact(gui.user.getUserEmail(), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
                     room.contactVector.add(cont);
-                    if(room.contactVector.get(0).getEmail().compareToIgnoreCase(room.contactVector.get(1).getEmail())>0){
-                        room.setRoomId(room.contactVector.get(0).getEmail()+"*"+room.contactVector.get(1).getEmail());
-                    }else{
-                        room.setRoomId(room.contactVector.get(1).getEmail()+"*"+room.contactVector.get(0).getEmail());
+                    if (room.contactVector.get(0).getEmail().compareToIgnoreCase(room.contactVector.get(1).getEmail()) > 0) {
+                        room.setRoomId(room.contactVector.get(0).getEmail() + "*" + room.contactVector.get(1).getEmail());
+                    } else {
+                        room.setRoomId(room.contactVector.get(1).getEmail() + "*" + room.contactVector.get(0).getEmail());
                     }
+                    boolean found = false;
                     for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
-                        if(((conversation)gui.room.rooms_tabs.getComponent(i)).getRoomId().equals(room.getRoomId())){
-                            
+                        if (((conversation) gui.room.rooms_tabs.getComponent(i)).getRoomId().equals(room.getRoomId())) {
+                            found = true;
+                            break;
                         }
-                        
                     }
-                    conversation conv = new conversation(gui);
-                    conv.setRoomId(room.getRoomId());
-                    conv.setRoom(room);
-                    gui.room.rooms_tabs.insertTab(room.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-                
-                    
-                    gui.cih.startConversation(room,gui.user );
+                    if (!found) {
+                        conversation conv = new conversation(gui);
+                        conv.setRoomId(room.getRoomId());
+                        conv.setRoom(room);
+                        gui.room.rooms_tabs.insertTab(room.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
+
+                        gui.cih.startConversation(room, gui.user);
                     }
+                }
             }
 
-            
             @Override
-            public void mouseExited (MouseEvent e) {
+            public void mouseExited(MouseEvent e) {
                 System.out.println("dddhh");
-                c.setBackground(new Color(255,255,255));
+                c.setBackground(new Color(255, 255, 255));
             }
-            
 
-        }); 
-        
+        });
+
     }
 
     /**

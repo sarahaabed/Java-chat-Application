@@ -281,12 +281,6 @@ public class ChatController implements IChatController {
     
     public void startConversation(Room room, User user){
         try {
-            if(room.contactVector.size()==2){
-                for (int i = 0; i < rooms.size(); i++) {
-                if(rooms.get(i).contactVector.size()==1)
-                
-            }
-            }
             room.setRoomId(roomId++);
             nullChatModel();
             chatModel.setServiceNumber(ModelType.RECIEVE_ROOM_ID);
