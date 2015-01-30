@@ -82,6 +82,10 @@ public class UserData {
                 System.out.println("insert failled");
                 flag = false;
             }
+            if(user.getUserGender()=="femal")
+                updateImage(user.getUserEmail(), "src\\pkg1\\p.jpg");
+            else
+                updateImage(user.getUserEmail(), "src\\pkg1\\p.jpg");
             /*else{
              System.out.println("Not Inserted");
              }*/
@@ -189,6 +193,34 @@ public class UserData {
             return null;
         }
     }
+    public boolean addContact(String user,String contact){
+        boolean flag=true;
+        try {
+
+            String insertString = new String("INSERT INTO User_Request_Table (user_Email,receiver_Email) VALUES(?,?) ");
+            PreparedStatement pst = con.prepareStatement(insertString);
+            //pst.setInt(1, id);
+            pst.setString(1, user);
+            pst.setString(2, contact);
+           
+            if (pst.execute()== false ) {
+                System.out.println("request send");
+                flag = true;
+            } else {
+                System.out.println("request not send");
+                flag = false;
+            } 
+            
+        } catch (SQLException ex) {
+            flag=false;
+            //Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
+    
+    
+    }
+    
+    
 //Radwa
     public boolean validateMail(String mail){
         try {
@@ -308,11 +340,12 @@ public class UserData {
     public void updateImage(String user_Email,String userImage){
     FileInputStream fis = null;
         try {
+            //fc.setFileFilter(new JPEGImageFileFilter());
             connect();
             File file = new File(userImage);
             fis = new FileInputStream(file);
             int len_file = (int) fis.available();
-              java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
+            java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
             stmt1.setString(2,user_Email);
             stmt1.setBlob(1, fis, len_file);
 
@@ -459,6 +492,24 @@ public void update_user_status(String user_Email,String status){
             System.out.println("not found ");
             return null;
         }
+    }
+    
+    public boolean selectFriend(User u,String mail) {
+        boolean flag = true;
+        try {
+            PreparedStatement pst = con.prepareStatement("select * from user_list_table where user_Email=? AND contact_Email=? ");
+            pst.setString(1, mail);
+            pst.setString(2, u.getUserEmail());
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+               flag=true;
+               
+            }
+        } catch (SQLException ex) {
+            flag=false;
+        }
+        return flag;
     }
 //Jihad
     

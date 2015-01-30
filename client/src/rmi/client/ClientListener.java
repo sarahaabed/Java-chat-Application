@@ -107,10 +107,35 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
             } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+                }
             }
         });
                
+            break;
+                
+                
+            case ModelType.REQUEST_SEND:
+                gui.setUser(chatModel.getUser());
+                CardLayout card1 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card1.show(gui.parentPanel, "messenger");
+                break;
+                
+            case ModelType.REQUEST_NOT_SEND:
+                String errorMsg=chatModel.getJoptionPaneMassage();
+                java.awt.EventQueue.invokeLater( new Runnable() {
+
+            @Override
+            public void run() {
+               JOptionPane.showMessageDialog(null,new String(errorMsg));
+            }
+        });
+                gui.setUser(chatModel.getUser());
+                CardLayout card2 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card2.show(gui.parentPanel, "messenger");
                 break;
            
 

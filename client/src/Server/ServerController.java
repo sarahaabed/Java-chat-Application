@@ -40,11 +40,11 @@ public class ServerController implements IserverController {
                 break;
                 
             case ActionType.ADD_CONTACT:
-                chatController.addContact(clientAction.getContact());
+                chatController.addContact(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.REMOVE_CONTACT:
-                chatController.removeContact(clientAction.getContact().getEmail());
+                chatController.removeContact(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.ACCEPT_FRIEND:
