@@ -70,7 +70,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                      //System.out.println(gui.room.rooms_tabs.getc);
                     String roomId=conv.getRoomId();
                     Room room=chatModel.getRoom();
-                    int roomIdModel=room.getRoomId();
+                    String roomIdModel=room.getRoomId();
                     System.out.println(roomId);
                     if (roomId == roomIdModel) {
                         ((conversation) gui.room.rooms_tabs.getComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
