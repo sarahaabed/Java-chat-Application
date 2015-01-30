@@ -63,7 +63,7 @@ public class chatCui extends javax.swing.JFrame {
         this.cih=cih;
         rooms=new Hashtable<>();
         //room=new rooms();
-        setSize(300, 700);
+        //setSize(300, 700);
         //room.setVisible(false);
         signInPanel signIn=new signInPanel(this,cih);
         signUpPanel signUp=new signUpPanel(this,cih);
@@ -88,13 +88,23 @@ public class chatCui extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         p = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 0));
-        setResizable(false);
 
         p.setBackground(new java.awt.Color(153, 204, 255));
         p.setLayout(new java.awt.BorderLayout());
+
+        jMenu1.setText("Skype");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Help");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +146,9 @@ public class chatCui extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     public static javax.swing.JPanel p;
