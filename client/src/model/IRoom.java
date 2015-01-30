@@ -17,5 +17,5 @@ public interface IRoom extends Serializable{
     
     public String getName();
     public ImageIcon getImg();
-    int getRoomId();
+    String getRoomId();
 }

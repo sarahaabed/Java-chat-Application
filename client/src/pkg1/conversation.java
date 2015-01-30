@@ -27,7 +27,7 @@ public class conversation extends javax.swing.JPanel {
     /**
      * Creates new form conversation
      */
-    private int roomId;
+    private String roomId;
     private  Room room;
     private User user;
 
@@ -41,11 +41,11 @@ public class conversation extends javax.swing.JPanel {
 
     
     
-    public void setRoomId(int roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 
-    public int getRoomId() {
+    public String getRoomId() {
         return roomId;
     }
     

@@ -6,6 +6,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Comparator;
 import model.Contact;
 import model.Room;
 import view.ClientInputHandler;
@@ -42,21 +43,27 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount()==2){
-                    
-                    //System.out.println("jjjjjjjjjjj"+gui.contactsPanel.getSelectedIndex());
-                    
                     Room room=new Room();
                     room.contactVector.add(new Contact(gui.user.getUserEmail(), TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY, null, WIDTH));
                     room.contactVector.add(cont);
-                    System.out.println(gui.user.getUserEmail());
+                    if(room.contactVector.get(0).getEmail().compareToIgnoreCase(room.contactVector.get(1).getEmail())>0){
+                        room.setRoomId(room.contactVector.get(0).getEmail()+"*"+room.contactVector.get(1).getEmail());
+                    }else{
+                        room.setRoomId(room.contactVector.get(1).getEmail()+"*"+room.contactVector.get(0).getEmail());
+                    }
+                    for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
+                        if(((conversation)gui.room.rooms_tabs.getComponent(i)).getRoomId().equals(room.getRoomId())){
+                            
+                        }
+                        
+                    }
+                    conversation conv = new conversation(gui);
+                    conv.setRoomId(room.getRoomId());
+                    conv.setRoom(room);
+                    gui.room.rooms_tabs.insertTab(room.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
+                
                     
                     gui.cih.startConversation(room,gui.user );
-                    
-
-//conversation conv = new conversation();
-                    //bytl3 exception??
-                   // gui.room.rooms_tabs.insertTab(name.getText(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-                            
                     }
             }
 

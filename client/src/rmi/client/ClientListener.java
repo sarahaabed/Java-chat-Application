@@ -65,10 +65,10 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
 
             case ModelType.RECIEVE_MESSAGE:
                 boolean foundId = false;
-                for (int i = 1; i < gui.room.rooms_tabs.getTabCount(); i++) {
+                for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
                     conversation conv=(conversation)gui.room.rooms_tabs.getComponentAt(i);
                      //System.out.println(gui.room.rooms_tabs.getc);
-                    int roomId=conv.getRoomId();
+                    String roomId=conv.getRoomId();
                     Room room=chatModel.getRoom();
                     int roomIdModel=room.getRoomId();
                     System.out.println(roomId);

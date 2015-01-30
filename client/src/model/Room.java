@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class Room implements IRoom{
     private ImageIcon img;
-    private int roomId;
+    private String roomId;
     public Vector<Contact> contactVector=new Vector<Contact>();
     public Vector<Message> messageVector=new Vector<Message>();
     private String name;
@@ -23,15 +23,15 @@ public class Room implements IRoom{
     }
     
     
-    public Room(int roomId){
+    public Room(String roomId){
         this.roomId = roomId;
     }
     @Override
-    public int getRoomId(){
+    public String getRoomId(){
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 

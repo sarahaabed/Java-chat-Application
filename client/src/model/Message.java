@@ -13,19 +13,19 @@ import java.sql.Timestamp;
  * @author bishoy
  */
 public class Message implements Serializable{
-    private int roomId;
+    private String roomId;
     private Timestamp timestamp;
     private String sender;
     private String txt;
     private boolean seen;
     
-    public Message(int room,Timestamp timestamp,String sender,String txt,boolean seen){
+    public Message(String room,Timestamp timestamp,String sender,String txt,boolean seen){
         this.timestamp =timestamp;
         this.sender = sender;
         this.txt = txt;
         this.seen = seen;
     }
-    public int getRoomId(){
+    public String getRoomId(){
         return roomId;
     }
     public Timestamp getTimestamp(){
