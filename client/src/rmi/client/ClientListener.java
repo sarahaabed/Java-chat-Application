@@ -67,7 +67,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 boolean foundId = false;
                 for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
                     conversation conv=(conversation)gui.room.rooms_tabs.getComponentAt(i);
-                     //System.out.println(gui.room.rooms_tabs.getc);
+                     
                     String roomId=conv.getRoomId();
                     Room room=chatModel.getRoom();
                     String roomIdModel=room.getRoomId();
@@ -80,6 +80,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
 
                 }
                 if (!foundId) {
+                    System.out.println("new conv");
                     conversation conv = new conversation(gui);
                     conv.setRoomId(chatModel.getRoom().getRoomId());
                     conv.setRoom(chatModel.getRoom());

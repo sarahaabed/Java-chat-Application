@@ -8,6 +8,7 @@ package Server;
 import DatabaseHandler.UserData;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class ChatController implements IChatController {
 
     //Vector<view.IClientAction> clientsvector = new Vector<view.IClientAction>();
     Hashtable<String, IClientListener> onlineUsers =new Hashtable<>();
-    Vector<Room> rooms= new Vector<>();
+    HashSet<String>roomIds=new HashSet<>();
     static int roomId=0;
 
 
@@ -280,7 +281,7 @@ public class ChatController implements IChatController {
     }
     
     public void startConversation(Room room, User user){
-        try {
+        /*try {
             room.setRoomId(roomId++);
             nullChatModel();
             chatModel.setServiceNumber(ModelType.RECIEVE_ROOM_ID);
@@ -292,7 +293,7 @@ public class ChatController implements IChatController {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
                         System.out.println("gggg");
 
-        }
+        }*/
         
         
     }
