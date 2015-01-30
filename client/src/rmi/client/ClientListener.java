@@ -65,38 +65,39 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
 
             case ModelType.RECIEVE_MESSAGE:
                 boolean foundId = false;
-                for (int i = 1; i < gui.room.rooms_tabs.getTabCount(); i++) {
-                    conversation conv=(conversation)gui.room.rooms_tabs.getTabComponentAt(i);
-                    int roomId=conv.getRoomId();
+                for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
+                    conversation conv=(conversation)gui.room.rooms_tabs.getComponentAt(i);
+                     //System.out.println(gui.room.rooms_tabs.getc);
+                    String roomId=conv.getRoomId();
                     Room room=chatModel.getRoom();
                     int roomIdModel=room.getRoomId();
+                    System.out.println(roomId);
                     if (roomId == roomIdModel) {
-                        ((conversation) gui.room.rooms_tabs.getTabComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                        ((conversation) gui.room.rooms_tabs.getComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
                         foundId = true;
                         break;
                     }
 
                 }
                 if (!foundId) {
-                    conversation conv = new conversation();
+                    conversation conv = new conversation(gui);
                     conv.setRoomId(chatModel.getRoom().getRoomId());
                     conv.setRoom(chatModel.getRoom());
                     gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-
+                    conv.text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                        
                 }
                 break;
             case ModelType.RECIEVE_ROOM_ID:
-                conversation conv = new conversation();
+                conversation conv = new conversation(gui);
                 conv.setRoomId(chatModel.getRoom().getRoomId());
                 conv.setRoom(chatModel.getRoom());
                 gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
                 break;
-            
-                case ModelType.RECICVE_FILE:
-                    System.out.println("send file");
-                    java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                            String msg=chatModel.getJoptionPaneMassage();
+
+
+            case ModelType.RECICVE_FILE:
+                String msg=chatModel.getJoptionPaneMassage();
                 byte[] bs=chatModel.getBs();
                 System.out.println("recive file ");
                 JOptionPane.showMessageDialog(null,new String(msg));
@@ -107,17 +108,12 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                     FileOutputStream fos=new FileOutputStream(path);
                     fos.write(bs);
                     fos.close();
-                } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }
         }
-
-                        }
-                        });
-                    
-                
                 break;
 
 

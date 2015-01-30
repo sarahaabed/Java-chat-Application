@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
@@ -26,7 +27,7 @@ public class conversation extends javax.swing.JPanel {
     /**
      * Creates new form conversation
      */
-    private int roomId;
+    private String roomId;
     private  Room room;
     private User user;
 
@@ -40,17 +41,17 @@ public class conversation extends javax.swing.JPanel {
 
     
     
-    public void setRoomId(int roomId) {
+    public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
 
-    public int getRoomId() {
+    public String getRoomId() {
         return roomId;
     }
     
-    public conversation() {
+    public conversation(chatCui gui) {
         initComponents();
-        this.user=user;
+        this.user=gui.user;
         setSize(700, 700);
     }
 
@@ -178,7 +179,8 @@ public class conversation extends javax.swing.JPanel {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         String s=text1.getText();
-        Message m=new Message(roomId, null, null, s, true);
+         
+        Message m=new Message(roomId, null,user.getUserName(), s, true);
         IClientInputHandler cih=new ClientInputHandler();
         cih.sendMessage(room, m);
     }//GEN-LAST:event_sendActionPerformed

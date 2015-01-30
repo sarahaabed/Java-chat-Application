@@ -52,7 +52,12 @@ public class ChatController implements IChatController {
                 model.setServiceNumber(ModelType.RECIEVE_MESSAGE);
                 model.setMsg(msg);
                 model.setRoom(room);
-                onlineUsers.get(conts.get(i).getEmail()).changeModel(model);
+                if(!onlineUsers.containsKey(conts.get(i).getEmail())){
+                    //if user is offline
+                    //add to its offline message
+                }else{
+                    onlineUsers.get(conts.get(i).getEmail()).changeModel(model);
+                }
             } catch (RemoteException ex) {
                 Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -276,14 +281,18 @@ public class ChatController implements IChatController {
     
     public void startConversation(Room room, User user){
         try {
+            if(room.contactVector.size()==2){
+                for (int i = 0; i < rooms.size(); i++) {
+                if(rooms.get(i).contactVector.size()==1)
+                
+            }
+            }
             room.setRoomId(roomId++);
             nullChatModel();
             chatModel.setServiceNumber(ModelType.RECIEVE_ROOM_ID);
             chatModel.setRoom(room);
-            System.out.println("jjjjjjhhhhhhhhhhhjjjjjj");
-            System.out.println("gggg");
-            //onlineUsers.get("radwa@radwa").changeModel(chatModel);
-            System.out.println("no. of online22  "+onlineUsers.size());
+            
+            
             onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
         } catch (RemoteException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
