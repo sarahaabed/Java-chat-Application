@@ -71,7 +71,7 @@ public class ChatController implements IChatController {
     public void sendFile(Room room,byte[] bs) {
     
             Vector<Contact> conts = room.contactVector;
-       
+            
             for (int i = 0; i < conts.size(); i++) {
             try {
                 IChatModel model=new ChatModel();

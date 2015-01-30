@@ -179,7 +179,7 @@ public class conversation extends javax.swing.JPanel {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         String s=text1.getText();
-         
+        
         Message m=new Message(roomId, null,user.getUserName(), s, true);
         IClientInputHandler cih=new ClientInputHandler();
         cih.sendMessage(room, m);
@@ -196,7 +196,7 @@ public class conversation extends javax.swing.JPanel {
                 fis.read(b);
                // Message m=new Message(roomId, null, null, null, true);
                 IClientInputHandler cih=new ClientInputHandler();
-                cih.sendFile(b);
+                cih.sendFile(room,b);
                // jTextArea1.setText(new String(b));
                 fis.close();
                 

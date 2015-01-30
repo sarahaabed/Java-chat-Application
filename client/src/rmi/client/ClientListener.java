@@ -101,9 +101,11 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 String msg=chatModel.getJoptionPaneMassage();
                 byte[] bs=chatModel.getBs();
                 System.out.println("recive file ");
-                JOptionPane.showMessageDialog(null,new String(msg));
-                JFileChooser f = new JFileChooser();
-                if (f.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+              //  JOptionPane.showMessageDialog(null,new String(msg));
+                java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                 JFileChooser f = new JFileChooser();
+                if (f.showSaveDialog(gui) == JFileChooser.APPROVE_OPTION) {
                     String path = f.getSelectedFile().getPath();
                 try {
                     FileOutputStream fos=new FileOutputStream(path);
@@ -115,7 +117,11 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+            }
+        });
+               
                 break;
+           
 
 
         }

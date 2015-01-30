@@ -248,9 +248,10 @@ public class ClientInputHandler implements IClientInputHandler {
    // public void sendFile(byte[] bs){}
 
     @Override
-    public void sendFile(byte[] bs) {
+    public void sendFile(Room room,byte[] bs) {
         System.out.println("send file b2a ");
         ca.setB(bs);
+        ca.setRoom(room);
         ca.setServiceNum(ActionType.SEND_FILE);
         try {
             sl.processClientAction(ca);
