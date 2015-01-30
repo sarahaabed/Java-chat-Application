@@ -463,7 +463,7 @@ public void update_user_status(String user_Email,String status){
 //Jihad
     
     public static void main(String[] args){
-        new UserData().updateImage("gehad@gehad", "src\\pkg1\\3.png");
+        new UserData().updateImage("sarah@yahoo.com", "C:\\Users\\it\\Downloads\\p.jpg");
     }
      
 }
