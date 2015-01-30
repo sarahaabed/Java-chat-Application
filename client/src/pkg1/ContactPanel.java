@@ -63,8 +63,7 @@ public class ContactPanel extends javax.swing.JPanel {
                         conv.setRoomId(room.getRoomId());
                         conv.setRoom(room);
                         gui.room.rooms_tabs.insertTab(room.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-
-                        gui.cih.startConversation(room, gui.user);
+                        //gui.cih.startConversation(room, gui.user);
                     }
                 }
             }

@@ -165,7 +165,7 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void addMember(int RoomId, String mail) {
+    public void addMember(String RoomId, String mail) {
         Contact con=new Contact(mail, null, null, null, 0);
         Message message=new Message(RoomId, null, null, null,false);
         ca.setCon(con);
