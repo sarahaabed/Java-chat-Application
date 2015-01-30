@@ -6,10 +6,8 @@
 
 package pkg1;
 
-import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import model.User;
@@ -24,6 +22,7 @@ public class signUpPanel extends javax.swing.JPanel {
     /**
      * Creates new form signUpPanel
      */
+    
     chatCui gui;
     private ClientInputHandler cih;
     private User u;
@@ -45,6 +44,8 @@ public class signUpPanel extends javax.swing.JPanel {
         u =new User();
     }
 
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +55,6 @@ public class signUpPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -100,7 +100,6 @@ public class signUpPanel extends javax.swing.JPanel {
         jTextField7.setText("Confirm Password");
 
         jRadioButton2.setBackground(new java.awt.Color(153, 204, 255));
-        buttonGroup2.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 204));
         jRadioButton2.setText("Male");
@@ -111,7 +110,6 @@ public class signUpPanel extends javax.swing.JPanel {
         });
 
         jRadioButton1.setBackground(new java.awt.Color(153, 204, 255));
-        buttonGroup2.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(0, 51, 153));
         jRadioButton1.setText("Female");
@@ -188,22 +186,31 @@ public class signUpPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        u.setUserGender("Male");
+
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        u.setUserGender("Female");
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String uName = new String(jTextField4.getText()+jTextField2.getText());
         String p1 = new String(jTextField5.getText());
         String p2 = new String(jTextField7.getText());
         String em1 = new String(jTextField3.getText());
         String em2 = new String(jTextField6.getText());
-        
+
         boolean pf=false;
         boolean emf =false;
         boolean unf=false;
-        
+
         if(!p1.equals(p2))
-            JOptionPane.showMessageDialog(null, "different password");
+        JOptionPane.showMessageDialog(null, "different password");
         else pf=true;
         if(!em1.equals(em2))
-            JOptionPane.showMessageDialog(null, "different Email");
+        JOptionPane.showMessageDialog(null, "different Email");
         else emf=true;
         if(emf) {
             if(!u.setUserEmail(em2)) {
@@ -217,32 +224,22 @@ public class signUpPanel extends javax.swing.JPanel {
             }
         }
         if(u.setUserName(uName))
-            unf = true;
+        unf = true;
         else JOptionPane.showMessageDialog(null, "bad User Name format");
 
         if(pf && emf && unf){
             System.out.println(uName);
-        System.out.println(p1);
-        System.out.println(p2);
-        System.out.println(em1);
-        System.out.println(em2);
-        System.out.println(uName);
-        cih.signUp(u);
+            System.out.println(p1);
+            System.out.println(p2);
+            System.out.println(em1);
+            System.out.println(em2);
+            System.out.println(uName);
+            cih.signUp(u);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        u.setUserGender("Male");
-        
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        u.setUserGender("Female");
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;

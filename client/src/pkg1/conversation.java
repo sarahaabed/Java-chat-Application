@@ -1,28 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package pkg1;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
-import view.ClientInputHandler;
-import view.IClientInputHandler;
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author Radwa Manssour
  */
-public class conversation extends javax.swing.JPanel {
+public class conversation extends javax.swing.JFrame {
 
     /**
      * Creates new form conversation
@@ -30,9 +22,11 @@ public class conversation extends javax.swing.JPanel {
     private String roomId;
     private  Room room;
     private User user;
+    chatCui gui;
 
     public void setRoom(Room room) {
         this.room = room;
+        name.setText(room.contactVector.get(1).getName());
     }
 
     public Room getRoom() {
@@ -50,10 +44,15 @@ public class conversation extends javax.swing.JPanel {
     }
     
     public conversation(chatCui gui) {
+        //super(parent, modal);
         initComponents();
         this.user=gui.user;
+        
         setSize(700, 700);
+        this.gui = gui;
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,9 +77,7 @@ public class conversation extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         text1 = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(153, 204, 255));
-        setMinimumSize(new java.awt.Dimension(450, 0));
-        setPreferredSize(new java.awt.Dimension(450, 426));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         img.setText("jLabel1");
 
@@ -136,8 +133,8 @@ public class conversation extends javax.swing.JPanel {
         text1.setRows(5);
         jScrollPane2.setViewportView(text1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -156,7 +153,7 @@ public class conversation extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,20 +170,21 @@ public class conversation extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         String s=text1.getText();
         
         Message m=new Message(roomId, null,user.getUserName(), s, true);
-        IClientInputHandler cih=new ClientInputHandler();
-        cih.sendMessage(room, m);
+        gui.cih.sendMessage(room, m);
     }//GEN-LAST:event_sendActionPerformed
 
     private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
-         JFileChooser f = new JFileChooser();
+        /* JFileChooser f = new JFileChooser();
         if (f.showOpenDialog(conversation.this) == JFileChooser.APPROVE_OPTION) {
             String path = f.getSelectedFile().getPath();
             try {
@@ -194,20 +192,55 @@ public class conversation extends javax.swing.JPanel {
                 int size=fis.available();
                 byte[] b=new byte[size];
                 fis.read(b);
-               // Message m=new Message(roomId, null, null, null, true);
+                // Message m=new Message(roomId, null, null, null, true);
                 IClientInputHandler cih=new ClientInputHandler();
-                cih.sendFile(room,b);
-               // jTextArea1.setText(new String(b));
+                cih.sendFile(b);
+                // jTextArea1.setText(new String(b));
                 fis.close();
-                
+
             } catch (FileNotFoundException e) {
                 System.out.println("FileNotFound");
             } catch (IOException ex) {
-                 Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            
-        }
+                Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }*/
     }//GEN-LAST:event_attachActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    /*public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        /*try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new conversation().setVisible(true);
+            }
+        });
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attach;

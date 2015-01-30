@@ -52,19 +52,20 @@ public class ContactPanel extends javax.swing.JPanel {
                         room.setRoomId(room.contactVector.get(1).getEmail() + "*" + room.contactVector.get(0).getEmail());
                     }
                     boolean found = false;
-                    for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
+                    /*for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
                         if (((conversation) gui.room.rooms_tabs.getComponent(i)).getRoomId().equals(room.getRoomId())) {
                             found = true;
                             break;
                         }
-                    }
-                    if (!found) {
+                    }*/
+                    if(!gui.rooms.containsKey(room.getRoomId())){
                         conversation conv = new conversation(gui);
                         conv.setRoomId(room.getRoomId());
                         conv.setRoom(room);
-                        gui.room.rooms_tabs.insertTab(room.getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-                        //gui.cih.startConversation(room, gui.user);
+                        gui.rooms.put(room.getRoomId(), conv);
+                        conv.setVisible(true);
                     }
+                    
                 }
             }
 

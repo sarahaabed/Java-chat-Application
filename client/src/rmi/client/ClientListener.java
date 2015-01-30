@@ -48,7 +48,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 System.out.println(user.getUserEmail() + "clientlistener");
                 gui.setUser(user);
                 CardLayout card = (CardLayout) gui.parentPanel.getLayout();
-                gui.mess = new messenger(gui.room, gui, user);
+                gui.mess = new messenger( gui, user);
                 gui.parentPanel.add("messenger", gui.mess);
                 card.show(gui.parentPanel, "messenger");
                 break;
@@ -65,35 +65,26 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
 
             case ModelType.RECIEVE_MESSAGE:
                 boolean foundId = false;
-                for (int i = 0; i < gui.room.rooms_tabs.getTabCount(); i++) {
-                    conversation conv=(conversation)gui.room.rooms_tabs.getComponentAt(i);
-                     
-                    String roomId=conv.getRoomId();
-                    Room room=chatModel.getRoom();
-                    String roomIdModel=room.getRoomId();
-                    System.out.println(roomId);
-                    if (roomId == roomIdModel) {
-                        ((conversation) gui.room.rooms_tabs.getComponentAt(i)).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
-                        foundId = true;
-                        break;
-                    }
+                
+                    
+                     if(!gui.rooms.containsKey(chatModel.getRoom().getRoomId())){
+                         conversation conv=new conversation(gui);
+                         conv.setVisible(true);
+                         gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
+                         gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                     }else{
+                         gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                         System.out.println(chatModel.getMsg().getTxt());
+                   
 
                 }
-                if (!foundId) {
-                    System.out.println("new conv");
-                    conversation conv = new conversation(gui);
-                    conv.setRoomId(chatModel.getRoom().getRoomId());
-                    conv.setRoom(chatModel.getRoom());
-                    gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
-                    conv.text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
-                        
-                }
+                
                 break;
             case ModelType.RECIEVE_ROOM_ID:
                 conversation conv = new conversation(gui);
                 conv.setRoomId(chatModel.getRoom().getRoomId());
                 conv.setRoom(chatModel.getRoom());
-                gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
+                //gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
                 break;
 
 
