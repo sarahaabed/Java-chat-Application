@@ -67,13 +67,13 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 boolean foundId = false;
                 
                     
-                     if(!gui.rooms.contains(chatModel.getRoom().getRoomId())){
+                     if(!gui.rooms.containsKey(chatModel.getRoom().getRoomId())){
                          conversation conv=new conversation(gui);
                          conv.setVisible(true);
                          gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
                      }else{
                          gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
-                        
+                         System.out.println(chatModel.getMsg().getTxt());
                    
 
                 }

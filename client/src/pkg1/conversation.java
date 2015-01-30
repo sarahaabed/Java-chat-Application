@@ -6,7 +6,6 @@
 
 package pkg1;
 
-import javax.swing.JFileChooser;
 import model.Message;
 import model.Room;
 import model.User;
@@ -15,12 +14,12 @@ import model.User;
  *
  * @author Radwa Manssour
  */
-public class conversation extends javax.swing.JDialog {
+public class conversation extends javax.swing.JFrame {
 
     /**
      * Creates new form conversation
      */
-     private String roomId;
+    private String roomId;
     private  Room room;
     private User user;
     chatCui gui;
@@ -53,6 +52,8 @@ public class conversation extends javax.swing.JDialog {
         this.gui = gui;
     }
 
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +77,7 @@ public class conversation extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         text1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         img.setText("jLabel1");
 
@@ -183,7 +184,7 @@ public class conversation extends javax.swing.JDialog {
     }//GEN-LAST:event_sendActionPerformed
 
     private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
-       /* JFileChooser f = new JFileChooser();
+        /* JFileChooser f = new JFileChooser();
         if (f.showOpenDialog(conversation.this) == JFileChooser.APPROVE_OPTION) {
             String path = f.getSelectedFile().getPath();
             try {
@@ -209,13 +210,13 @@ public class conversation extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-  /*  public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-/*        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -233,17 +234,10 @@ public class conversation extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
-     /*   java.awt.EventQueue.invokeLater(new Runnable() {
+        /* Create and display the form */
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                conversation dialog = new conversation(gui);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new conversation().setVisible(true);
             }
         });
     }*/
