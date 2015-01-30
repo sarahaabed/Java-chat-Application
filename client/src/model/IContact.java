@@ -19,6 +19,6 @@ public interface IContact extends Serializable{
     public String getEmail();
     public String getName();
     public String getStatus();
-    public ImageIcon getPhoto();
+    public byte[] getPhoto();
     public int getState();
 }

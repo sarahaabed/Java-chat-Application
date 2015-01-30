@@ -31,13 +31,13 @@ public interface IChatController {
 
     public void changeStatus(User user);
 
-    public void ChangeProfilePic(ImageIcon image);
+    public void ChangeProfilePic(User user,String image);
 
     public void leaveConversation(String email);
 
     public void sendMessage(Room room,Message msg);
 
-    public void sendFile(byte[] file);
+    public void sendFile(Room room,byte[] file);
     
     public void recieveFile(byte[] file);
 

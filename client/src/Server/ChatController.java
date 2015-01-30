@@ -67,13 +67,22 @@ public class ChatController implements IChatController {
 
 
     @Override
-    public void sendFile(byte[] bs) {
+    public void sendFile(Room room,byte[] bs) {
     
-        
-            chatModel.setJoptionPaneMassage("Receive file");
-            chatModel.setServiceNumber(ModelType.RECICVE_FILE);
-            chatModel.setBs(bs);
-            System.out.println("sendfile :"+new String(bs));
+            Vector<Contact> conts = room.contactVector;
+       
+            for (int i = 0; i < conts.size(); i++) {
+            try {
+                IChatModel model=new ChatModel();
+                model.setServiceNumber(ModelType.RECICVE_FILE);
+                model.setBs(bs);
+                model.setRoom(room);
+                onlineUsers.get(conts.get(i).getEmail()).changeModel(model);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            }
             
        
     }
@@ -190,8 +199,8 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void ChangeProfilePic(ImageIcon image) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ChangeProfilePic(User user,String image) {
+        userData.updateImage(user.getUserEmail(), image);
     }
 
     @Override

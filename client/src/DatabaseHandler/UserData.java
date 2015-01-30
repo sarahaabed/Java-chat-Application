@@ -5,19 +5,24 @@
  */
 package DatabaseHandler;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import model.*;
 
 /**
@@ -111,6 +116,13 @@ public class UserData {
                 user.setUserPassword(rs.getString(3));
                 user.setUserGender(rs.getString(4));
                 user.setUserStatus(rs.getString(5));
+                //user.setUserImage(userImage);
+                byte[] image = null;
+
+                image = rs.getBytes("user_image");
+                user.setUserImage(image);
+
+            
             }
             PreparedStatement pst2 = con.prepareStatement("select * from User_Request_Table where receiver_Email=?");
             pst2.setString(1, mail);
@@ -123,7 +135,12 @@ public class UserData {
                 pst3.setString(1, m);
                 ResultSet rs1=pst3.executeQuery();
                 while(rs1.next()){
-                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , "Chat model", null, 0);   
+                     
+                     byte[] image = null;
+
+                     image = rs1.getBytes("user_image");
+                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(5), image, 0); 
+                     
                      user.userRequests.add(cont);
                      
                 }
@@ -138,7 +155,10 @@ public class UserData {
                 pst3.setString(1, m);
                 ResultSet rs1=pst3.executeQuery();
                 while(rs1.next()){
-                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , "Chat model", null, 0);   
+                     byte[] image = null;
+
+                     image = rs1.getBytes("user_image");
+                     Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , "Chat model", image, 0);   
                      user.userContacts.add(cont);
                 }
             }
@@ -219,6 +239,34 @@ public class UserData {
             user.setUserPassword(rs.getString("password"));
             user.setUserGender(rs.getString("gender"));
             user.setUserStatus(rs.getString("status"));
+            File image = new File("D:\\java.gif");
+            FileOutputStream fos;
+            try {
+                fos = new FileOutputStream(image);
+                byte[] buffer = new byte[1];
+                InputStream is = rs.getBinaryStream("user_image");
+                while (is.read(buffer) > 0) {
+                    fos.write(buffer);
+                    System.out.println("1");
+                }
+                FileOutputStream fout=new FileOutputStream("C:\\Users\\it\\Downloads\\image.jpg");
+                fout.write(buffer);
+                user.setUserImage(buffer);
+                ImageIcon c=new ImageIcon("C:\\Users\\it\\Downloads\\image.jpg");
+                fout.close();
+            
+            
+                
+                
+                fos.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+            
             //image
             pst = con.prepareStatement("select reciever_email from User_request_table where user_Email='"+mail+"'");
             rs=pst.executeQuery();
@@ -257,15 +305,15 @@ public class UserData {
     
     
     
-    public void update_user_image(String user_Email){
+    public void updateImage(String user_Email,String userImage){
     FileInputStream fis = null;
         try {
             connect();
-            File file = new File("D:\\new black\\blackapp\\client\\src\\data\\myPhoto.jpg");
+            File file = new File(userImage);
             fis = new FileInputStream(file);
             int len_file = (int) fis.available();
-              java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?)");
-
+              java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
+            stmt1.setString(2,user_Email);
             stmt1.setBlob(1, fis, len_file);
 
             stmt1.executeUpdate();
@@ -414,9 +462,10 @@ public void update_user_status(String user_Email,String status){
     }
 //Jihad
     
-    
-    
-    
+    public static void main(String[] args){
+        new UserData().updateImage("E-Mail@yahoo.com.org", "C:\\Users\\it\\Downloads\\m.jpg");
+    }
+     
 }
 
 //Radwa

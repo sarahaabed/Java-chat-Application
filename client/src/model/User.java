@@ -21,7 +21,7 @@ public class User implements IUser {
     private String userName;
     private String userGender;
     private int userState;
-    private ImageIcon userImage;
+    private byte[] userImage;
     private String userStatus;
     /*About user Profile*/
     public Vector<Contact> userContacts = new Vector<Contact>();
@@ -97,11 +97,12 @@ public class User implements IUser {
         this.userState = userState;
     }
 
-    public ImageIcon getUserImage() {
+    public byte[] getUserImage() {
+        
         return userImage;
     }
 
-    public void setUserImage(ImageIcon userImage) {
+    public void setUserImage(byte[] userImage) {
         this.userImage = userImage;
     }
 

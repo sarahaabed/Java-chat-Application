@@ -63,7 +63,7 @@ public class ServerController implements IserverController {
                 chatController.changeStatus(clientAction.getUser());//must has String as parameter
             
             case ActionType.CHANGE_PHOTO:
-                chatController.ChangeProfilePic(clientAction.getUser().getUserImage());
+                chatController.ChangeProfilePic(clientAction.getUser(),"");
             
             case ActionType.LEAVE_CONV:
                 chatController.leaveConversation(clientAction.getUser().getUserEmail());
@@ -85,7 +85,8 @@ public class ServerController implements IserverController {
                 chatController.register(clientAction.getUser().getUserEmail(), clientAction.getClientModel());
                  break;
             case ActionType.SEND_FILE:
-                chatController.sendFile(clientAction.getB());
+               // System.out.println("need to send file");
+                chatController.sendFile(clientAction.getRoom(),clientAction.getB());
                 break;
         }
     }

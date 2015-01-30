@@ -15,11 +15,11 @@ public class Contact implements IContact{
     private String email;
     private String name;
     private String status;
-    private ImageIcon photo;
+    private byte[] photo;
     private int state;
 
     
-    public Contact(String email,String name,String status,ImageIcon photo,int state){
+    public Contact(String email,String name,String status,byte[] photo,int state){
         this.email = email;
         this.name = name;
         this.status = status;
@@ -45,7 +45,7 @@ public class Contact implements IContact{
     }
 
     @Override
-    public ImageIcon getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
