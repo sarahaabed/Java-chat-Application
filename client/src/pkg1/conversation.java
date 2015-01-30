@@ -180,6 +180,7 @@ public class conversation extends javax.swing.JFrame {
         String s=text1.getText();
 
         Message m=new Message(roomId, null,user.getUserName(), s, true);
+        System.out.println("send  "+m.getTxt());
         gui.cih.sendMessage(room, m);
     }//GEN-LAST:event_sendActionPerformed
 
@@ -254,7 +255,7 @@ public class conversation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel name;
     private javax.swing.JButton send;
-    public static javax.swing.JTextArea text1;
-    public static javax.swing.JTextArea text2;
+    public javax.swing.JTextArea text1;
+    public javax.swing.JTextArea text2;
     // End of variables declaration//GEN-END:variables
 }
