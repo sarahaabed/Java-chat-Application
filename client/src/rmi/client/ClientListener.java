@@ -71,6 +71,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                          conversation conv=new conversation(gui);
                          conv.setVisible(true);
                          gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
+                         gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
                      }else{
                          gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
                          System.out.println(chatModel.getMsg().getTxt());
