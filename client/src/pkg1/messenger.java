@@ -45,7 +45,7 @@ public class messenger extends javax.swing.JPanel {
     /**
      * Creates new form messenger
      */
-    rooms room;
+    //rooms room;
     chatCui window;
     int w;
     public User user;
@@ -132,7 +132,7 @@ public class messenger extends javax.swing.JPanel {
 
     }
 
-    public messenger(rooms room, chatCui window, User user) {
+    public messenger( chatCui window, User user) {
         initComponents();
         this.user = user;
         //handler=new ClientInputHandler();
@@ -142,7 +142,7 @@ public class messenger extends javax.swing.JPanel {
         jButton4.setIcon(new ImageIcon("src\\pkg1\\msg1.png"));
         jButton5.setIcon(new ImageIcon("src\\pkg1\\req.png"));
 
-        this.room = room;
+        //this.room = room;
         this.window = window;
         w = window.getWidth();
         contactsPanel.setLayout(new BoxLayout(contactsPanel, BoxLayout.Y_AXIS));
@@ -327,47 +327,8 @@ public class messenger extends javax.swing.JPanel {
     }//GEN-LAST:event_contactMailActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (!room.isVisible()) {
-
-            int x = window.getWidth();
-            while (x < 800) {
-                try {
-
-                    x += 3;
-                    window.setSize(x, window.getHeight());
-                    window.p.setSize(x, window.getHeight());
-                    room.setSize(x - w, window.getHeight());
-                    Thread.sleep(1);
-
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(messenger.class
-                            .getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            room.setVisible(true);
-            jButton2.setText("<<");
-
-        } else {
-
-            int x = window.getWidth();
-            while (x > w) {
-                try {
-                    x -= 10;
-                    window.setSize(x, window.getHeight());
-                    window.p.setSize(x, window.getHeight());
-                    room.setSize(x - w, window.getHeight());
-                    room.rooms_tabs.setSize(x, window.getHeight());
-                    Thread.sleep(5);
-
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(messenger.class
-                            .getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            room.setVisible(false);
-            jButton2.setText(">>");
-
-        }
+       
+               
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

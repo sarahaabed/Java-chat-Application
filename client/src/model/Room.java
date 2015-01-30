@@ -15,11 +15,13 @@ import javax.swing.ImageIcon;
 public class Room implements IRoom{
     private ImageIcon img;
     private String roomId;
-    public Vector<Contact> contactVector=new Vector<Contact>();
-    public Vector<Message> messageVector=new Vector<Message>();
+    public Vector<Contact> contactVector;
+    public Vector<Message> messageVector;
     private String name;
 
     public Room() {
+        contactVector=new Vector<Contact>();
+        messageVector=new Vector<Message>();
     }
     
     

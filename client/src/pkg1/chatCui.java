@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.rmi.RemoteException;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +43,7 @@ public class chatCui extends javax.swing.JFrame {
     public User user;
     //public ClientListener clientListener;
     ClientInputHandler cih;
+    public Hashtable<String, conversation> rooms;
     public void setUser(User user) {
         this.user = user;
     }
@@ -55,13 +57,14 @@ public class chatCui extends javax.swing.JFrame {
     }
     public  JPanel parentPanel;
     public  messenger mess;
-    public  rooms room;
+   // public  rooms room;
     public chatCui(ClientInputHandler cih) {
         initComponents();
         this.cih=cih;
-        room=new rooms();
+        rooms=new Hashtable<>();
+        //room=new rooms();
         setSize(300, 700);
-        room.setVisible(false);
+        //room.setVisible(false);
         signInPanel signIn=new signInPanel(this,cih);
         signUpPanel signUp=new signUpPanel(this,cih);
         parentPanel=new JPanel();
@@ -69,7 +72,7 @@ public class chatCui extends javax.swing.JFrame {
         parentPanel.add("signin", signIn);
         parentPanel.add("signup", signUp);
         p.add(parentPanel,BorderLayout.WEST);
-        p.add(room,BorderLayout.CENTER);        
+        //p.add(room,BorderLayout.CENTER);        
        
     }
 
