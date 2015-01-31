@@ -6,9 +6,34 @@
 
 package pkg1;
 
+import java.awt.Color;
+import java.awt.Font;
+import static java.awt.Font.BOLD;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.spi.ObjectFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+import view.ClientInputHandler;
+import view.IClientInputHandler;
 
 /**
  *
@@ -63,143 +88,297 @@ public class conversation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        img = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        img1 = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         text2 = new javax.swing.JTextArea();
-        send = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        attach = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        attach2 = new javax.swing.JButton();
-        attach3 = new javax.swing.JButton();
-        attach4 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        send1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         text1 = new javax.swing.JTextArea();
+        saveMessage = new javax.swing.JButton();
+        attach2 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox();
+        attach1 = new javax.swing.JButton();
+        color = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        fontChooserComboBox = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(25, 173, 250));
 
-        img.setText("jLabel1");
+        jPanel2.setBackground(new java.awt.Color(25, 173, 250));
+        jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(450, 426));
 
+        img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg1/Person_1.png"))); // NOI18N
+        img1.setText("jLabel1");
+
+        name.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 255));
         name.setText("name");
 
         text2.setColumns(20);
         text2.setRows(5);
-        jScrollPane1.setViewportView(text2);
+        jScrollPane3.setViewportView(text2);
 
-        send.setText("send");
-        send.addActionListener(new java.awt.event.ActionListener() {
+        send1.setBackground(new java.awt.Color(25, 173, 250));
+        send1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        send1.setForeground(new java.awt.Color(255, 255, 255));
+        send1.setText("send");
+        send1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendActionPerformed(evt);
+                send1ActionPerformed(evt);
             }
         });
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(20, 20));
-        jPanel1.setMinimumSize(new java.awt.Dimension(20, 20));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel3.setMaximumSize(new java.awt.Dimension(20, 20));
+        jPanel3.setMinimumSize(new java.awt.Dimension(20, 20));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        attach.setMaximumSize(new java.awt.Dimension(35, 35));
-        attach.setMinimumSize(new java.awt.Dimension(0, 35));
-        attach.setPreferredSize(new java.awt.Dimension(35, 35));
-        attach.addActionListener(new java.awt.event.ActionListener() {
+        text1.setColumns(20);
+        text1.setRows(5);
+        jScrollPane4.setViewportView(text1);
+
+        saveMessage.setBackground(new java.awt.Color(63, 129, 179));
+        saveMessage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        saveMessage.setForeground(new java.awt.Color(255, 255, 255));
+        saveMessage.setText("save");
+        saveMessage.setMaximumSize(new java.awt.Dimension(100, 35));
+        saveMessage.setMinimumSize(new java.awt.Dimension(0, 0));
+        saveMessage.setPreferredSize(new java.awt.Dimension(100, 35));
+        saveMessage.setRolloverEnabled(false);
+        saveMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attachActionPerformed(evt);
+                saveMessageActionPerformed(evt);
             }
         });
-        jPanel1.add(attach);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1);
 
         attach2.setMaximumSize(new java.awt.Dimension(35, 35));
         attach2.setMinimumSize(new java.awt.Dimension(0, 0));
         attach2.setPreferredSize(new java.awt.Dimension(35, 35));
-        jPanel1.add(attach2);
-
-        attach3.setText("add member");
-        attach3.setMaximumSize(new java.awt.Dimension(100, 35));
-        attach3.setMinimumSize(new java.awt.Dimension(0, 0));
-        attach3.setPreferredSize(new java.awt.Dimension(100, 35));
-        attach3.setRolloverEnabled(false);
-        attach3.addActionListener(new java.awt.event.ActionListener() {
+        attach2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attach3ActionPerformed(evt);
+                attach2ActionPerformed(evt);
             }
         });
-        jPanel1.add(attach3);
 
-        attach4.setText("leave conversation");
-        attach4.setMaximumSize(new java.awt.Dimension(130, 35));
-        attach4.setMinimumSize(new java.awt.Dimension(0, 0));
-        attach4.setPreferredSize(new java.awt.Dimension(130, 35));
-        jPanel1.add(attach4);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        text1.setColumns(20);
-        text1.setRows(5);
-        jScrollPane2.setViewportView(text1);
+        attach1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg1/file_1.png"))); // NOI18N
+        attach1.setMaximumSize(new java.awt.Dimension(35, 35));
+        attach1.setMinimumSize(new java.awt.Dimension(0, 35));
+        attach1.setPreferredSize(new java.awt.Dimension(35, 35));
+        attach1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attach1ActionPerformed(evt);
+            }
+        });
+
+        color.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg1/colorgrid.gif"))); // NOI18N
+        color.setText("jButton1");
+        color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setBackground(new java.awt.Color(191, 225, 252));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 170, 240));
+        jTextField1.setText("write status");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("status");
+
+        fontChooserComboBox.setBackground(new java.awt.Color(63, 129, 179));
+        fontChooserComboBox.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        fontChooserComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        fontChooserComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "fonts" }));
+        fontChooserComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontChooserComboBoxActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(63, 129, 179));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("add member");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(178, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(attach1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(color, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fontChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(saveMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(send1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(438, 438, 438)
+                                .addComponent(attach2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(img1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(attach2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(attach1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(saveMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fontChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(color, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(send1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane2)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(name))
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name)
-                    .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        String s=text1.getText();
-        
-        Message m=new Message(room.getRoomId(), null,user.getUserName(), s, true);
-        gui.cih.sendMessage(room, m);
-    }//GEN-LAST:event_sendActionPerformed
+    private void send1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_send1ActionPerformed
+        String s = text1.getText();
 
-    private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
-        /* JFileChooser f = new JFileChooser();
+        Message m = new Message(roomId, null, user.getUserName(), s, true);
+        IClientInputHandler cih = new ClientInputHandler();
+        cih.sendMessage(room, m);
+    }//GEN-LAST:event_send1ActionPerformed
+
+    private void saveMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMessageActionPerformed
+       /* try {
+            // TODO add your handling code here:
+            xmlproject.ObjectFactory factory = new ObjectFactory();
+            ChatType ch = factory.createChatType();
+
+            ch.setHeader("sent messages");
+            GregorianCalendar c = new GregorianCalendar();
+            Date d = new Date();
+            c.setTime(d);
+            XMLGregorianCalendar date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+            ch.setDate(date2);
+            //
+            //            for (int i = 0; i < room.messageVector.size(); i++) {
+                //                Message m = room.messageVector.get(i);
+                //                MsgType msg2 = factory.createMsgType();
+                //                msg2.setName(m.getSender());
+                //                msg2.setBody(m.getTxt());
+                //                ch.getMsg().add(msg2);
+                //
+                //            }
+            System.out.println("before xml ...");
+            Message m = new Message(roomId, null, "sarah@aabed", "hello i am sarah aabed 000", true);
+            MsgType msg2 = factory.createMsgType();
+            msg2.setName("sarah");
+            msg2.setBody("btfdes");
+            ch.getMsg().add(msg2);
+
+            JAXBContext context = JAXBContext.newInstance("xmlproject");
+            JAXBElement<ChatType> element = factory.createMyMsg(ch);
+            Marshaller marsh = context.createMarshaller();
+            marsh.setProperty("jaxb.formatted.output", Boolean.TRUE);
+            marsh.marshal(element, new File("E:\\SARAH\\ITI_Resources\\Java\\Project\\lastVersionProject\\demo1.xml"));
+        } catch (DatatypeConfigurationException | JAXBException ex) {
+            Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }//GEN-LAST:event_saveMessageActionPerformed
+
+    private void attach2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attach2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_attach2ActionPerformed
+
+    private void attach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attach1ActionPerformed
+        ImageIcon i = new ImageIcon("src/pkg1/file.png");
+      
+        JFileChooser f = new JFileChooser();
         if (f.showOpenDialog(conversation.this) == JFileChooser.APPROVE_OPTION) {
             String path = f.getSelectedFile().getPath();
             try {
-                FileInputStream fis=new FileInputStream(path);
-                int size=fis.available();
-                byte[] b=new byte[size];
+                FileInputStream fis = new FileInputStream(path);
+                int size = fis.available();
+                byte[] b = new byte[size];
                 fis.read(b);
                 // Message m=new Message(roomId, null, null, null, true);
-                IClientInputHandler cih=new ClientInputHandler();
-                cih.sendFile(b);
+                IClientInputHandler cih = new ClientInputHandler();
+                cih.sendFile(room,b);
                 // jTextArea1.setText(new String(b));
                 fis.close();
 
@@ -209,61 +388,45 @@ public class conversation extends javax.swing.JFrame {
                 Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }*/
-    }//GEN-LAST:event_attachActionPerformed
-
-    private void attach3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attach3ActionPerformed
-        // TODO add your handling code here:
-        new FriendList(gui,gui.user,this).setVisible(true);
-    }//GEN-LAST:event_attach3ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(conversation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_attach1ActionPerformed
 
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new conversation().setVisible(true);
-            }
-        });
-    }*/
+    private void colorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorActionPerformed
+        // TODO add your handling code here:
+        Color initialBackground = this.getBackground();
+        Color colorChooser = JColorChooser.showDialog(null,"JColorChooser Sample", initialBackground);
+        text1.setForeground(colorChooser);
+        
+    }//GEN-LAST:event_colorActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void fontChooserComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontChooserComboBoxActionPerformed
+        // TODO add your handling code here:
+        String selectedItem=(String) fontChooserComboBox.getSelectedItem();
+        Font font=new Font(selectedItem,Font.BOLD,12);
+        text1.setFont(font);
+    }//GEN-LAST:event_fontChooserComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton attach;
+    private javax.swing.JButton attach1;
     private javax.swing.JButton attach2;
-    private javax.swing.JButton attach3;
-    private javax.swing.JButton attach4;
-    private javax.swing.JLabel img;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel name;
-    private javax.swing.JButton send;
+    private javax.swing.JButton color;
+    private javax.swing.JComboBox fontChooserComboBox;
+    public javax.swing.JLabel img1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JLabel name;
+    private javax.swing.JButton saveMessage;
+    private javax.swing.JButton send1;
     public javax.swing.JTextArea text1;
     public javax.swing.JTextArea text2;
     // End of variables declaration//GEN-END:variables

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -153,7 +154,8 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.mess.requestsPanel.repaint();
                 Set<String> entrySet = gui.user.userRequests.keySet();
                 Iterator<String> it = entrySet.iterator();
-                 while (it.hasNext()) {
+
+                while (it.hasNext()) {
                     System.out.println("requesttttttt");
                     String i = it.next();
                     Contact c = gui.user.userRequests.get(i);
@@ -189,8 +191,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 cont.name.setText(chatModel.getContact().getName());
                 cont.status.setText(chatModel.getContact().getStatus());
                 break;
-           
-             case ModelType.PHOTO_NOT_CHANGED:
+                case ModelType.PHOTO_NOT_CHANGED:
                 java.awt.EventQueue.invokeLater( new Runnable() {
 
             @Override
@@ -212,7 +213,6 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.parentPanel.add("messenger", gui.mess);
                 card5.show(gui.parentPanel, "messenger");
                 break;
-               
             case ModelType.REJECTED:
                 gui.user.userRequests.remove(chatModel.getContact().getEmail());
                 gui.user.userContacts.add(chatModel.getContact());
@@ -222,7 +222,6 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 Iterator<String> it1 = entrySet1.iterator();
 
                 while (it1.hasNext()) {
-                    System.out.println("requesttttttt");
                     String i = it1.next();
                     Contact c = gui.user.userRequests.get(i);
                     request r = new request();
@@ -240,6 +239,29 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 }
 
                 gui.mess.requestsPanel.repaint();
+                break;
+            case ModelType.RECIEVE_ACCEPTANCE:
+                ContactPanel cont1 = new ContactPanel(gui, chatModel.getContact());
+                gui.mess.contactsPanel.add(cont1);
+                //cont.img.setIcon(new ImageIcon(chatModel.getContact().getPhoto()));
+                cont1.name.setText(chatModel.getContact().getName());
+                cont1.status.setText(chatModel.getContact().getStatus());
+                
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    String message=chatModel.getJoptionPaneMassage();
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, new String(message));
+                    }
+                });
+                break;
+            case ModelType.RECIEVE_REJECT:
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    String message=chatModel.getJoptionPaneMassage();
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, new String(message));
+                    }
+                });
+                
 
         }
         
