@@ -6,9 +6,17 @@
 
 package pkg1;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import model.Message;
 import model.Room;
 import model.User;
+import view.ClientInputHandler;
+import view.IClientInputHandler;
 
 /**
  *
@@ -185,7 +193,7 @@ public class conversation extends javax.swing.JFrame {
     }//GEN-LAST:event_sendActionPerformed
 
     private void attachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachActionPerformed
-        /* JFileChooser f = new JFileChooser();
+         JFileChooser f = new JFileChooser();
         if (f.showOpenDialog(conversation.this) == JFileChooser.APPROVE_OPTION) {
             String path = f.getSelectedFile().getPath();
             try {
@@ -195,7 +203,7 @@ public class conversation extends javax.swing.JFrame {
                 fis.read(b);
                 // Message m=new Message(roomId, null, null, null, true);
                 IClientInputHandler cih=new ClientInputHandler();
-                cih.sendFile(b);
+                cih.sendFile(room,b);
                 // jTextArea1.setText(new String(b));
                 fis.close();
 
@@ -203,9 +211,10 @@ public class conversation extends javax.swing.JFrame {
                 System.out.println("FileNotFound");
             } catch (IOException ex) {
                 Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }*/
+            } 
+        
+        
+       }
     }//GEN-LAST:event_attachActionPerformed
 
     /**
