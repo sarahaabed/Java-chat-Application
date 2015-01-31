@@ -102,7 +102,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 String msg = chatModel.getJoptionPaneMassage();
                 byte[] bs = chatModel.getBs();
                 System.out.println("recive file ");
-                JOptionPane.showMessageDialog(null,new String(msg));
+                //JOptionPane.showMessageDialog(null,new String(msg));
                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                  JFileChooser f = new JFileChooser();
