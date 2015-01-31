@@ -252,8 +252,8 @@ public class ChatController implements IChatController {
 
     @Override
     public void ChangeProfilePic(User user,String image) {
-        boolean changed=userData.updateImage(user.getUserEmail(), image);
-         if(changed){
+        userData.updateImage(user.getUserEmail(), image);
+        /* if(changed){
             try {
                 chatModel.setServiceNumber(ModelType.PHOTO_CHANGED);
                 chatModel.setUser(user);
@@ -273,6 +273,7 @@ public class ChatController implements IChatController {
                 Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
             }
                 }
+        */
     }
 
     @Override

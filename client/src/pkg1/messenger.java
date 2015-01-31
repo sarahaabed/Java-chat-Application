@@ -356,8 +356,8 @@ public class messenger extends javax.swing.JPanel {
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
         // TODO add your handling code here:
         user.setUserStatus(status.getText());
-        //inputHandler=new ClientInputHandler();
-        inputHandler.changeStatus(user);
+       // inputHandler=new ClientInputHandler();
+       // inputHandler.changeStatus(user);
         
     }//GEN-LAST:event_statusActionPerformed
 
