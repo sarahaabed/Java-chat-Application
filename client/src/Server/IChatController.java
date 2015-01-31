@@ -29,7 +29,7 @@ public interface IChatController {
 
     public void rejectFriend(User user,Contact contact);
 
-    public void changeState(int state);
+    public void changeState(User user);
 
     public void changeStatus(User user);
 

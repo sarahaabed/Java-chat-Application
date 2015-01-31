@@ -347,7 +347,8 @@ public class messenger extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void stateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateActionPerformed
-       // window.cih.changeState(user,state.getSelectedIndex());
+        user.setUserState(state.getSelectedIndex());
+        window.cih.changeState(user);
     }//GEN-LAST:event_stateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
