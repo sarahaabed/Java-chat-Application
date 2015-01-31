@@ -76,6 +76,7 @@ public class ChatController implements IChatController {
             
             for (int i = 0; i < conts.size(); i++) {
             try {
+                
                 IChatModel model=new ChatModel();
                 model.setServiceNumber(ModelType.RECICVE_FILE);
                 model.setBs(bs);

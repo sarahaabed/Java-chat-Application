@@ -76,7 +76,7 @@ public class chatCui extends javax.swing.JFrame {
         //parentPanel.setBackground(Color.red);
         parentPanel.setLayout(new CardLayout());
         parentPanel.add("signin", signIn);
-        parentPanel.add("signup", signUp);
+        //parentPanel.add("signup", signUp);
         //p.add(new jp)
         p.add(parentPanel,BorderLayout.CENTER);
         //p.add(room,BorderLayout.CENTER);        

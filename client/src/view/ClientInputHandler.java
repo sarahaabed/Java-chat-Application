@@ -260,7 +260,10 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void sendFile(Room room,byte[] bs) {
-        System.out.println("send file b2a ");
+        /*for(int i =0;i<room.contactVector.size();i++){
+            if(cc.user.getUserEmail().equals(room.contactVector.get(i).getEmail()))
+                room.contactVector.remove(i);
+        }*/
         ca.setB(bs);
         ca.setRoom(room);
         ca.setServiceNum(ActionType.SEND_FILE);
