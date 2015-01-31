@@ -125,11 +125,31 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 
                 
             case ModelType.REQUEST_SEND:
-                gui.setUser(chatModel.getUser());
-                CardLayout card1 = (CardLayout) gui.parentPanel.getLayout();
-                gui.mess = new messenger( gui, chatModel.getUser());
-                gui.parentPanel.add("messenger", gui.mess);
-                card1.show(gui.parentPanel, "messenger");
+                java.awt.EventQueue.invokeLater( new Runnable() {
+
+            @Override
+            public void run() {
+               JOptionPane.showMessageDialog(null,chatModel.getJoptionPaneMassage());
+            }
+        });
+                    Contact c1 = chatModel.getContact();
+                    request r1 = new request();
+                   /* ImageIcon ico1 = new ImageIcon(c1.getPhoto());
+                    r1.img.setIcon(ico1);*/
+                    r1.name.setText(c1.getName());
+                    gui.mess.requestsPanel.add(r1);
+                    r1.accept.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            gui.cih.acceptContact(gui.user, c1);
+
+                        }
+                    });
+                
+
+                gui.mess.requestsPanel.repaint();
+                
                 break;
                 
             case ModelType.REQUEST_NOT_SEND:

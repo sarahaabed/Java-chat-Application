@@ -353,8 +353,10 @@ public class messenger extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-       // handler.addContact(contactMail.getText());
-        //check if there is error message
+        
+       IClientInputHandler cih=new ClientInputHandler();
+       cih.addContact(user,contactMail.getText());
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed

@@ -154,11 +154,16 @@ public class ChatController implements IChatController {
             try {
                 
                 boolean send=userData.addContact(user.getUserEmail(),contact.getEmail());
+                System.out.println("flag");
                 if(send){
                     chatModel.setServiceNumber(ModelType.REQUEST_SEND);
                     chatModel.setJoptionPaneMassage("Request Send");
-                    //user=userData.selectUser(contact.getEmail());
-                    onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                    chatModel.setContact(contact);
+                    if(onlineUsers.containsKey(contact.getEmail())){
+                        onlineUsers.get(contact.getEmail()).changeModel(chatModel);
+                    }else{
+                        onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                    }
                 }else{
                     chatModel.setServiceNumber(ModelType.REQUEST_NOT_SEND);
                     chatModel.setJoptionPaneMassage("Already In Friend List");
