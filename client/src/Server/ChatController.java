@@ -262,6 +262,27 @@ public class ChatController implements IChatController {
     @Override
     public void ChangeProfilePic(User user,String image) {
         userData.updateImage(user.getUserEmail(), image);
+        /* if(changed){
+            try {
+                chatModel.setServiceNumber(ModelType.PHOTO_CHANGED);
+                chatModel.setUser(user);
+                chatModel.setJoptionPaneMassage("Profile picture changed");
+                chatModel.setBs(user.getUserImage());
+                // user=userData.selectUser(contact.getEmail());
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }else{
+            try {
+                chatModel.setServiceNumber(ModelType.PHOTO_NOT_CHANGED);
+                chatModel.setJoptionPaneMassage("Profile picture Not Changed yet,try Again");
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
+        */
     }
 
     @Override

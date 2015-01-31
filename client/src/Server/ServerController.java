@@ -63,19 +63,22 @@ public class ServerController implements IserverController {
             case ActionType.WRITE_STATUS:
                 chatController.changeStatus(clientAction.getUser());//must has String as parameter
             
+                break;
             case ActionType.CHANGE_PHOTO:
                 chatController.ChangeProfilePic(clientAction.getUser(),clientAction.getImage());
-            
+                break;
+                
             case ActionType.LEAVE_CONV:
                 chatController.leaveConversation(clientAction.getUser().getUserEmail());
-            
+                break;
+                
             case ActionType.ADD_MEMBER:
                 /*Services Related to chathandler*/
                 chatController.addContactToRoom(clientAction.getContact());
-            
+                break;
             case ActionType.SEND_MESSAGE:
                 chatController.sendMessage(clientAction.getRoom(),clientAction.getMessage());//must have user message
-            
+                break;
             case ActionType.SIGN_IN:
                 chatController.signIn(clientAction.getUser(), clientAction.getClientModel());//must have user file to send
                 break;

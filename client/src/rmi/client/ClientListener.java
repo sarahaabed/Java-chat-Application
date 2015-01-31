@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -189,6 +190,28 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 //cont.img.setIcon(new ImageIcon(chatModel.getContact().getPhoto()));
                 cont.name.setText(chatModel.getContact().getName());
                 cont.status.setText(chatModel.getContact().getStatus());
+                break;
+                case ModelType.PHOTO_NOT_CHANGED:
+                java.awt.EventQueue.invokeLater( new Runnable() {
+
+            @Override
+            public void run() {
+               JOptionPane.showMessageDialog(null,chatModel.getJoptionPaneMassage());
+            }
+        });
+                /*gui.setUser(chatModel.getUser());
+                CardLayout card4 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card4.show(gui.parentPanel, "messenger");*/
+                break;
+                 
+                case ModelType.PHOTO_CHANGED:
+                gui.setUser(chatModel.getUser());
+                CardLayout card5 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card5.show(gui.parentPanel, "messenger");
                 break;
             case ModelType.REJECTED:
                 gui.user.userRequests.remove(chatModel.getContact().getEmail());

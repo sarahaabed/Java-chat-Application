@@ -135,7 +135,7 @@ public class ClientInputHandler implements IClientInputHandler {
     @Override
     public void changeStatus(User user) {
         ca.setUser(user);
-        ca.setServiceNum(ActionType.CHANGE_PHOTO);
+       // ca.setServiceNum(ActionType.CHANGE_PHOTO);
         try {
             sl.processClientAction(ca);
         } catch (RemoteException ex) {
