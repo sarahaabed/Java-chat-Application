@@ -6,6 +6,7 @@
 package Server;
 
 import DatabaseHandler.UserData;
+import java.io.FileInputStream;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,11 +31,25 @@ public class ChatModel implements IChatModel {
     Contact contact;
     Room room;
     byte[] bs;
+    FileInputStream img;
 
+    @Override
+    public void setImg(FileInputStream img) {
+        this.img = img;
+    }
+
+    @Override
+    public FileInputStream getImg() {
+        return img;
+    }
+
+    
+    @Override
     public int getContIdx() {
         return contIdx;
     }
 
+    @Override
     public void setContIdx(int contIdx) {
         this.contIdx=contIdx;
     }

@@ -6,6 +6,7 @@
 package Server;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import model.*;
@@ -32,7 +33,7 @@ public interface IChatController {
 
     public void changeStatus(User user);
 
-    public void ChangeProfilePic(User user,String image);
+    public void ChangeProfilePic(User user,FileInputStream image);
 
     public void leaveConversation(String email);
 

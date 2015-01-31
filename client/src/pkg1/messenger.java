@@ -249,6 +249,9 @@ public class messenger extends javax.swing.JPanel {
         img.setToolTipText("change Your Photo");
         img.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 imgMousePressed(evt);
             }
@@ -344,7 +347,7 @@ public class messenger extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void stateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateActionPerformed
-        // TODO add your handling code here:
+       // window.cih.changeState(user,state.getSelectedIndex());
     }//GEN-LAST:event_stateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -393,6 +396,10 @@ public class messenger extends javax.swing.JPanel {
         
        }
     }//GEN-LAST:event_imgMousePressed
+
+    private void imgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imgMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contactMail;

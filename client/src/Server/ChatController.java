@@ -7,6 +7,7 @@ package Server;
 
 import DatabaseHandler.UserData;
 import java.io.File;
+import java.io.FileInputStream;
 import java.rmi.RemoteException;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -265,8 +266,20 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void ChangeProfilePic(User user,String image) {
+    public void ChangeProfilePic(User user,FileInputStream image) {
         userData.updateImage(user.getUserEmail(), image);
+        chatModel.setImg(image);
+        chatModel.setServiceNumber(ModelType.PHOTO_CHANGED);
+        for (int i = 0; i < user.userContacts.size(); i++) {
+            if(onlineUsers.containsKey(user.userContacts.get(i))){
+                try {
+                    onlineUsers.get(user.userContacts.get(i)).changeModel(chatModel);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }
         /* if(changed){
             try {
                 chatModel.setServiceNumber(ModelType.PHOTO_CHANGED);

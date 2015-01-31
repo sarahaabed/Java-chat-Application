@@ -5,6 +5,7 @@
  */
 package Server;
 
+import java.io.FileInputStream;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import model.*;
@@ -42,6 +43,8 @@ public interface IChatModel extends Serializable{
     public void setBs(byte[] bs);
     public int getContIdx();
     public void setContIdx(int contIdx);
+    public FileInputStream getImg();
+    public void setImg(FileInputStream img); 
     
     
 }
