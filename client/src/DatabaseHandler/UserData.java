@@ -492,7 +492,7 @@ public void update_user_status(String user_Email,String status){
 //Jihad
     
     public static void main(String[] args){
-        new UserData().updateImage("user@yahoo.com", "src/login/bg.jpg");
+        //new UserData().updateImage("user@yahoo.com", "src/login/bg.jpg");
     }
      
 }
