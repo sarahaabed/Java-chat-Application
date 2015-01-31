@@ -24,5 +24,9 @@ public class ModelType {
     public final static int SERROR_MESSAGE=10;
     
     public final static int RECICVE_FILE=11;
+    
+    public final static int REQUEST_SEND=12;
+    public final static int REQUEST_NOT_SEND=13;
+    
 
 }

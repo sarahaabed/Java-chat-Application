@@ -33,6 +33,8 @@ public class signInPanel extends javax.swing.JPanel {
         imagePanel panel = new imagePanel(new ImageIcon("src\\login\\bg.jpg").getImage());
         this.gui=gui;
         this.handler=cih;
+         ImageIcon i =new ImageIcon("src\\login\\skype.png");
+        jLabel1.setIcon(i);
 
         // JFrame frame = new JFrame();
         //getContentPane().add(panel);
@@ -68,7 +70,6 @@ public class signInPanel extends javax.swing.JPanel {
         jPanel1.setName("Log In"); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(21, 160, 250));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/skype.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jPasswordField1.setBackground(new java.awt.Color(191, 225, 252));
