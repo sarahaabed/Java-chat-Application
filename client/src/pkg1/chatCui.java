@@ -3,7 +3,11 @@ package pkg1;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -42,7 +46,7 @@ public class chatCui extends javax.swing.JFrame {
     String userMail;
     public User user;
     //public ClientListener clientListener;
-    ClientInputHandler cih;
+    public ClientInputHandler cih;
     public Hashtable<String, conversation> rooms;
     public void setUser(User user) {
         this.user = user;
@@ -62,16 +66,27 @@ public class chatCui extends javax.swing.JFrame {
         initComponents();
         this.cih=cih;
         rooms=new Hashtable<>();
+        this.addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentResized(ComponentEvent e) {
+                parentPanel.setSize(e.getComponent().getSize());
+            }
+            
+}
+        );
         //room=new rooms();
         //setSize(300, 700);
         //room.setVisible(false);
         signInPanel signIn=new signInPanel(this,cih);
         signUpPanel signUp=new signUpPanel(this,cih);
         parentPanel=new JPanel();
+        //parentPanel.setBackground(Color.red);
         parentPanel.setLayout(new CardLayout());
         parentPanel.add("signin", signIn);
         parentPanel.add("signup", signUp);
-        p.add(parentPanel,BorderLayout.WEST);
+        //p.add(new jp)
+        p.add(parentPanel,BorderLayout.CENTER);
         //p.add(room,BorderLayout.CENTER);        
        
     }
@@ -110,15 +125,11 @@ public class chatCui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -151,6 +162,6 @@ public class chatCui extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    public static javax.swing.JPanel p;
+    public javax.swing.JPanel p;
     // End of variables declaration//GEN-END:variables
 }

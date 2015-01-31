@@ -1,5 +1,7 @@
 package pkg1;
 
+import model.Contact;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -14,8 +16,10 @@ public class request extends javax.swing.JPanel {
     /**
      * Creates new form request
      */
+    
     public request() {
         initComponents();
+        
     }
 
     /**
@@ -40,6 +44,11 @@ public class request extends javax.swing.JPanel {
         name.setText("name");
 
         accept.setText("accept");
+        accept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptActionPerformed(evt);
+            }
+        });
 
         reject.setText("reject");
 
@@ -74,10 +83,16 @@ public class request extends javax.swing.JPanel {
             .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptActionPerformed
+        
+        
+    }//GEN-LAST:event_acceptActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton accept;
-    public static javax.swing.JLabel img;
-    public static javax.swing.JLabel name;
-    public static javax.swing.JButton reject;
+    public javax.swing.JButton accept;
+    public javax.swing.JLabel img;
+    public javax.swing.JLabel name;
+    public javax.swing.JButton reject;
     // End of variables declaration//GEN-END:variables
 }

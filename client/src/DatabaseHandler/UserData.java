@@ -141,7 +141,7 @@ public class UserData {
                      image = rs1.getBytes("user_image");
                      Contact cont=new Contact(rs1.getString(1),rs1.getString(2) , rs1.getString(5), image, 0); 
                      
-                     user.userRequests.add(cont);
+                     user.userRequests.put(cont.getEmail(),cont);
                      
                 }
             }
@@ -273,7 +273,7 @@ public class UserData {
             while(rs.next()){
                 ResultSet rs1=con.createStatement().executeQuery("select * from user_table where user_Email='"+rs.getString("reciever_email")+"'");
                 Contact cont=new Contact(rs1.getString("user_email"),rs1.getString("user_name") , rs1.getString("user_status"), null, 0);
-                user.userRequests.add(cont);
+                user.userRequests.put(cont.getEmail(),cont);
             }
             pst = con.prepareStatement("select reciever_email from User_list_table where user_Email='"+mail+"'");
             rs=pst.executeQuery();
@@ -415,10 +415,15 @@ public void update_user_status(String user_Email,String status){
             stmt1.setString(1,friendEmail );
             stmt1.setString(2, userEmail);
             stmt1.executeUpdate();
+            stmt1 = con.prepareStatement("insert into user_list_table values(?,?)");
+
+            stmt1.setString(1, userEmail);
+            stmt1.setString(2, friendEmail);
+            stmt1.executeUpdate();
             PreparedStatement pst = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
 
-            pst.setString(1, userEmail);
-            pst.setString(2, friendEmail);
+            pst.setString(1, friendEmail);
+            pst.setString(2, userEmail);
             pst.executeUpdate();
         } catch (SQLException ex) {
              flag = false;
@@ -431,8 +436,8 @@ public void update_user_status(String user_Email,String status){
         try {
             PreparedStatement pst = con.prepareStatement("DELETE FROM user_request_table WHERE user_Email=? and receiver_Email=?");
 
-            pst.setString(1, userEmail);
-            pst.setString(2, friendEmail);
+            pst.setString(1, friendEmail);
+            pst.setString(2, userEmail);
             pst.executeUpdate();
            
         } catch (SQLException ex) {
@@ -463,7 +468,7 @@ public void update_user_status(String user_Email,String status){
 //Jihad
     
     public static void main(String[] args){
-        new UserData().updateImage("sarah@yahoo.com", "C:\\Users\\it\\Downloads\\p.jpg");
+        new UserData().updateImage("aliaa@aliaa", "src/pkg1/3.png");
     }
      
 }

@@ -8,6 +8,7 @@ package Server;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import model.*;
+import pkg1.request;
 
 /**
  *
@@ -39,5 +40,8 @@ public interface IChatModel extends Serializable{
     public byte[] getBs();
 
     public void setBs(byte[] bs);
+    public int getContIdx();
+    public void setContIdx(int contIdx);
+    
     
 }

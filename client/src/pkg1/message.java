@@ -82,7 +82,7 @@ public class message extends javax.swing.JPanel {
                     .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 155, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,8 +97,8 @@ public class message extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel img;
-    public static javax.swing.JLabel message;
-    public static javax.swing.JLabel name;
+    public javax.swing.JLabel img;
+    public javax.swing.JLabel message;
+    public javax.swing.JLabel name;
     // End of variables declaration//GEN-END:variables
 }

@@ -133,9 +133,9 @@ public class ContactPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel img;
-    public static javax.swing.JLabel name;
+    public javax.swing.JLabel img;
+    public javax.swing.JLabel name;
     public static javax.swing.JLabel state;
-    public static javax.swing.JLabel status;
+    public javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,6 +11,7 @@ import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+import pkg1.request;
 
 
 import rmi.client.IClientListener;
@@ -39,5 +40,6 @@ public interface IClientAction extends Serializable {
     public byte[] getB();
 
     public void setB(byte[] b);
+   public int getContIdx();
 
 }

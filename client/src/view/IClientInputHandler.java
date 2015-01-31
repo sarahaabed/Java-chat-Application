@@ -10,6 +10,7 @@ import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+import pkg1.request;
 import rmi.client.IClientListener;
 
 /**

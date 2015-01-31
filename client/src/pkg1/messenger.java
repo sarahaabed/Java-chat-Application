@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,18 +53,15 @@ public class messenger extends javax.swing.JPanel {
     public User user;
     public int openedRoomsNum = 0;
     //messenger gui=this;
-    IClientInputHandler inputHandler;
-    //user object sent in constructor
-    IClientInputHandler handler;
-    Vector<ContactPanel> contacts = new Vector<>();
+    /*Vector<ContactPanel> contacts = new Vector<>();
     Vector<request> requests = new Vector<>();
-    Vector<message> messages = new Vector<>();
+    Vector<message> messages = new Vector<>();*/
     ImageIcon stateColor[] = {new ImageIcon(""), new ImageIcon(""), new ImageIcon("src\\pkg1\\f.png")};
-    JList<JLabel> contactsPanel = new JList<>();
-    JList<JLabel> messagesPanel = new JList<>();
-    JList<JLabel> requestsPanel = new JList<>();
+    public JList<JLabel> contactsPanel = new JList<>();
+    public JList<JLabel> messagesPanel = new JList<>();
+    public JList<JLabel> requestsPanel = new JList<>();
 
-    public void setUser(User user) {
+    public void setUser(User user) {        
         this.user = user;
     }
 
@@ -102,33 +101,33 @@ public class messenger extends javax.swing.JPanel {
         }
         //add also saved xml messages
         
-        
-        for (int i = 0; i < user.userRequests.size(); i++) {
-            request r = new request();
+        Set <String> entrySet=user.userRequests.keySet();
+        Iterator <String>it=entrySet.iterator();
+        while(it.hasNext()){
+            String i=it.next();
             Contact c = user.userRequests.get(i);
+            request r = new request();
             ImageIcon ico =new ImageIcon(c.getPhoto());
             r.img.setIcon(ico);
             r.name.setText(c.getName());
-            requestsPanel.add(r);
+            requestsPanel.add(r);            
             r.accept.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   handler.acceptContact(user,c);
-                   user.userRequests.remove(c);
-                   requestsPanel.remove(r);
-
-                   ContactPanel c1=new ContactPanel(window,c);
-                   ImageIcon i =new ImageIcon(c.getPhoto());
-                   c1.img.setIcon(i);
-                   c1.name.setText(c.getName());
-                   c1.status.setText(c.getStatus());
-                   c1.state.setIcon(stateColor[c.getState()]);
-                   contactsPanel.add(c1);
+                   window.cih.acceptContact(user,c);
                    
                 }
             });
+            r.reject.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   window.cih.rejectContact(user, c);
+                }
+            });
         }
+        
 
     }
 
@@ -137,7 +136,7 @@ public class messenger extends javax.swing.JPanel {
         this.user = user;
         //handler=new ClientInputHandler();
         //this part take its values from user object sent in the constructor
-
+        
         jButton3.setIcon(new ImageIcon("src\\pkg1\\conn.png"));
         jButton4.setIcon(new ImageIcon("src\\pkg1\\msg1.png"));
         jButton5.setIcon(new ImageIcon("src\\pkg1\\req.png"));
@@ -173,7 +172,6 @@ public class messenger extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         listContainer = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -205,13 +203,6 @@ public class messenger extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText(">>");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -268,7 +259,7 @@ public class messenger extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,8 +279,6 @@ public class messenger extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(name)
                                     .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -301,11 +290,9 @@ public class messenger extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(name)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addComponent(name)
+                        .addGap(27, 27, 27)
                         .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,19 +305,13 @@ public class messenger extends javax.swing.JPanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void contactMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contactMailActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-               
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CardLayout card = (CardLayout) listContainer.getLayout();
@@ -355,15 +336,15 @@ public class messenger extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        handler.addContact(contactMail.getText());
+       // handler.addContact(contactMail.getText());
         //check if there is error message
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
         // TODO add your handling code here:
-        user.setUserStatus(status.getText());
+        /*user.setUserStatus(status.getText());
         inputHandler=new ClientInputHandler();
-        inputHandler.changeStatus(user);
+        inputHandler.changeStatus(user);*/
         
     }//GEN-LAST:event_statusActionPerformed
 
@@ -371,13 +352,12 @@ public class messenger extends javax.swing.JPanel {
     private javax.swing.JTextField contactMail;
     private javax.swing.JLabel img;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    public static javax.swing.JPanel listContainer;
+    public javax.swing.JPanel listContainer;
     private javax.swing.JLabel name;
     private javax.swing.JComboBox state;
     private javax.swing.JTextField status;
