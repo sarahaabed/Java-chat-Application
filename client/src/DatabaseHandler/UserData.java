@@ -327,18 +327,17 @@ public class UserData {
 //bishoy
 
 //Aliaa
-    public void updateImage(String user_Email,String userImage){
-    FileInputStream fis = null;
+    public void updateImage(String user_Email,FileInputStream userImage){
+    
         try {
-            //fc.setFileFilter(new JPEGImageFileFilter());
+            //fc.setFileFilter(new JPEGImageFileFilter());-->not
             connect();
-            File file = new File(userImage);
-            fis = new FileInputStream(file);
-            int len_file = (int) fis.available();
+            
+            int len_file = (int) userImage.available();
             java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
             stmt1.setString(2,user_Email);
-            stmt1.setBlob(1, fis, len_file);
-
+            stmt1.setBlob(1, userImage, len_file);
+            
             stmt1.executeUpdate();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
@@ -346,7 +345,7 @@ public class UserData {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                fis.close();
+                userImage.close();
             } catch (IOException ex) {
                 Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -491,7 +490,7 @@ public void update_user_status(String user_Email,String status){
 //Jihad
     
     public static void main(String[] args){
-        new UserData().updateImage("aliaa@aliaa", "src/pkg1/3.png");
+        //new UserData().updateImage("aliaa@aliaa", "src/pkg1/3.png");
     }
      
 }

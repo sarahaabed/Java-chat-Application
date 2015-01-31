@@ -6,6 +6,9 @@
 package view;
 
 import Server.IServerListner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -122,12 +125,19 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void changePhoto(User user,String path) {
-        ca.setUser(user);
-        ca.setImage(path);
-        ca.setServiceNum(ActionType.CHANGE_PHOTO);
         try {
-            sl.processClientAction(ca);
-        } catch (RemoteException ex) {
+            ca.setUser(user);
+            FileInputStream fis=null;
+            File file = new File(path);
+            fis = new FileInputStream(file);
+            ca.setImage(fis);
+            ca.setServiceNum(ActionType.CHANGE_PHOTO);
+            try {
+                sl.processClientAction(ca);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(ClientInputHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -146,6 +156,7 @@ public class ClientInputHandler implements IClientInputHandler {
     @Override
     public void changeState(User user) {
         ca.setUser(user);
+        
         ca.setServiceNum(ActionType.CHANGE_STATE);
         try {
             sl.processClientAction(ca);

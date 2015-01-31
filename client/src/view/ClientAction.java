@@ -6,6 +6,7 @@
 
 package view;
 
+import java.io.FileInputStream;
 import model.Contact;
 import model.Message;
 import model.Room;
@@ -27,14 +28,15 @@ public class ClientAction implements IClientAction {
     private IClientListener clientModel;
     private Room room;
     private byte[] bs;
-    private String image;
+    private FileInputStream image;
 
    
-    public String getImage() {
+    @Override
+    public FileInputStream getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(FileInputStream image) {
         this.image = image;
     }
 

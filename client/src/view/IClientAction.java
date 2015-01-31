@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.rmi.Remote;
 import model.Contact;
@@ -44,9 +45,9 @@ public interface IClientAction extends Serializable {
    public int getContIdx();
 
     
-     public String getImage();
+     public FileInputStream getImage();
 
-    public void setImage(String image);
+    public void setImage(FileInputStream image);
 
 
 }
