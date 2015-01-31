@@ -383,7 +383,7 @@ public class conversation extends javax.swing.JFrame {
                 fis.read(b);
                 // Message m=new Message(roomId, null, null, null, true);
                 IClientInputHandler cih = new ClientInputHandler();
-                cih.sendFile(room,b);
+                cih.sendFile(user,room,b);
                 // jTextArea1.setText(new String(b));
                 fis.close();
 

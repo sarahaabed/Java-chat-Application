@@ -259,13 +259,14 @@ public class ClientInputHandler implements IClientInputHandler {
    // public void sendFile(byte[] bs){}
 
     @Override
-    public void sendFile(Room room,byte[] bs) {
+    public void sendFile(User user,Room room,byte[] bs) {
         /*for(int i =0;i<room.contactVector.size();i++){
             if(cc.user.getUserEmail().equals(room.contactVector.get(i).getEmail()))
                 room.contactVector.remove(i);
         }*/
         ca.setB(bs);
         ca.setRoom(room);
+        ca.setUser(user);
         ca.setServiceNum(ActionType.SEND_FILE);
         try {
             sl.processClientAction(ca);
