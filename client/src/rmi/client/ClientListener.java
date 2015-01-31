@@ -199,7 +199,6 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 Iterator<String> it1 = entrySet1.iterator();
 
                 while (it1.hasNext()) {
-                    System.out.println("requesttttttt");
                     String i = it1.next();
                     Contact c = gui.user.userRequests.get(i);
                     request r = new request();
@@ -217,6 +216,29 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 }
 
                 gui.mess.requestsPanel.repaint();
+                break;
+            case ModelType.RECIEVE_ACCEPTANCE:
+                ContactPanel cont1 = new ContactPanel(gui, chatModel.getContact());
+                gui.mess.contactsPanel.add(cont1);
+                //cont.img.setIcon(new ImageIcon(chatModel.getContact().getPhoto()));
+                cont1.name.setText(chatModel.getContact().getName());
+                cont1.status.setText(chatModel.getContact().getStatus());
+                
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    String message=chatModel.getJoptionPaneMassage();
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, new String(message));
+                    }
+                });
+                break;
+            case ModelType.RECIEVE_REJECT:
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    String message=chatModel.getJoptionPaneMassage();
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, new String(message));
+                    }
+                });
+                
 
         }
         

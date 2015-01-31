@@ -156,7 +156,7 @@ public class ChatController implements IChatController {
                 if(send){
                     chatModel.setServiceNumber(ModelType.REQUEST_SEND);
                     chatModel.setJoptionPaneMassage("Request Send");
-                   // user=userData.selectUser(contact.getEmail());
+                    //user=userData.selectUser(contact.getEmail());
                     onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
                 }else{
                     chatModel.setServiceNumber(ModelType.REQUEST_NOT_SEND);
@@ -200,13 +200,22 @@ public class ChatController implements IChatController {
                 chatModel.setContact(userData.selectContact(contact.getEmail()));
                 onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
                 
+                chatModel.setJoptionPaneMassage(" accepted your friend request");
+                chatModel.setServiceNumber(ModelType.RECIEVE_ACCEPTANCE);
+                chatModel.setContact(userData.selectContact(user.getUserEmail()));
+                if(onlineUsers.containsKey(contact.getEmail())){
+                    onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                }else{
+                    //send offline notification
+                }
                 
             } else {
                 System.out.println("NOT Accept Friend: ");
                 chatModel.setJoptionPaneMassage("NOt Accepted");
                 chatModel.setServiceNumber(ModelType.NOT_ACCEPT_FRIEND);
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
             }
-            onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+            
         } catch (RemoteException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }

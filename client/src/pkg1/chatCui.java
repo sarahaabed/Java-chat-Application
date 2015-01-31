@@ -66,15 +66,7 @@ public class chatCui extends javax.swing.JFrame {
         initComponents();
         this.cih=cih;
         rooms=new Hashtable<>();
-        this.addComponentListener(new ComponentAdapter() {
-
-            @Override
-            public void componentResized(ComponentEvent e) {
-                parentPanel.setSize(e.getComponent().getSize());
-            }
-            
-}
-        );
+        
         //room=new rooms();
         //setSize(300, 700);
         //room.setVisible(false);
