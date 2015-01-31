@@ -337,8 +337,9 @@ public class UserData {
     
     
     
-    public void updateImage(String user_Email,String userImage){
-    FileInputStream fis = null;
+    public boolean updateImage(String user_Email,String userImage){
+        boolean changed=true;
+        FileInputStream fis = null;
         try {
             //fc.setFileFilter(new JPEGImageFileFilter());
             connect();
@@ -350,17 +351,22 @@ public class UserData {
             stmt1.setBlob(1, fis, len_file);
 
             stmt1.executeUpdate();
+            changed=true;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            changed=false;
         } catch (IOException | SQLException ex) {
-            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            changed=false;
         } finally {
             try {
                 fis.close();
             } catch (IOException ex) {
-                Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+                changed=false;
+               // Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return changed;
         }
 public void update_user_status(String user_Email,String status){
 

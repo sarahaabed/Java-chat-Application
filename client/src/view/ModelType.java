@@ -28,5 +28,7 @@ public class ModelType {
     public final static int REQUEST_SEND=12;
     public final static int REQUEST_NOT_SEND=13;
     
-
+    public final static int PHOTO_CHANGED=14;
+    
+    public final static int PHOTO_NOT_CHANGED=15;
 }
