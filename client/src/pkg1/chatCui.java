@@ -151,6 +151,6 @@ public class chatCui extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    public static javax.swing.JPanel p;
+    public javax.swing.JPanel p;
     // End of variables declaration//GEN-END:variables
 }

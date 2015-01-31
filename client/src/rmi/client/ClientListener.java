@@ -64,11 +64,12 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 break;
 
             case ModelType.RECIEVE_MESSAGE:
-                boolean foundId = false;
+                //boolean foundId = false;
                 
                     
                      if(!gui.rooms.containsKey(chatModel.getRoom().getRoomId())){
                          conversation conv=new conversation(gui);
+                         conv.setRoom(chatModel.getRoom());
                          conv.setVisible(true);
                          gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
                          gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());

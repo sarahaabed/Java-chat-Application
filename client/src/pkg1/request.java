@@ -70,14 +70,14 @@ public class request extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accept)
                     .addComponent(reject))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton accept;
-    public static javax.swing.JLabel img;
+    public javax.swing.JButton accept;
+    public javax.swing.JLabel img;
     public static javax.swing.JLabel name;
-    public static javax.swing.JButton reject;
+    public javax.swing.JButton reject;
     // End of variables declaration//GEN-END:variables
 }

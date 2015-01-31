@@ -121,6 +121,11 @@ public class conversation extends javax.swing.JFrame {
         attach3.setMinimumSize(new java.awt.Dimension(0, 0));
         attach3.setPreferredSize(new java.awt.Dimension(100, 35));
         attach3.setRolloverEnabled(false);
+        attach3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attach3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(attach3);
 
         attach4.setText("leave conversation");
@@ -179,7 +184,7 @@ public class conversation extends javax.swing.JFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         String s=text1.getText();
         
-        Message m=new Message(roomId, null,user.getUserName(), s, true);
+        Message m=new Message(room.getRoomId(), null,user.getUserName(), s, true);
         gui.cih.sendMessage(room, m);
     }//GEN-LAST:event_sendActionPerformed
 
@@ -206,6 +211,11 @@ public class conversation extends javax.swing.JFrame {
 
         }*/
     }//GEN-LAST:event_attachActionPerformed
+
+    private void attach3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attach3ActionPerformed
+        // TODO add your handling code here:
+        new FriendList(gui,gui.user,this).setVisible(true);
+    }//GEN-LAST:event_attach3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +264,7 @@ public class conversation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel name;
     private javax.swing.JButton send;
-    public static javax.swing.JTextArea text1;
-    public static javax.swing.JTextArea text2;
+    public javax.swing.JTextArea text1;
+    public javax.swing.JTextArea text2;
     // End of variables declaration//GEN-END:variables
 }
