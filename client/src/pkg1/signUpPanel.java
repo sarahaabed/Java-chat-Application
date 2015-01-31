@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pkg1;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -15,36 +21,34 @@ import view.ClientInputHandler;
 
 /**
  *
- * @author Radwa Manssour
+ * @author it
  */
-public class signUpPanel extends javax.swing.JPanel {
+public class signUpPanel extends javax.swing.JFrame {
 
     /**
      * Creates new form signUpPanel
      */
-    
     chatCui gui;
     private ClientInputHandler cih;
     private User u;
-    public signUpPanel(chatCui gui,ClientInputHandler cih) {
+
+    public signUpPanel(chatCui gui, ClientInputHandler cih) {
         initComponents();
-        this.gui=gui;
-         ImageIcon i =new ImageIcon("src\\pkg1\\v.png");
+        ImageIcon i = new ImageIcon("src\\pkg1\\skype.png");
         jLabel1.setIcon(i);
-        try{
+        this.gui = gui;
+        try {
             //HiFiLookAndFeel laf=new HiFiLookAndFeel();
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
             SwingUtilities.updateComponentTreeUI(this);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Undefined WindowLookAndFeel");
         }
         this.cih = cih;
-        
-        u =new User();
-    }
 
-    
+        u = new User();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,200 +59,490 @@ public class signUpPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        fn_txt = new javax.swing.JTextField();
+        ln_txt = new javax.swing.JTextField();
+        email_txt = new javax.swing.JTextField();
+        remail_txt = new javax.swing.JTextField();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
-        jLabel1.setBackground(new java.awt.Color(153, 204, 255));
-        jLabel1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField4.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setText("Frist Name");
+        jPanel1.setBackground(new java.awt.Color(25, 173, 250));
+        jPanel1.setForeground(java.awt.SystemColor.textHighlight);
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setName("Sign Up"); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("Last Name");
+        jLabel1.setBackground(new java.awt.Color(21, 160, 250));
+        jLabel1.setText("jLabel1");
 
-        jTextField3.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("E-Mail");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+        jPasswordField1.setBackground(new java.awt.Color(191, 225, 252));
+        jPasswordField1.setForeground(new java.awt.Color(0, 170, 240));
+        jPasswordField1.setText("password");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseClicked(evt);
             }
         });
 
-        jTextField6.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField6.setText("Confirm E-Mail");
-
-        jTextField5.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField5.setText("Password");
-
-        jTextField7.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField7.setText("Confirm Password");
-
-        jRadioButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jRadioButton2.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 204));
-        jRadioButton2.setText("Male");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton1.setBackground(new java.awt.Color(153, 204, 255));
-        jRadioButton1.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(0, 51, 153));
-        jRadioButton1.setText("Female");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(51, 51, 255));
-        jButton1.setFont(new java.awt.Font("Courier New", 1, 24)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(21, 91, 141));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign Up");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Gender");
+        jLabel2.setToolTipText("");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        fn_txt.setBackground(new java.awt.Color(191, 225, 252));
+        fn_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        fn_txt.setForeground(new java.awt.Color(0, 170, 240));
+        fn_txt.setText("frist name");
+        fn_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fn_txtFocusLost(evt);
+            }
+        });
+        fn_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fn_txtMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        ln_txt.setBackground(new java.awt.Color(191, 225, 252));
+        ln_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ln_txt.setForeground(new java.awt.Color(0, 170, 240));
+        ln_txt.setText("last name");
+        ln_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ln_txtFocusLost(evt);
+            }
+        });
+        ln_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ln_txtMouseClicked(evt);
+            }
+        });
+
+        email_txt.setBackground(new java.awt.Color(191, 225, 252));
+        email_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        email_txt.setForeground(new java.awt.Color(0, 170, 240));
+        email_txt.setText("E-mail");
+        email_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                email_txtFocusLost(evt);
+            }
+        });
+        email_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                email_txtMouseClicked(evt);
+            }
+        });
+
+        remail_txt.setBackground(new java.awt.Color(191, 225, 252));
+        remail_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        remail_txt.setForeground(new java.awt.Color(0, 170, 240));
+        remail_txt.setText("confirm email");
+        remail_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                remail_txtFocusLost(evt);
+            }
+        });
+        remail_txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                remail_txtMouseClicked(evt);
+            }
+        });
+
+        jPasswordField2.setBackground(new java.awt.Color(191, 225, 252));
+        jPasswordField2.setForeground(new java.awt.Color(0, 170, 240));
+        jPasswordField2.setText("password");
+        jPasswordField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField2FocusLost(evt);
+            }
+        });
+        jPasswordField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField2MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Cancel ?!");
+        jLabel3.setToolTipText("");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jComboBox1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.light"));
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Female", "Male" }));
+        jComboBox1.setOpaque(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(fn_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(ln_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(email_txt)
+                            .addComponent(jPasswordField1)
+                            .addComponent(remail_txt)
+                            .addComponent(jPasswordField2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fn_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(ln_txt))
+                .addGap(18, 18, 18)
+                .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(remail_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+
+        jMenu1.setText("Skype");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Help");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton2)
-                        .addGap(76, 76, 76)
-                        .addComponent(jRadioButton1)))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        String str = jPasswordField1.getText();
+        if (str.equals("")) {
+            jPasswordField1.setText("password");
+            jPasswordField1.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            jPasswordField1.setText(str);
+            jPasswordField1.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordField1FocusLost
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        u.setUserGender("Male");
+    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+        String str = jPasswordField1.getText();
+        if (str.equals("password")) {
+            jPasswordField1.setText("");
+            jPasswordField1.setForeground(java.awt.Color.gray);
+            //[25,173,250]
+        } else {
+            jPasswordField1.setText(str);
+            jPasswordField1.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordField1MouseClicked
 
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void fn_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fn_txtFocusLost
+        String str = fn_txt.getText();
+        if (str.equals("")) {
+            fn_txt.setText("frist name");
+            fn_txt.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            fn_txt.setText(str);
+            // fn_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_fn_txtFocusLost
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        u.setUserGender("Female");
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void fn_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fn_txtMouseClicked
+        String str = fn_txt.getText();
+        if (str.equals("frist name")) {
+            fn_txt.setText("");
+            fn_txt.setForeground(java.awt.Color.gray);
+        } else {
+            fn_txt.setText(str);
+            fn_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_fn_txtMouseClicked
+
+    private void ln_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ln_txtFocusLost
+        String str = ln_txt.getText();
+        if (str.equals("")) {
+            ln_txt.setText("last name");
+            ln_txt.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            ln_txt.setText(str);
+            ln_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_ln_txtFocusLost
+
+    private void ln_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ln_txtMouseClicked
+        String str = ln_txt.getText();
+        if (str.equals("last name")) {
+            ln_txt.setText("");
+            ln_txt.setForeground(java.awt.Color.gray);
+        } else {
+            ln_txt.setText(str);
+            ln_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_ln_txtMouseClicked
+
+    private void email_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_email_txtFocusLost
+        String str = email_txt.getText();
+        if (str.equals("")) {
+            email_txt.setText("E-mail");
+            email_txt.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            email_txt.setText(str);
+            email_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_email_txtFocusLost
+
+    private void email_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_email_txtMouseClicked
+        String str = email_txt.getText();
+        if (str.equals("E-mail")) {
+            email_txt.setText("");
+            email_txt.setForeground(java.awt.Color.gray);
+        } else {
+            email_txt.setText(str);
+            email_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_email_txtMouseClicked
+
+    private void remail_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_remail_txtFocusLost
+        String str = remail_txt.getText();
+        if (str.equals("")) {
+            remail_txt.setText("confirm email");
+            remail_txt.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            remail_txt.setText(str);
+            remail_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_remail_txtFocusLost
+
+    private void remail_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remail_txtMouseClicked
+        String str = remail_txt.getText();
+        if (str.equals("confirm email")) {
+            remail_txt.setText("");
+            remail_txt.setForeground(java.awt.Color.gray);
+        } else {
+            remail_txt.setText(str);
+            remail_txt.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_remail_txtMouseClicked
+
+    private void jPasswordField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField2FocusLost
+        String str = jPasswordField2.getText();
+        if (str.equals("")) {
+            jPasswordField2.setText("password");
+            jPasswordField2.setForeground(java.awt.Color.getHSBColor(0, 170, 240));
+        } else {
+            jPasswordField2.setText(str);
+            jPasswordField2.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordField2FocusLost
+
+    private void jPasswordField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField2MouseClicked
+        String str = jPasswordField2.getText();
+        if (str.equals("password")) {
+            jPasswordField2.setText("");
+            jPasswordField2.setForeground(java.awt.Color.gray);
+            //[25,173,250]
+        } else {
+            jPasswordField2.setText(str);
+            jPasswordField2.setForeground(java.awt.Color.gray);
+        }
+    }//GEN-LAST:event_jPasswordField2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String uName = new String(jTextField4.getText()+jTextField2.getText());
-        String p1 = new String(jTextField5.getText());
-        String p2 = new String(jTextField7.getText());
-        String em1 = new String(jTextField3.getText());
-        String em2 = new String(jTextField6.getText());
+        String uName = new String(fn_txt.getText() + ln_txt.getText());
+        String p1 = new String(jPasswordField1.getText());
+        String p2 = new String(jPasswordField2.getText());
+        String em1 = new String(email_txt.getText());
+        String em2 = new String(remail_txt.getText());
 
-        boolean pf=false;
-        boolean emf =false;
-        boolean unf=false;
+        boolean pf = false;
+        boolean emf = false;
+        boolean unf = false;
 
-        if(!p1.equals(p2))
-        JOptionPane.showMessageDialog(null, "different password");
-        else pf=true;
-        if(!em1.equals(em2))
-        JOptionPane.showMessageDialog(null, "different Email");
-        else emf=true;
-        if(emf) {
-            if(!u.setUserEmail(em2)) {
+        if (!p1.equals(p2)) {
+            JOptionPane.showMessageDialog(null, "Invalid password");
+        } else {
+            pf = true;
+        }
+        if (!em1.equals(em2)) {
+            JOptionPane.showMessageDialog(null, "Invalid Email");
+        } else {
+            emf = true;
+        }
+        if (emf) {
+            if (!u.setUserEmail(em2)) {
                 emf = false;
-                JOptionPane.showMessageDialog(null, "bad Email format");
+                JOptionPane.showMessageDialog(null, "Invalid Email format");
             }
         }
-        if(pf){
-            if(!u.setUserPassword(p1)){
-                JOptionPane.showMessageDialog(null, "bad Password format");
+        if (pf) {
+            if (!u.setUserPassword(p1)) {
+                JOptionPane.showMessageDialog(null, "Invalid Password format");
             }
         }
-        if(u.setUserName(uName))
-        unf = true;
-        else JOptionPane.showMessageDialog(null, "bad User Name format");
-
-        if(pf && emf && unf){
-            System.out.println(uName);
-            System.out.println(p1);
-            System.out.println(p2);
-            System.out.println(em1);
-            System.out.println(em2);
-            System.out.println(uName);
-            cih.signUp(u);
+        if (u.setUserName(uName)) {
+            unf = true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid User Name format");
+        }
+        if (jComboBox1.getSelectedIndex() == 0) {
+            u.setUserGender("female");
+        } else {
+            u.setUserGender("female");
+        }
+        if (pf && emf && unf) {
+            FileInputStream fis = null;
+            
+            try {
+                System.out.println(uName);
+                System.out.println(p1);
+                System.out.println(p2);
+                System.out.println(em1);
+                System.out.println(em2);
+                System.out.println(uName);
+                File file = new File("src\\pkg1\\p.jpg");
+                fis = new FileInputStream(file);
+                int len_file = (int) fis.available();
+                byte[] b=new byte[len_file];
+                fis.read(b);
+                u.setUserImage(b);
+                fis.close();
+                cih.signUp(u);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(signUpPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(signUpPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(signUpPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(signUpPanel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(signUpPanel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(signUpPanel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(signUpPanel.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+               //  new signUpPanel(null,null).setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField email_txt;
+    private javax.swing.JTextField fn_txt;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JTextField ln_txt;
+    private javax.swing.JTextField remail_txt;
     // End of variables declaration//GEN-END:variables
 }

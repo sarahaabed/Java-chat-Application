@@ -57,7 +57,7 @@ public class ServerController implements IserverController {
                 break;
                 
             case ActionType.CHANGE_STATE:
-                chatController.changeState(clientAction.getContact().getState());
+                chatController.changeState(clientAction.getUser());
                 break;
                 
             case ActionType.WRITE_STATUS:

@@ -240,9 +240,14 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void changeState(int state) {
+    public void changeState(User user) {
+        for (int i = 0; i < user.userContacts.size(); i++) {
+            if(onlineUsers.containsKey(user.userContacts.get(i).getEmail())){
+                
+            }
+            
+        }
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
