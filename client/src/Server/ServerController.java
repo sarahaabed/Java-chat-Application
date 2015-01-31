@@ -63,7 +63,7 @@ public class ServerController implements IserverController {
                 chatController.changeStatus(clientAction.getUser());//must has String as parameter
             
             case ActionType.CHANGE_PHOTO:
-                chatController.ChangeProfilePic(clientAction.getUser(),"");
+                chatController.ChangeProfilePic(clientAction.getUser(),clientAction.getImage());
             
             case ActionType.LEAVE_CONV:
                 chatController.leaveConversation(clientAction.getUser().getUserEmail());

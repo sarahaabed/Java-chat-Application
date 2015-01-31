@@ -120,8 +120,9 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void changePhoto(User user) {
+    public void changePhoto(User user,String path) {
         ca.setUser(user);
+        ca.setImage(path);
         ca.setServiceNum(ActionType.CHANGE_PHOTO);
         try {
             sl.processClientAction(ca);
