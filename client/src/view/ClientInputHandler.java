@@ -19,6 +19,7 @@ import model.Message;
 import model.Room;
 import model.User;
 import pkg1.chatCui;
+import pkg1.request;
 import rmi.client.ClientListener;
 import rmi.client.IClientListener;
 import view.ActionType;
@@ -189,10 +190,9 @@ public class ClientInputHandler implements IClientInputHandler {
     @Override
     public void acceptContact(User user,Contact contact) {
         /*for test*/
-        Contact c=new Contact("g.h@yahho.com", null, null, null, 5);
-        User u=new User("aliaa@yahoo", null, null, null);
         ca.setCon(contact);
         ca.setUser(user);
+        
         ca.setServiceNum(ActionType.ACCEPT_FRIEND);
         try {
             sl.processClientAction(ca);
@@ -205,12 +205,10 @@ public class ClientInputHandler implements IClientInputHandler {
 
     @Override
     public void rejectContact(User user, Contact contact) {
-        /*for test*/
-        Contact c=new Contact("g.h@yahho.com", null, null, null, 5);
-        User u=new User("aliaa@yahoo", null, null, null);
+        
         ca.setCon(contact);
         ca.setUser(user);
-        ca.setServiceNum(ActionType.ACCEPT_FRIEND);
+        ca.setServiceNum(ActionType.REJECT_FRIEND);
         try {
             sl.processClientAction(ca);
         } catch (RemoteException ex) {

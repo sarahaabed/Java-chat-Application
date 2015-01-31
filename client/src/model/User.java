@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,7 @@ public class User implements IUser {
     /*About user Profile*/
     public Vector<Contact> userContacts = new Vector<Contact>();
     public Vector<Room> userRooms = new Vector<Room>();
-    public Vector<Contact> userRequests = new Vector<>();
+    public Hashtable<String,Contact> userRequests = new Hashtable<String, Contact>();
     //want to make vector of friend Requests
 
     public User(String userEmail, String userPassword, String userName, String userGender) {

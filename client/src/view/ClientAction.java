@@ -10,6 +10,7 @@ import model.Contact;
 import model.Message;
 import model.Room;
 import model.User;
+import pkg1.request;
 import rmi.client.ClientListener;
 import rmi.client.IClientListener;
 
@@ -21,6 +22,7 @@ public class ClientAction implements IClientAction {
     private User user;
     private int serviceNum;
     private Contact con;
+    private int ContIdx;
     private Message message;
     private IClientListener clientModel;
     private Room room;
@@ -36,6 +38,19 @@ public class ClientAction implements IClientAction {
         this.image = image;
     }
 
+    public void setContIdx(int idx) {
+        ContIdx=idx;
+    }
+
+    @Override
+    public int getContIdx() {
+        return ContIdx;
+    }
+
+    
+    
+    
+    @Override
     public byte[] getB() {
         return bs;
     }

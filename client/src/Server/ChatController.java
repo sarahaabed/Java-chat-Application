@@ -19,6 +19,7 @@ import model.Message;
 import model.Room;
 import model.State;
 import model.User;
+import pkg1.request;
 import rmi.client.ClientListener;
 import rmi.client.IClientListener;
 import view.ModelType;
@@ -189,17 +190,25 @@ public class ChatController implements IChatController {
 
     @Override
     public void acceptFriend(User user, Contact contact) {
-        System.out.println("accepted");
-        boolean accepted = userData.acceptContact(user.getUserEmail(), contact.getEmail());
-        if (accepted) {
-            System.out.println("Accept Friend: ");
-            chatModel.setJoptionPaneMassage("Accepted successfully");
-            chatModel.setServiceNumber(ModelType.ACCEPT_FRIEND);
-            chatModel.setContact(userData.selectContact(contact.getEmail()));
-        } else {
-            System.out.println("NOT Accept Friend: ");
-            chatModel.setJoptionPaneMassage("NOt Accepted");
-            chatModel.setServiceNumber(ModelType.NOT_ACCEPT_FRIEND);
+        try {
+            System.out.println("accepted");
+            boolean accepted = userData.acceptContact(user.getUserEmail(), contact.getEmail());
+            if (accepted) {
+                System.out.println("Accept Friend: ");
+                chatModel.setJoptionPaneMassage("Accepted successfully");
+                chatModel.setServiceNumber(ModelType.ACCEPT_FRIEND);
+                chatModel.setContact(userData.selectContact(contact.getEmail()));
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                
+                
+            } else {
+                System.out.println("NOT Accept Friend: ");
+                chatModel.setJoptionPaneMassage("NOt Accepted");
+                chatModel.setServiceNumber(ModelType.NOT_ACCEPT_FRIEND);
+            }
+            onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -211,6 +220,7 @@ public class ChatController implements IChatController {
             System.out.println("reject Friend: ");
             chatModel.setJoptionPaneMassage("rejected successfully");
             chatModel.setServiceNumber(ModelType.REJECTED);
+            
 
         } else {
             System.out.println("NOT reject Friend: ");

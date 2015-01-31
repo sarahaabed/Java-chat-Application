@@ -16,14 +16,15 @@ public class ModelType {
     public final static int NOT_ACCEPT_FRIEND = 4;
     public final static int REJECTED = 5;
     public final static int NOT_REJECTED = 6;
-
     public final static int CHANGE_STATUS=7;
     public final static int RECIEVE_MESSAGE=8;
     public final static int RECIEVE_ROOM_ID=9;
-
     public final static int SERROR_MESSAGE=10;
-    
     public final static int RECICVE_FILE=11;
+
+    public final static int RECIEVE_ACCEPTANCE=12;
+    public final static int RECIEVE_REJECT=13;
+
     
     public final static int REQUEST_SEND=12;
     public final static int REQUEST_NOT_SEND=13;

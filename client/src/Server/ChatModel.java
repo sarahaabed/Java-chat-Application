@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import model.*;
+import pkg1.request;
 import rmi.client.*;
 
 
@@ -23,11 +24,21 @@ public class ChatModel implements IChatModel {
   
     User user;
     Message msg;
+    int contIdx;
     String joptionPaneMassage;
     int serviceNumber;
     Contact contact;
     Room room;
     byte[] bs;
+
+    public int getContIdx() {
+        return contIdx;
+    }
+
+    public void setContIdx(int contIdx) {
+        this.contIdx=contIdx;
+    }
+    
     
     public byte[] getBs() {
         return bs;

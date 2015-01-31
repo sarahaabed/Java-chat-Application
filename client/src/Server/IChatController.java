@@ -9,6 +9,7 @@ import java.io.File;
 import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import model.*;
+import pkg1.request;
 import rmi.client.IClientListener;
 
 /**

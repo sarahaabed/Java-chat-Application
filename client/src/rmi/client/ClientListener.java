@@ -7,21 +7,30 @@ package rmi.client;
 
 import Server.IChatModel;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.parser.TokenType;
+import model.Contact;
 import model.Room;
 import model.User;
+import pkg1.ContactPanel;
 import pkg1.chatCui;
 import pkg1.conversation;
 import pkg1.messenger;
+import pkg1.request;
 import view.ModelType;
 
 /**
@@ -48,18 +57,18 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 System.out.println(user.getUserEmail() + "clientlistener");
                 gui.setUser(user);
                 CardLayout card = (CardLayout) gui.parentPanel.getLayout();
-                gui.mess = new messenger( gui, user);
+                gui.mess = new messenger(gui, user);
                 gui.parentPanel.add("messenger", gui.mess);
                 card.show(gui.parentPanel, "messenger");
                 break;
 
-            case ModelType.SERROR_MESSAGE :
-                String errorMessage=chatModel.getJoptionPaneMassage();
+            case ModelType.SERROR_MESSAGE:
+                String errorMessage = chatModel.getJoptionPaneMassage();
                 java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JOptionPane.showMessageDialog(null,new String(errorMessage));
-            }
-        });               
+                    public void run() {
+                        JOptionPane.showMessageDialog(null, new String(errorMessage));
+                    }
+                });
 
                 break;
 
@@ -79,7 +88,7 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                    
 
                 }
-                
+
                 break;
             case ModelType.RECIEVE_ROOM_ID:
                 conversation conv = new conversation(gui);
@@ -88,12 +97,11 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 //gui.room.rooms_tabs.insertTab(chatModel.getRoom().getName(), null, conv, null, gui.room.rooms_tabs.getTabCount());
                 break;
 
-
             case ModelType.RECICVE_FILE:
-                String msg=chatModel.getJoptionPaneMassage();
-                byte[] bs=chatModel.getBs();
+                String msg = chatModel.getJoptionPaneMassage();
+                byte[] bs = chatModel.getBs();
                 System.out.println("recive file ");
-              //  JOptionPane.showMessageDialog(null,new String(msg));
+                //  JOptionPane.showMessageDialog(null,new String(msg));
                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                  JFileChooser f = new JFileChooser();
@@ -138,6 +146,13 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.parentPanel.add("messenger", gui.mess);
                 card2.show(gui.parentPanel, "messenger");
                 break;
+            case ModelType.ACCEPT_FRIEND:
+                gui.user.userRequests.remove(chatModel.getContact().getEmail());
+                gui.user.userContacts.add(chatModel.getContact());
+                gui.mess.requestsPanel.removeAll();
+                gui.mess.requestsPanel.repaint();
+                Set<String> entrySet = gui.user.userRequests.keySet();
+                Iterator<String> it = entrySet.iterator();
            
              case ModelType.PHOTO_NOT_CHANGED:
                 java.awt.EventQueue.invokeLater( new Runnable() {
@@ -161,12 +176,78 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 gui.parentPanel.add("messenger", gui.mess);
                 card5.show(gui.parentPanel, "messenger");
                 break;
+                while (it.hasNext()) {
+                    System.out.println("requesttttttt");
+                    String i = it.next();
+                    Contact c = gui.user.userRequests.get(i);
+                    request r = new request();
+                    ImageIcon ico = new ImageIcon(c.getPhoto());
+                    r.img.setIcon(ico);
+                    r.name.setText(c.getName());
+                    gui.mess.requestsPanel.add(r);
+                    r.accept.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            gui.cih.acceptContact(gui.user, c);
+
+
+                            /*ContactPanel c1=new ContactPanel(window,c);
+                             ImageIcon i =new ImageIcon(c.getPhoto());
+                             c1.img.setIcon(i);
+                             c1.name.setText(c.getName());
+                             c1.status.setText(c.getStatus());
+                             c1.state.setIcon(stateColor[c.getState()]);
+                             contactsPanel.add(c1);*/
+                        }
+                    });
+                }
+
+                gui.mess.requestsPanel.repaint();
+                ContactPanel cont = new ContactPanel(gui, chatModel.getContact());
+
+                gui.mess.contactsPanel.add(cont);
+
+                //cont.img.setIcon(new ImageIcon(chatModel.getContact().getPhoto()));
+                cont.name.setText(chatModel.getContact().getName());
+                cont.status.setText(chatModel.getContact().getStatus());
+                break;
+            case ModelType.REJECTED:
+                gui.user.userRequests.remove(chatModel.getContact().getEmail());
+                gui.user.userContacts.add(chatModel.getContact());
+                gui.mess.requestsPanel.removeAll();
+                gui.mess.requestsPanel.repaint();
+                Set<String> entrySet1 = gui.user.userRequests.keySet();
+                Iterator<String> it1 = entrySet1.iterator();
+
+                while (it1.hasNext()) {
+                    System.out.println("requesttttttt");
+                    String i = it1.next();
+                    Contact c = gui.user.userRequests.get(i);
+                    request r = new request();
+                    ImageIcon ico = new ImageIcon(c.getPhoto());
+                    r.img.setIcon(ico);
+                    r.name.setText(c.getName());
+                    gui.mess.requestsPanel.add(r);
+                    r.accept.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            gui.cih.acceptContact(gui.user, c);
+                        }
+                    });
+                }
+
+                gui.mess.requestsPanel.repaint();
 
         }
+        
+        
 
     }
 
     @Override
+
     public void isConnected() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
