@@ -191,14 +191,15 @@ public class UserData {
     }
     public boolean addContact(String user,String contact){
         boolean flag=true;
+        System.out.println("database insert user");
         try {
-
+            System.out.println("inserted");
             String insertString = new String("INSERT INTO User_Request_Table (user_Email,receiver_Email) VALUES(?,?) ");
             PreparedStatement pst = con.prepareStatement(insertString);
             //pst.setInt(1, id);
             pst.setString(1, user);
             pst.setString(2, contact);
-           
+            System.out.println("inserted tani");
             if (pst.execute()== false ) {
                 System.out.println("request send");
                 flag = true;
@@ -209,7 +210,8 @@ public class UserData {
             
         } catch (SQLException ex) {
             flag=false;
-            //Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+            //System.out.println("");
+            Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return flag;
     
@@ -491,7 +493,7 @@ public void update_user_status(String user_Email,String status){
 //Jihad
     
     public static void main(String[] args){
-        new UserData().updateImage("aliaa@aliaa", "src/pkg1/3.png");
+        new UserData().updateImage("user@yahoo.com", "src/login/bg.jpg");
     }
      
 }
