@@ -64,6 +64,7 @@ public class ContactPanel extends javax.swing.JPanel {
                         conv.setRoom(room);
                         gui.rooms.put(room.getRoomId(), conv);
                         conv.setVisible(true);
+                        //gui.cih.sendMessage(room, null);
                     }
                     
                 }

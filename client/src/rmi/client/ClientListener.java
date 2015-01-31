@@ -73,18 +73,19 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 break;
 
             case ModelType.RECIEVE_MESSAGE:
-                boolean foundId = false;
-
-                if (!gui.rooms.containsKey(chatModel.getRoom().getRoomId())) {
-                    conversation conv = new conversation(gui);
-                    conv.setRoom(chatModel.getRoom());
-                    conv.setRoomId(chatModel.getRoom().getRoomId());
-                    conv.setVisible(true);
-                    gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
-                    gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
-                } else {
-                    gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
-                    System.out.println("room id  :  " + chatModel.getRoom().getRoomId());
+                //boolean foundId = false;
+                
+                    
+                     if(!gui.rooms.containsKey(chatModel.getRoom().getRoomId())){
+                         conversation conv=new conversation(gui);
+                         conv.setRoom(chatModel.getRoom());
+                         conv.setVisible(true);
+                         gui.rooms.put(chatModel.getRoom().getRoomId(), conv);
+                         gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                     }else{
+                         gui.rooms.get(chatModel.getRoom().getRoomId()).text2.append("\n" + chatModel.getMsg().getSender() + " : " + chatModel.getMsg().getTxt());
+                         System.out.println("room id  :  "+chatModel.getRoom().getRoomId());
+                   
 
                 }
 
@@ -102,23 +103,48 @@ public class ClientListener extends UnicastRemoteObject implements IClientListen
                 System.out.println("recive file ");
                 //  JOptionPane.showMessageDialog(null,new String(msg));
                 java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        JFileChooser f = new JFileChooser();
-                        if (f.showSaveDialog(gui) == JFileChooser.APPROVE_OPTION) {
-                            String path = f.getSelectedFile().getPath();
-                            try {
-                                FileOutputStream fos = new FileOutputStream(path);
-                                fos.write(bs);
-                                fos.close();
-                            } catch (FileNotFoundException ex) {
-                                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (IOException ex) {
-                                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }
-                });
+            public void run() {
+                 JFileChooser f = new JFileChooser();
+                if (f.showSaveDialog(gui) == JFileChooser.APPROVE_OPTION) {
+                    String path = f.getSelectedFile().getPath();
+                try {
+                    FileOutputStream fos=new FileOutputStream(path);
+                    fos.write(bs);
+                    fos.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
+            }
+        });
+               
+            break;
+                
+                
+            case ModelType.REQUEST_SEND:
+                gui.setUser(chatModel.getUser());
+                CardLayout card1 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card1.show(gui.parentPanel, "messenger");
+                break;
+                
+            case ModelType.REQUEST_NOT_SEND:
+                String errorMsg=chatModel.getJoptionPaneMassage();
+                java.awt.EventQueue.invokeLater( new Runnable() {
 
+            @Override
+            public void run() {
+               JOptionPane.showMessageDialog(null,new String(errorMsg));
+            }
+        });
+                gui.setUser(chatModel.getUser());
+                CardLayout card2 = (CardLayout) gui.parentPanel.getLayout();
+                gui.mess = new messenger( gui, chatModel.getUser());
+                gui.parentPanel.add("messenger", gui.mess);
+                card2.show(gui.parentPanel, "messenger");
                 break;
             case ModelType.ACCEPT_FRIEND:
                 gui.user.userRequests.remove(chatModel.getContact().getEmail());

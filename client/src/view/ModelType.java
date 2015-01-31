@@ -21,8 +21,13 @@ public class ModelType {
     public final static int RECIEVE_ROOM_ID=9;
     public final static int SERROR_MESSAGE=10;
     public final static int RECICVE_FILE=11;
+
     public final static int RECIEVE_ACCEPTANCE=12;
     public final static int RECIEVE_REJECT=13;
+
     
+    public final static int REQUEST_SEND=14;
+    public final static int REQUEST_NOT_SEND=15;
+
 
 }

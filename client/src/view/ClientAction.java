@@ -27,6 +27,16 @@ public class ClientAction implements IClientAction {
     private IClientListener clientModel;
     private Room room;
     private byte[] bs;
+    private String image;
+
+   
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public void setContIdx(int idx) {
         ContIdx=idx;

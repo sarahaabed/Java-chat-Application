@@ -135,15 +135,56 @@ public class ChatController implements IChatController {
     }
 
     @Override
-    public void addContact(Contact contact) {
+    public void addContact(User user,Contact contact) {
         boolean flag = userData.validateMail(contact.getEmail());
+       // boolean flag1=userData.selectFriend(user, contact.getEmail());
+       // System.out.println(flag1);
+       /* if(flag1==true){
+            try {
+                System.out.println("already found");
+                chatModel.setServiceNumber(ModelType.REQUEST_NOT_SEND);
+                chatModel.setJoptionPaneMassage("E-Mail is Already in Friend List");
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
         if(flag){
-            
+            try {
+                
+                boolean send=userData.addContact(user.getUserEmail(),contact.getEmail());
+                if(send){
+                    chatModel.setServiceNumber(ModelType.REQUEST_SEND);
+                    chatModel.setJoptionPaneMassage("Request Send");
+                   // user=userData.selectUser(contact.getEmail());
+                    onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                }else{
+                    chatModel.setServiceNumber(ModelType.REQUEST_NOT_SEND);
+                    chatModel.setJoptionPaneMassage("Already In Friend List");
+                    onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+                }
+                
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
         }
+        
+        else {
+            try {
+                chatModel.setServiceNumber(ModelType.REQUEST_NOT_SEND);
+                chatModel.setJoptionPaneMassage("E-Mail Not Found");
+                onlineUsers.get(user.getUserEmail()).changeModel(chatModel);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+        }
+        
     }
 
     @Override
-    public void removeContact(String emailId) {
+    public void removeContact(User user,Contact contact) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

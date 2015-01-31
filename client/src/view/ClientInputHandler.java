@@ -95,9 +95,10 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void addContact(String mail) {
+    public void addContact(User user,String mail) {
         Contact con=new Contact(mail, null, null, null, 0);
         ca.setCon(con);
+        ca.setUser(user);
         ca.setServiceNum(ActionType.ADD_CONTACT);
         try {
             sl.processClientAction(ca);
@@ -120,8 +121,9 @@ public class ClientInputHandler implements IClientInputHandler {
     }
 
     @Override
-    public void changePhoto(User user) {
+    public void changePhoto(User user,String path) {
         ca.setUser(user);
+        ca.setImage(path);
         ca.setServiceNum(ActionType.CHANGE_PHOTO);
         try {
             sl.processClientAction(ca);

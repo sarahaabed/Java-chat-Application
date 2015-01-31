@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -189,6 +190,32 @@ public class UserData {
             return null;
         }
     }
+    public boolean addContact(String user,String contact){
+        boolean flag=true;
+        try {
+
+            String insertString = new String("INSERT INTO User_Request_Table (user_Email,receiver_Email) VALUES(?,?) ");
+            PreparedStatement pst = con.prepareStatement(insertString);
+            //pst.setInt(1, id);
+            pst.setString(1, user);
+            pst.setString(2, contact);
+           
+            if (pst.execute()== false ) {
+                System.out.println("request send");
+                flag = true;
+            } else {
+                System.out.println("request not send");
+                flag = false;
+            } 
+            
+        } catch (SQLException ex) {
+            flag=false;
+            //Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
+    
+    
+    }
 //Radwa
     public boolean validateMail(String mail){
         try {
@@ -301,18 +328,15 @@ public class UserData {
 //bishoy
 
 //Aliaa
-    
-    
-    
-    
     public void updateImage(String user_Email,String userImage){
     FileInputStream fis = null;
         try {
+            //fc.setFileFilter(new JPEGImageFileFilter());
             connect();
             File file = new File(userImage);
             fis = new FileInputStream(file);
             int len_file = (int) fis.available();
-              java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
+            java.sql.PreparedStatement stmt1 = con.prepareStatement("update user_table set user_Image=? Where user_Email=?");
             stmt1.setString(2,user_Email);
             stmt1.setBlob(1, fis, len_file);
 

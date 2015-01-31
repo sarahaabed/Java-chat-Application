@@ -41,11 +41,11 @@ public class ServerController implements IserverController {
                 break;
                 
             case ActionType.ADD_CONTACT:
-                chatController.addContact(clientAction.getContact());
+                chatController.addContact(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.REMOVE_CONTACT:
-                chatController.removeContact(clientAction.getContact().getEmail());
+                chatController.removeContact(clientAction.getUser(),clientAction.getContact());
                 break;
                 
             case ActionType.ACCEPT_FRIEND:
@@ -64,7 +64,7 @@ public class ServerController implements IserverController {
                 chatController.changeStatus(clientAction.getUser());//must has String as parameter
             
             case ActionType.CHANGE_PHOTO:
-                chatController.ChangeProfilePic(clientAction.getUser(),"");
+                chatController.ChangeProfilePic(clientAction.getUser(),clientAction.getImage());
             
             case ActionType.LEAVE_CONV:
                 chatController.leaveConversation(clientAction.getUser().getUserEmail());

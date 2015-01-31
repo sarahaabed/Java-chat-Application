@@ -40,6 +40,13 @@ public interface IClientAction extends Serializable {
     public byte[] getB();
 
     public void setB(byte[] b);
+
    public int getContIdx();
+
+    
+     public String getImage();
+
+    public void setImage(String image);
+
 
 }

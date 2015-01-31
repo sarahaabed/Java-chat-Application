@@ -20,9 +20,9 @@ public interface IChatController {
 
     public void addUser(User user);
 
-    public void addContact(Contact contact);
+    public void addContact(User user,Contact contact);
 
-    public void removeContact(String emailId);
+    public void removeContact(User user,Contact contact);
 
     public void acceptFriend(User user,Contact contact);
 

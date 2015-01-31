@@ -6,6 +6,12 @@
 package pkg1;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -456,14 +462,34 @@ public class SignUp extends javax.swing.JFrame {
             u.setUserGender("female");
         }
         if (pf && emf && unf) {
-            System.out.println(uName);
-
-            System.out.println(p1);
-            System.out.println(p2);
-            System.out.println(em1);
-            System.out.println(em2);
-            System.out.println(uName);
-            cih.signUp(u);
+            FileInputStream fis = null;
+            
+            try {
+                System.out.println(uName);
+                System.out.println(p1);
+                System.out.println(p2);
+                System.out.println(em1);
+                System.out.println(em2);
+                System.out.println(uName);
+                File file = new File("src\\pkg1\\p.jpg");
+                fis = new FileInputStream(file);
+                int len_file = (int) fis.available();
+                byte[] b=new byte[len_file];
+                fis.read(b);
+                u.setUserImage(b);
+                fis.close();
+                cih.signUp(u);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    fis.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

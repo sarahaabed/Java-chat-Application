@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
@@ -23,9 +25,11 @@ import java.util.prefs.Preferences;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JToolTip;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Contact;
@@ -73,7 +77,9 @@ public class messenger extends javax.swing.JPanel {
         ImageIcon mm=getimage();*/
        // System.out.println("image icon "+mm.getIconHeight());
         //mm.paintIcon(gui,new , w, w);
-
+        JToolTip tip=new JToolTip();
+        tip.setToolTipText("change Profile pic..");
+        img.setToolTipText("change Your Photo");
             ImageIcon icon =new ImageIcon(user.getUserImage());
             System.out.println("image icon"+icon.getIconHeight());
             img.setIcon(icon);
@@ -84,7 +90,7 @@ public class messenger extends javax.swing.JPanel {
             cont.name.setText(user.userContacts.get(i).getName());
             cont.status.setText(user.userContacts.get(i).getStatus());
             ImageIcon ic =new ImageIcon(user.userContacts.get(i).getPhoto());
-            cont.img.setIcon(icon);
+//            cont.img.setIcon(icon);
             cont.state.setIcon(stateColor[user.userContacts.get(i).getState()]);
             contactsPanel.add(cont);
            
@@ -240,6 +246,13 @@ public class messenger extends javax.swing.JPanel {
         jPanel1.add(jButton5);
 
         img.setText("jLabel1");
+        img.setToolTipText("change Your Photo");
+        img.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                imgMousePressed(evt);
+            }
+        });
 
         state.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "available", "busy ", "away" }));
         state.addActionListener(new java.awt.event.ActionListener() {
@@ -342,11 +355,39 @@ public class messenger extends javax.swing.JPanel {
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
         // TODO add your handling code here:
-        /*user.setUserStatus(status.getText());
-        inputHandler=new ClientInputHandler();
-        inputHandler.changeStatus(user);*/
+        user.setUserStatus(status.getText());
+        //inputHandler=new ClientInputHandler();
+        inputHandler.changeStatus(user);
         
     }//GEN-LAST:event_statusActionPerformed
+
+    private void imgMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMousePressed
+         JFileChooser f = new JFileChooser();
+        if (f.showOpenDialog(messenger.this) == JFileChooser.APPROVE_OPTION) {
+           // f.setFileFilter(new JPEGImageFileFilter());
+            String path = f.getSelectedFile().getPath();
+            IClientInputHandler cih=new ClientInputHandler();
+            cih.changePhoto(user,path);
+            /*try {
+                FileInputStream fis=new FileInputStream(path);
+                int size=fis.available();
+                byte[] b=new byte[size];
+                fis.read(b);
+                // Message m=new Message(roomId, null, null, null, true);
+                IClientInputHandler cih=new ClientInputHandler();
+                cih.sendFile(room,b);
+                // jTextArea1.setText(new String(b));
+                fis.close();
+
+            } catch (FileNotFoundException e) {
+                System.out.println("FileNotFound");
+            } catch (IOException ex) {
+                Logger.getLogger(conversation.class.getName()).log(Level.SEVERE, null, ex);
+            } */
+        
+        
+       }
+    }//GEN-LAST:event_imgMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contactMail;
